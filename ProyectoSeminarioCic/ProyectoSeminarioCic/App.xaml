@@ -9,15 +9,7 @@
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
-            </Style>          
+            </Style>
         </ResourceDictionary>
 	</Application.Resources>
-    Title="Label Demo">
-	<ContentPage.Content>
-		<StackLayout Padding="5,10">
-      <Label TextColor="#77d065" FontSize = "20" Text="This is a label." />
-    </StackLayout>
-  </ContentPage.Content>
-</ContentPage>
-    
 </Application>
