@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSeminarioCic.App">
@@ -12,4 +12,11 @@
             </Style>
         </ResourceDictionary>
 	</Application.Resources>
+    Title="Label Demo">
+	<ContentPage.Content>
+		<StackLayout Padding="5,10">
+      <Label TextColor="#77d065" FontSize = "20" Text="This is a label." />
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
 </Application>
