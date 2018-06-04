@@ -14,7 +14,7 @@ namespace ProyectoSeminarioCic
 			InitializeComponent();
 
 
-			MainPage = new MainPage();
+			MainPage = new Login();
 		}
 
 		protected override void OnStart ()
