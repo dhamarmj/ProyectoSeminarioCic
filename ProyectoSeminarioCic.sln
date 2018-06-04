@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoSeminarioCic.Androi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoSeminarioCic.iOS", "ProyectoSeminarioCic\ProyectoSeminarioCic.iOS\ProyectoSeminarioCic.iOS.csproj", "{32E187F8-C3BC-49AA-8C92-A873A5B4A235}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoSeminarioCic", "ProyectoSeminarioCic\ProyectoSeminarioCic\ProyectoSeminarioCic.csproj", "{ED7FD46E-85DD-4911-83B1-B9CACA793CBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoSeminarioCic", "ProyectoSeminarioCic\ProyectoSeminarioCic\ProyectoSeminarioCic.csproj", "{ED7FD46E-85DD-4911-83B1-B9CACA793CBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
