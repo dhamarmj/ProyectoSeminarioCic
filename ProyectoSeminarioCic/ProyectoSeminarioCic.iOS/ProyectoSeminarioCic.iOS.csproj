@@ -70,6 +70,10 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\Contents.json" />
+    <BundleResource Include="Resources\AlexBrush.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -149,5 +153,59 @@
       <Project>{5253A45F-A1BE-4461-A54B-77E19B5253E9}</Project>
       <Name>ProyectoSeminarioCic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\store.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\store%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\store%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\add_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\add_imagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\addicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\borrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\fondo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mapaa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\notif.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\publ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Tools.png" />
   </ItemGroup>
 </Project>

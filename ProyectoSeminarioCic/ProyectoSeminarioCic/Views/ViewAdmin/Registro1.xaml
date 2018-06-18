@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Title="Registro de Usuario"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.Registro1">
+    <ContentPage.Content>
+        <Grid>
+           <!-- <Image Grid.Row="1" Source="add-user.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" /> -->
+
+            <StackLayout Grid.Row="1" Padding="30,20">
+                <Entry x:Name="entrynom"  Placeholder="Nombre" PlaceholderColor="Gray"/>
+                <Entry x:Name="entryapellido" Placeholder="Apellido" PlaceholderColor="Gray"/>
+                <Label Grid.Row="2" Text="Fecha de Nacimiento"/>
+                <DatePicker x:Name="btnfecha"/>
+                <Button Text="Siguiente" x:Name="btnsiguiente" BackgroundColor="White" BorderRadius="20" TextColor="Black"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

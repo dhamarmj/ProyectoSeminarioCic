@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.Registro2">
+    <ContentPage.Content>
+        <Grid>
+   <!--         <Image Grid.Row="0" Source="add_image.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
+-->
+            <StackLayout Grid.Row="1" Padding="30,20">
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="btnsubir" Text="SubirFoto"/>
+                    <Button x:Name="btntomar" Text="TomarFoto"/>
+                </StackLayout>
+                <Entry Placeholder="Nombre de Usuario" PlaceholderColor="Gray" />
+                <Entry Placeholder="Correo Electronico" PlaceholderColor="Gray" />
+                <Entry Placeholder="Contraseña" PlaceholderColor="Gray" IsPassword="True" />
+                <Button Text="Confirmar!" x:Name="btnconfirmar" BackgroundColor="White" BorderRadius="20" TextColor="Black"/>
+            </StackLayout>
+           
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

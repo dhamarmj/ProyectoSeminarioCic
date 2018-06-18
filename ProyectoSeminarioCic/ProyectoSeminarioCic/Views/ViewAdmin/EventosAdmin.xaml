@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Title="Even"
+             Icon="Calendar.png"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.EventosAdmin">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Administrador de Eventos"
+                   Font="20"  VerticalOptions="Start" HorizontalOptions="Center" />            
+            <Label Text="Seminarios"
+                   Font="12"  VerticalOptions="Start" HorizontalOptions="Center" />
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="btnagregar" Text="Agregar" BackgroundColor="White">
+                    <Button.Image>
+                        <OnPlatform x:TypeArguments="FileImageSource"
+                                iOS="addicon.png"
+                                Android="addicon.png"/>
+                    </Button.Image>
+                </Button>
+
+                <Button x:Name="btnEliminar" BackgroundColor="White">
+                    <Button.Image>
+                        <OnPlatform x:TypeArguments="FileImageSource"
+                                iOS="borrar.png"
+                                Android="borrar.png"/>
+                    </Button.Image>
+                </Button>
+                <Button x:Name="btnModificar" BackgroundColor="White">
+                    <Button.Image>
+                        <OnPlatform x:TypeArguments="FileImageSource"
+                                iOS="edit.png"
+                                Android="edit.pnsg"/>
+                    </Button.Image>
+                </Button>
+            </StackLayout>
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

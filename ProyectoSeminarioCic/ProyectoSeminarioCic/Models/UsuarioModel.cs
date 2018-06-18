@@ -9,15 +9,15 @@ namespace ProyectoSeminarioCic.Models
 {
    public class UsuarioModel : INotifyPropertyChanged
     {
-        private int idUsuario;
-        private string nombre;
-        private string apellido;
-        private string username;
-        private string correo;
-        private string contrasenia;
-        private DateTime fechaNac;
-        private char genero;
-        private string ocupacion;
+            private int idUsuario;
+            private string nombre;
+            private string apellido;
+            private string username;
+            private string correo;
+            private string contrasenia;
+            private DateTime fechaNac;
+            private char genero;
+            private string ocupacion;
 
         [PrimaryKey,AutoIncrement]
         public int IdUsuario

@@ -8,9 +8,7 @@ using UIKit;
 using SQLite.Net.Interop;
 using System.IO;
 using Xamarin.Forms;
-
 [assembly: Dependency(typeof(ProyectoSeminarioCic.iOS.Configuration))]
-
 
 namespace ProyectoSeminarioCic.iOS
 {
