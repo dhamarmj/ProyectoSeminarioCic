@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Title="Notif" 
+             Icon="notif.png"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.Notificacion">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--Grid.Row="1" Padding="30,20"> -->
+            <Label Text="Enviar Notificacion" Font="16"/>
+            <Entry Placeholder="Asunto" PlaceholderColor="Gray" />
+            <Entry Placeholder="Descripcion" PlaceholderColor="Gray" />
+            <Button x:Name="btnenviar" Text="Enviar" HorizontalOptions="EndAndExpand" FontAttributes="Bold"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.Login"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="fondo.jpg" Aspect="AspectFill"/>
+            <BoxView Color="AliceBlue" Opacity="0.6"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <Image Grid.Row="0" Source="logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
+
+            <StackLayout Grid.Row="1" Padding="30,20">
+                <Entry Placeholder="Nombre de Usuario" PlaceholderColor="Gray" x:Name="nombre" />
+                <Entry Placeholder="Contraseña" PlaceholderColor="Gray" IsPassword="True" />
+                <Button Text="Iniciar Sesion" x:Name="btnIniciar" BackgroundColor="WhiteSmoke" BorderRadius="20" TextColor="Black"/>
+                <StackLayout Orientation="Horizontal">
+                <Label Text="¿Olvidaste tu contraseña?" />
+                <Button Text="Registrarse" x:Name="btnreg"  BackgroundColor="White" FontAttributes="Bold"/>
+                </StackLayout>
+            </StackLayout>
+
+
+            <StackLayout Grid.Row="2" HorizontalOptions="Center" Margin="0,0,0,50">
+                <StackLayout Orientation="Horizontal">
+                    <Image Grid.Row="0" Source="logo.png" WidthRequest="45" HeightRequest="45" Margin="0,50,0,30" />
+                    <Image Grid.Row="0" Source="logo.png" WidthRequest="45" HeightRequest="45" Margin="0,50,0,30" />
+                    <Image Grid.Row="0" Source="logo.png" WidthRequest="45" HeightRequest="45" Margin="0,50,0,30" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

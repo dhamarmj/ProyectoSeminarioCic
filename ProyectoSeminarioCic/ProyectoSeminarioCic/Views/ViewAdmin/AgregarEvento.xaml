@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Title="Agregar Evento" 
+             xmlns="http://xamarin.com/schemas/2014/forms"        
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.AgregarEvento">
+    <ContentPage.Content>
+
+        <StackLayout>            <!--Grid.Row="1" Padding="30,20"> -->
+            <Label Text="Agregar Evento" Font="20"/>
+            <Entry Placeholder="Titulo" PlaceholderColor="Gray" />
+            
+                <Label Text="Fecha"/>
+                <DatePicker x:Name="btnfecha"/>
+                <Label Text="Hora"/>
+                <TimePicker x:Name="bthora"/>
+            <Picker x:Name="pickerbtn" Title="Charlistas" SelectedIndexChanged="pickerbtn_SelectedIndexChanged"/>
+            <BoxView x:Name="boxcharlista" VerticalOptions="CenterAndExpand"></BoxView>
+            <Button x:Name="btnmap">
+                <Button.Image>
+                    <OnPlatform x:TypeArguments="FileImageSource"
+                                iOS="mapaa.png"
+                                Android="mapaa.png"/>
+                </Button.Image>
+            </Button>
+            <Entry Placeholder="Direccion del Evento" PlaceholderColor="Gray" />
+            <Entry Placeholder="Descripcion" PlaceholderColor="Gray" />
+            <Button x:Name="btnFoto" >
+                <Button.Image>
+                    <OnPlatform x:TypeArguments="FileImageSource"
+                                iOS="add_imagen.png"
+                                Android="add_imagen.png"/>
+                </Button.Image>
+            </Button>
+            <Button Text="Agregar" x:Name="btnIniciar" BackgroundColor="White" BorderRadius="20" TextColor="Black"/>
+
+         </StackLayout>
+        <!--  <StackLayout VerticalOptions="CenterAndExpand">
+            <Maps:Map WidthRequest="320" Heig="200" x:name="MyMap" MapType="Street"/>
+        </StackLayout>
+        
+        xmlns:Maps="clr-namespace:Xamarin.Forms.Maps;assenbly=Xamarin.Forms.Maps" -->
+
+    </ContentPage.Content>
+</ContentPage>

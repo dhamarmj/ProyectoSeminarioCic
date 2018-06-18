@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Title="Inicio"
+             Icon="home.png"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.Inicio">
+  <!--Pages can be added as references or inline-->
+    <StackLayout Padding="12"
+                     Orientation="Vertical" VerticalOptions="Center">
+        <Label Text="Pagina de Inicio" />
+        <Label Text="Bienvenido!" Font="30" HorizontalOptions="StartAndExpand"/>
+        <DatePicker x:Name="fechaview"/>
+        <Button x:Name="btnfecha" Text="fecha"/>
+        <TimePicker/>
+    </StackLayout>
+
+ </ContentPage>

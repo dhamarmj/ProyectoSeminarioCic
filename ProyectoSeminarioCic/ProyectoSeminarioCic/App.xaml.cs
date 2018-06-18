@@ -13,8 +13,7 @@ namespace ProyectoSeminarioCic
 		{
 			InitializeComponent();
 
-
-			MainPage = new Login();
+            MainPage = new NavigationPage(new Views.ViewAdmin.Login());
 		}
 
 		protected override void OnStart ()
