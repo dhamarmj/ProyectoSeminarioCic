@@ -19,11 +19,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\ViewUsuario\List12121.xaml.cs">
-      <DependentUpon>List12121.xaml</DependentUpon>
+    <Compile Update="Views\ViewGeneral\HomeFeed.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="Views\ViewUsuario\registro112121.xaml.cs">
-      <DependentUpon>registro112121.xaml</DependentUpon>
+    <Compile Update="Views\ViewGeneral\HomeNotificaciones.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewUsuario\List11.xaml.cs">
+      <DependentUpon>List11.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewUsuario\Registro11.xaml.cs">
+      <DependentUpon>Registro11.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -43,7 +49,10 @@
     <EmbeddedResource Update="Views\ViewAdmin\Inicio.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAdmin\Login.xaml">
+    <EmbeddedResource Update="Views\ViewGeneral\DetalleNotificaciones.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewGeneral\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewAdmin\Notificacion.xaml">
@@ -58,24 +67,14 @@
     <EmbeddedResource Update="Views\ViewAdmin\Registro2.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCharlista\HomeCharlistas.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCharlista\HomeNotificaciones.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCharlista\HorarioCharlistas.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewUsuario\List12121.xaml">
+    <EmbeddedResource Update="Views\ViewUsuario\List11.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewUsuario\registro112121.xaml">
+    <EmbeddedResource Update="Views\ViewUsuario\Registro11.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\ViewGeneral\" />
   </ItemGroup>
 </Project>

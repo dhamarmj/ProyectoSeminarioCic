@@ -20,7 +20,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
 
         async private void Btnconfirmar_Clicked(object sender, EventArgs e)
         {
-           await Navigation.PushAsync(new Login());
+           await Navigation.PushAsync(new ViewGeneral.Login());
         }
     }
 }

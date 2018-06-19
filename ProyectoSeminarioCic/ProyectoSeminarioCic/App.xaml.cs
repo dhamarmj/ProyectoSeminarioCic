@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using ProyectoSeminarioCic.Views;
 using Xamarin.Forms.Xaml;
+using ProyectoSeminarioCic.Views.ViewUsuario;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace ProyectoSeminarioCic
@@ -13,7 +14,8 @@ namespace ProyectoSeminarioCic
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new Views.ViewAdmin.Login());
+            //MainPage = new NavigationPage(new Views.ViewGeneral.HomeNotificaciones());
+            MainPage = new Views.ViewCharlista.HorarioCharlistas();
 		}
 
 		protected override void OnStart ()

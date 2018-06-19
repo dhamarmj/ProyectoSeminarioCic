@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    class NotificacionModel
+    public class NotificacionModel
     {
         public string titulo { get; set; }
         public string subtitulo { get; set; }
