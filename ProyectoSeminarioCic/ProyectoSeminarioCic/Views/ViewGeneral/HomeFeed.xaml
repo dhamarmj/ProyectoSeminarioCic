@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewGeneral.HomeFeed"
+               NavigationPage.HasNavigationBar="False">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <AbsoluteLayout >
+        <RelativeLayout AbsoluteLayout.LayoutBounds="0,0,1,0.83" AbsoluteLayout.LayoutFlags="SizeProportional" Padding="0" HorizontalOptions="Center">
+            <BoxView BackgroundColor="Transparent" HeightRequest="40" x:Name="HeaderBar"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
+                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.08}"/>
+            <Label Text="Seminario Civil" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Italic" 
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=0.30}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
+            <BoxView HeightRequest="1.5" Color="#c5c7c9"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=1}"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
+            <ListView    x:Name="listPictures" 
+                           SeparatorVisibility="None"
+                            HasUnevenRows="True"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=1}"
+                            RelativeLayout.HeightConstraint ="{ConstraintExpression 
+                                 Type=RelativeToParent, 
+                                 Property=Height, 
+                                 Factor=1}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=HeaderBar, Factor=1,Property=Height,Constant=5}"
+                         ItemSelected="listPictures_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid  Padding="5, 5, 10, 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Frame Grid.Row="0" Grid.Column="0" CornerRadius="12.5" Padding="0"  WidthRequest="25" HeightRequest="25" HasShadow="False" 
+                                                        HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Image Source="{Binding imagenPerfil}" Aspect="AspectFill"/>
+                                    </Frame>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding nombreUsuario}" TextColor="Black" VerticalOptions="Center" />
+                                </Grid>
+                                <BoxView HeightRequest="1.5" Color="#c5c7c9"/>
+                                <StackLayout Padding="0" Spacing="0" HorizontalOptions="FillAndExpand">
+                                    <Image Source="{Binding imagenPublicacion}" HeightRequest="280" Aspect="AspectFill"/>
+                                </StackLayout>
+                                <StackLayout Padding="3,5,0,0">
+                                    <Label  Text="{Binding caption}" FontSize="Small"/>
+                                </StackLayout>
+                                <Grid HorizontalOptions="Start" Padding="0,5,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" x:Name="KaipNum" Image="baseline_star_black_24.png" Clicked="KaipNum_Clicked"/>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding numKaip}" VerticalOptions="Center"/>
+                                    <Button Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" x:Name="CommentNum" Image="baseline_message_black_24.png" Clicked="CommentNum_Clicked"/>
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding numComent}" VerticalOptions="Center"/>
+                                </Grid>
+                                <BoxView HeightRequest="5" Color="Transparent"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RelativeLayout>
+        <Grid  HorizontalOptions="FillAndExpand" Padding="0" BackgroundColor="Transparent"
+               RowSpacing="0" ColumnSpacing="0"
+               AbsoluteLayout.LayoutBounds="0,1,1,0.10" AbsoluteLayout.LayoutFlags="All" >
+            <Button Grid.Row="0" Grid.Column="0" Opacity="0.5" Image="baseline_home_black_36.png" HorizontalOptions="FillAndExpand" BackgroundColor="White" x:Name="ButtonHome" Clicked="ButtonHome_Clicked" />
+            <Button Grid.Row="0" Grid.Column="1" Image="baseline_notifications_black_36.png" HorizontalOptions="FillAndExpand" BackgroundColor="White" x:Name="ButtonNotifications" Clicked="ButtonNotifications_Clicked"/>
+            <Button Grid.Row="0" Grid.Column="2" Image="baseline_photo_camera_black_36.png" HorizontalOptions="FillAndExpand" BackgroundColor="White" x:Name="ButtonPost" Clicked="ButtonPost_Clicked"/>
+            <Button Grid.Row="0" Grid.Column="3" Image="baseline_schedule_black_36.png"  HorizontalOptions="FillAndExpand" BackgroundColor="White" x:Name="ButtonSchedule" Clicked="ButtonSchedule_Clicked"/>
+            <Button Grid.Row="0" Grid.Column="4" Image="baseline_person_black_36.png"  HorizontalOptions="FillAndExpand" BackgroundColor="White" x:Name="ButtonConfiguration" Clicked="ButtonConfiguration_Clicked"/>
+        </Grid>
+    </AbsoluteLayout>
+</ContentPage>
