@@ -2,35 +2,43 @@
 using Xamarin.Forms;
 using ProyectoSeminarioCic.Views;
 using Xamarin.Forms.Xaml;
-using ProyectoSeminarioCic.Views.ViewUsuario;
 
-[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ProyectoSeminarioCic
 {
-	public partial class App : Application
-	{
-		
-		public App ()
-		{
-			InitializeComponent();
+    public partial class App : Application
+    {
+        static Services.DbStartUp dbUtils;
+        public App()
+        {
+            InitializeComponent();
 
-            //MainPage = new NavigationPage(new Views.ViewGeneral.HomeNotificaciones());
-            MainPage = new Views.ViewCharlista.HorarioCharlistas();
-		}
+             MainPage = new NavigationPage(new Views.ViewGeneral.HomeNotificaciones());
+        }
+        public static Services.DbStartUp DAUtil
+        {
+            get
+            {
+                if (dbUtils == null)
+                {
+                    dbUtils = new Services.DbStartUp();
+                }
+                return dbUtils;
+            }
+        }
+        protected override void OnStart()
+        {
+            // Handle when your app starts
+        }
 
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+        }
 
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
-
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
-	}
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+        }
+    }
 }

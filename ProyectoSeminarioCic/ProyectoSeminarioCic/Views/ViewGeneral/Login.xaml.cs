@@ -26,12 +26,12 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 
         async private void BtnIniciar_Clicked(object sender, EventArgs e)
         {
-            if (nombre.Text == "dhamarmj")
-            {
-                await Navigation.PushModalAsync(new ViewGeneral.HomeFeed());
-            }
-            else
-                await Navigation.PushModalAsync(new ViewAdmin.ControlTabbedPage());
+            //if (nombre.Text == "dhamarmj")
+            //{
+            //    await Navigation.PushModalAsync(new ViewGeneral.HomeFeed());
+            //}
+            //else
+            //    await Navigation.PushModalAsync(new ViewAdmin.ControlTabbedPage());
 
         }
     }
