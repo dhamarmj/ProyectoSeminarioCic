@@ -12,7 +12,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetalleNotificaciones : ContentPage
 	{
-		public DetalleNotificaciones (Models.NotificacionModel notificacion)
+		public DetalleNotificaciones (Models.Notificacion notificacion)
 		{
             if (notificacion == null)
                 throw new ArgumentNullException();
