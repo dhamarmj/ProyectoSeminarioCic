@@ -70,9 +70,9 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             await Navigation.PushModalAsync(new ViewCharlista.HorarioCharlistas());
         }
 
-        private void ButtonConfiguration_Clicked(object sender, EventArgs e)
+        async private void ButtonConfiguration_Clicked(object sender, EventArgs e)
         {
-
+            //await Navigation.PushModalAsync(new ViewUsuario.VistaPerfil());
         }
 
         private void KaipNum_Clicked(object sender, EventArgs e)

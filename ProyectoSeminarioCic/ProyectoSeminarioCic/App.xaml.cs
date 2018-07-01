@@ -12,8 +12,8 @@ namespace ProyectoSeminarioCic
         public App()
         {
             InitializeComponent();
-
-             MainPage = new NavigationPage(new Views.ViewGeneral.HomeNotificaciones());
+           
+            MainPage = new NavigationPage(new Views.ViewGeneral.HomeNotificaciones());
         }
         public static Services.DbStartUp DAUtil
         {
