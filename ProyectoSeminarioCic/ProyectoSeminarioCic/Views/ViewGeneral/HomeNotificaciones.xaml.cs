@@ -17,17 +17,17 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 		{
 			InitializeComponent ();
 
-            //var notificaciones = new List<Notificacion>
-            //{
-            //    new Notificacion{Titulo="Horario", Subtitulo="Horas de llegada al evento", Descripcion= "A good critic will refer back to the text often. You can find the full text of his speech on his Web site. the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts."},
-            //    new Notificacion{Titulo="Vestimenta", Subtitulo="HHoras ", Descripcion="the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts."},
-            //    new Notificacion{Titulo="no se ", Subtitulo="HHoras de", Descripcion = "the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts. the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts."},
-            //    new Notificacion{Titulo="Otra cosa", Subtitulo="HHoras de llegada al "},
-            //    new Notificacion{Titulo="Eto", Subtitulo=" de llegada al evento"},
-            //    new Notificacion{Titulo="Aquello", Subtitulo="HHoras de  evento"}
-            //};
-            //listNotif.ItemsSource = notificaciones;
-		}
+            var notificaciones = new List<Notificacion>
+            {
+                new Notificacion{Titulo="Horario", Subtitulo="Horas de llegada al evento", Descripcion= "A good critic will refer back to the text often. You can find the full text of his speech on his Web site. the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts."},
+                new Notificacion{Titulo="Vestimenta", Subtitulo="HHoras ", Descripcion="the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts."},
+                new Notificacion{Titulo="no se ", Subtitulo="HHoras de", Descripcion = "the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts. the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts."},
+                new Notificacion{Titulo="Otra cosa", Subtitulo="HHoras de llegada al "},
+                new Notificacion{Titulo="Eto", Subtitulo=" de llegada al evento"},
+                new Notificacion{Titulo="Aquello", Subtitulo="HHoras de  evento"}
+            };
+            listNotif.ItemsSource = notificaciones;
+        }
 
         async private void listNotif_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

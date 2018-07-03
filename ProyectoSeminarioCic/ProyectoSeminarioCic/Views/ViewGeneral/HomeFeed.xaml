@@ -8,7 +8,7 @@
             <On Platform="iOS" Value="0, 20, 0, 0" />
         </OnPlatform>
     </ContentPage.Padding>
-    <AbsoluteLayout >
+    <AbsoluteLayout>
         <RelativeLayout AbsoluteLayout.LayoutBounds="0,0,1,0.83" AbsoluteLayout.LayoutFlags="SizeProportional" Padding="0" HorizontalOptions="Center">
             <BoxView BackgroundColor="Transparent" HeightRequest="40" x:Name="HeaderBar"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
@@ -54,7 +54,7 @@
                                 <StackLayout Padding="3,5,0,0">
                                     <Label  Text="{Binding caption}" FontSize="Small"/>
                                 </StackLayout>
-                                <Grid HorizontalOptions="Start" Padding="0,5,0,0">
+                                <Grid HorizontalOptions="Start" Padding="0,2,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition Width="auto"/>
@@ -66,7 +66,6 @@
                                     <Button Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" x:Name="CommentNum" Image="baseline_message_black_24.png" Clicked="CommentNum_Clicked"/>
                                     <Label Grid.Row="0" Grid.Column="3" Text="{Binding numComent}" VerticalOptions="Center"/>
                                 </Grid>
-                                <BoxView HeightRequest="5" Color="Transparent"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

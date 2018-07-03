@@ -43,8 +43,8 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="5,5,5,0" Spacing="0">
-                                <Label Text="{Binding titulo}" FontAttributes="Bold" TextColor="#50B0D5" FontSize="Medium" HorizontalOptions="Start"/>
-                                <Label Text="{Binding subtitulo}" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Titulo}" FontAttributes="Bold" TextColor="#50B0D5" FontSize="Medium" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Subtitulo}" HorizontalOptions="Start"/>
                             </StackLayout>    
                         </ViewCell>
                     </DataTemplate>

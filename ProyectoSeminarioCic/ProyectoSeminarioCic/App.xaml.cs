@@ -13,7 +13,9 @@ namespace ProyectoSeminarioCic
         {
             InitializeComponent();
 
-             MainPage = new NavigationPage(new Views.ViewGeneral.HomeNotificaciones());
+            // MainPage = new Views.ViewGeneral.DetalleFeed();
+            //MainPage = new NavigationPage(new Views.ViewGeneral.HomeFeed());
+            MainPage = new NavigationPage(new Views.ViewCharlista.HorarioCharlistas());  
         }
         public static Services.DbStartUp DAUtil
         {

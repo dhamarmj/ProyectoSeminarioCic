@@ -9,10 +9,10 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout Padding="5,5,5,0">
-            <Label Text="{Binding titulo}" TextColor="Black" FontSize="Large" HorizontalOptions="Center"/>
+            <Label Text="{Binding Titulo}" TextColor="Black" FontSize="Large" HorizontalOptions="Center"/>
             <BoxView HeightRequest="1.5" Color="#c5c7c9"/>
-            <Label Text="{Binding subtitulo}" FontSize="Medium" HorizontalOptions="Start"/>
-            <Label Text="{Binding descripcion}" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Start"/>
+            <Label Text="{Binding Subtitulo}" FontSize="Medium" HorizontalOptions="Start"/>
+            <Label Text="{Binding Descripcion}" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Start"/>
          </StackLayout>
     </ContentPage.Content>
 </ContentPage>
