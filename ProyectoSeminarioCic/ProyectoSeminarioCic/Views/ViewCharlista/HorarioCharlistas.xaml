@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoSeminarioCic.Views.ViewCharlista.HorarioCharlistas">
+             x:Class="ProyectoSeminarioCic.Views.ViewCharlista.HorarioCharlistas"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0, 20, 0, 0" />
@@ -13,8 +14,8 @@
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"/>
             <Label Text="Horario" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Start" FontAttributes="Italic,Bold" 
+                            HorizontalOptions="Center" VerticalOptions="Center"
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=0.30}"
-                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, Property=Width, ElementName=HeaderBar,  Factor=0.05}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
             <Label Text="Charla Programada" FontSize="Large" HeightRequest="30" TextColor="Black" FontAttributes="Italic,Bold" 
                    x:Name="TitleLabel"
@@ -24,12 +25,18 @@
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TitleLabel, Property=Height, Factor=1, Constant=60}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
                 <Label Text="{Binding Titulo}"  FontSize="Medium" FontAttributes="Italic" HeightRequest="25" TextColor="Black" x:Name="EventNameLabel"/>
-                <Label Text="{Binding FechaHora, StringFormat='Fecha: {0:dd/MM/yyyy HH:mm tt}'}" FontSize="Small"/>
+                <Label Text="{Binding FechaHora, StringFormat='Fecha: {0:dd/MM/yyyy hh:mm tt}'}" FontSize="Small"/>
                 <Label Text="{Binding Ubicacion, StringFormat='Lugar: {0}'}" FontSize="Small"/>
                 <BoxView  Color="Black" HeightRequest="1" Opacity="0.5"/>
                 <Label Text="Descripción" FontSize="Medium" TextColor="Black"/>
                 <Label Text="{Binding Descripcion}" FontSize="Small" HorizontalTextAlignment="Start"/>
             </StackLayout>
+            <Button Text="Ver Preguntas" IsVisible="False" x:Name="BtnPReguntas"                    
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6}"
+                    Clicked="BtnPReguntas_Clicked"
+                    />
         </RelativeLayout>
         <Grid  HorizontalOptions="FillAndExpand" Padding="0" BackgroundColor="White"
                RowSpacing="0" ColumnSpacing="0"
