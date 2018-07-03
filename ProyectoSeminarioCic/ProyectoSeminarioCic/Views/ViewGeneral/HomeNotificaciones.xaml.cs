@@ -29,7 +29,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             listNotif.ItemsSource = notificaciones;
         }
 
-        async private void listNotif_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async private void ListNotif_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
                 return;
@@ -60,9 +60,9 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 
         }
 
-        private void ButtonConfiguration_Clicked(object sender, EventArgs e)
+       async private void ButtonConfiguration_Clicked(object sender, EventArgs e)
         {
-
+            //await Navigation.PushModalAsync(new ViewUsuario.VistaPerfil());
         }
     }
 }

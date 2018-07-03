@@ -38,7 +38,7 @@
                                  Type=RelativeToParent, 
                                  Property=Height, 
                                  Factor=1}"
-                         ItemSelected="listNotif_ItemSelected">
+                         ItemSelected="ListNotif_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
