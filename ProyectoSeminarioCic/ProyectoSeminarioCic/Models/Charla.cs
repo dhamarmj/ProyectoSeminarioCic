@@ -1,14 +1,18 @@
 ﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("charla")]
-    public class Charla
+    [Table("Charla")]
+    public class Charla : Evento
     {
         [PrimaryKey, AutoIncrement]
         public int Id_charla { get; set; }
+
+        [ForeignKey(typeof(Usuario))]
+        public int Id_Charlista { get; set; }
     }
 }

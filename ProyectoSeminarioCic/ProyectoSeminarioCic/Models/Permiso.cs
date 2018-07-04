@@ -11,8 +11,5 @@ namespace ProyectoSeminarioCic.Models
         [PrimaryKey, AutoIncrement]
         public int Id_permiso { get; set; }
         public string Descripcion { get; set; }
-       
-        //[OneToMany]
-        public List<Permiso_Usuario> Permiso_Usuarios { get; set; }
     }
 }

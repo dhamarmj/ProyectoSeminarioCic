@@ -7,6 +7,7 @@ using System.Text;
 using Xamarin.Forms;
 using ProyectoSeminarioCic.Models;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace ProyectoSeminarioCic.ViewModels
 {
@@ -24,7 +25,19 @@ namespace ProyectoSeminarioCic.ViewModels
         }
         public int Insert(Usuario aUsuario)
         {
-            return dbConnection.Insert(aUsuario);
+            int val = -1;
+            try
+            {
+                val = dbConnection.Insert(aUsuario);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            return val;
         }
         public int Delete(Usuario aUsuario)
         {

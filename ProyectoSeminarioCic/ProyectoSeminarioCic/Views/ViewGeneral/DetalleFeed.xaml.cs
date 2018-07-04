@@ -14,7 +14,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         public DetalleFeed(Publicacion p)
         {
             if(p == null)
-                throw new ArgumentNullException();    
+                throw new ArgumentNullException();
 
             InitializeComponent();
             this.BindingContext = p;

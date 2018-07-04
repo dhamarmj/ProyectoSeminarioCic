@@ -10,14 +10,7 @@ namespace ProyectoSeminarioCic.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id_evento_usuario { get; set; }
-      /*  [ForeignKey(typeof(Evento))]
-        public int Id_evento { get; set; }
-        [ForeignKey(typeof(Permiso_Usuario))]
-        public int Id_permiso_usuario { get; set; }/*/
-
-        // [ManyToOne]
-        public Permiso_Usuario Permiso_Usuario { get; set; }
-        // [ManyToOne]
+        public Usuario Participante { get; set; }
         public Evento Evento { get; set; }
     }
 }
