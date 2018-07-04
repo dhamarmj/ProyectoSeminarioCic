@@ -16,12 +16,6 @@ namespace ProyectoSeminarioCic.Models
         public string Duracion { get; set; }
         public string Comentario { get; set; }
         public string Titulo { get; set; }
-        /*[ForeignKey(typeof(Seminario))]
-        public int Id_seminario { get; set; }*/
-        
-        //[OneToMany]
-        public List<Evento_Usuario> Evento_Usuarios { get; set; }
-        //[ManyToOne]
         public Seminario Seminario { get; set; }
     }
 }

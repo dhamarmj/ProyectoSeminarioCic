@@ -16,7 +16,6 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             InitializeComponent();
             btnIniciar.Clicked += BtnIniciar_Clicked;
             btnreg.Clicked += Btnreg_Clicked1;
-
         }
 
         async private void Btnreg_Clicked1(object sender, EventArgs e)
@@ -24,7 +23,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             await Navigation.PushAsync(new ViewAdmin.Registro1());
         }
 
-        async private void BtnIniciar_Clicked(object sender, EventArgs e)
+         private void BtnIniciar_Clicked(object sender, EventArgs e)
         {
             //if (nombre.Text == "dhamarmj")
             //{

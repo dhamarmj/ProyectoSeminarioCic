@@ -12,15 +12,20 @@ namespace ProyectoSeminarioCic
         public App()
         {
             InitializeComponent();
-<<<<<<< HEAD
 
-            // MainPage = new Views.ViewGeneral.DetalleFeed();
-            //MainPage = new NavigationPage(new Views.ViewGeneral.HomeFeed());
-            MainPage = new NavigationPage(new Views.ViewCharlista.HorarioCharlistas());  
-=======
-           
-            MainPage = new NavigationPage(new Views.ViewGeneral.HomeNotificaciones());
->>>>>>> master
+            try
+            {
+                dbUtils = new Services.DbStartUp();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("APP");
+                Console.WriteLine(ex.ToString());
+            }
+            
+
+            MainPage = new NavigationPage(new Views.ViewAdmin.Registro2(new Models.Usuario()));
+            //MainPage = new NavigationPage(new Views.ViewGeneral.Login());  
         }
         public static Services.DbStartUp DAUtil
         {
@@ -30,6 +35,7 @@ namespace ProyectoSeminarioCic
                 {
                     dbUtils = new Services.DbStartUp();
                 }
+                Console.WriteLine(dbUtils.ReturnConnection());
                 return dbUtils;
             }
         }

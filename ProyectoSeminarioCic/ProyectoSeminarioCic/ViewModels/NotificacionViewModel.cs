@@ -12,7 +12,11 @@ namespace ProyectoSeminarioCic.ViewModels
 {
     public class NotificacionViewModel
     {
-        SQLiteConnection dbConnection = App.DAUtil.ReturnConnection();
+        SQLiteConnection dbConnection;
+        public NotificacionViewModel()
+        {
+            dbConnection = App.DAUtil.ReturnConnection();
+        }
         public List<Notificacion> GetList()
         {
             return dbConnection.Table<Notificacion>().ToList();

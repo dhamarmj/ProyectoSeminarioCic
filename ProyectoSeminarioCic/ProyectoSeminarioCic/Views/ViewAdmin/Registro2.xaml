@@ -3,20 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSeminarioCic.Views.ViewAdmin.Registro2">
     <ContentPage.Content>
-        <Grid>
-   <!--         <Image Grid.Row="0" Source="add_image.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
--->
+        <!--<Grid>-->
+            <!--<Image Grid.Row="0" Source="add_image.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />-->
             <StackLayout Grid.Row="1" Padding="30,20">
                 <StackLayout Orientation="Horizontal">
                     <Button x:Name="btnsubir" Text="SubirFoto"/>
                     <Button x:Name="btntomar" Text="TomarFoto"/>
                 </StackLayout>
-                <Entry Placeholder="Nombre de Usuario" PlaceholderColor="Gray" />
-                <Entry Placeholder="Correo Electronico" PlaceholderColor="Gray" />
-                <Entry Placeholder="Contraseña" PlaceholderColor="Gray" IsPassword="True" />
-                <Button Text="Confirmar!" x:Name="btnconfirmar" BackgroundColor="White" BorderRadius="20" TextColor="Black"/>
+                <Entry Placeholder="Nombre de Usuario" PlaceholderColor="Gray" x:Name="TxtUsername"/>
+                <Entry Placeholder="Correo Electronico" PlaceholderColor="Gray" x:Name="TxtEmail" />
+                <Entry Placeholder="Contraseña" PlaceholderColor="Gray" IsPassword="True" x:Name="TxtPass" />
+                <Button Text="Confirmar!" x:Name="btnconfirmar" BackgroundColor="White" BorderRadius="20" TextColor="Black" Clicked="Btnconfirmar_Clicked"/>
             </StackLayout>
-           
-        </Grid>
+        <!--</Grid>-->
     </ContentPage.Content>
 </ContentPage>

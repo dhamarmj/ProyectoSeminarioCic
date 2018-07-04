@@ -14,36 +14,42 @@ namespace ProyectoSeminarioCic.Services
         public DbStartUp()
         {
             //Create Db and a Connection
-            dbConnection = DependencyService.Get<IDBInterface>().CreateConnection();
+            try
+            {
+                dbConnection = DependencyService.Get<IDBInterface>().CreateConnection();
+                dbConnection.CreateTable<Usuario>();
+                dbConnection.CreateTable<Charla>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine(ex.ToString());
+            }
+
             //Create all Tables
-            dbConnection.CreateTable<Boleta>();
-            //...
-            dbConnection.CreateTable<Charla>();
-            //...
-            dbConnection.CreateTable<Charla_Usuario>();
-            //...
-            dbConnection.CreateTable<Comentario>();
-            //...
-            dbConnection.CreateTable<Evento>();
-            //...
-            dbConnection.CreateTable<Evento_Usuario>();
-            //...
-            dbConnection.CreateTable<Notificacion>();
-            //...
-            dbConnection.CreateTable<Permiso>();
-            //...
-            dbConnection.CreateTable<Permiso_Usuario>();
-            //...
-            dbConnection.CreateTable<Pregunta>();
-            //...
-            dbConnection.CreateTable<Publicacion>();
-            //...
-            dbConnection.CreateTable<Recurso>();
-            //...
-            dbConnection.CreateTable<Seminario>();
-            //...
-            dbConnection.CreateTable<Usuario>();
-            //...
+            //dbConnection.CreateTable<Seminario>();
+
+            //dbConnection.CreateTable<Comentario>();
+
+            //dbConnection.CreateTable<Recurso>();
+
+            //dbConnection.CreateTable<Publicacion>();
+
+            //dbConnection.CreateTable<Boleta>();
+
+            //dbConnection.CreateTable<Evento>();
+
+            //dbConnection.CreateTable<Pregunta>();
+
+            //dbConnection.CreateTable<Charla_Usuario>();
+           
+            //dbConnection.CreateTable<Evento_Usuario>();
+
+            //dbConnection.CreateTable<Notificacion>();
+
+            //dbConnection.CreateTable<Permiso_Usuario>();
+
+            //dbConnection.CreateTable<Permiso>();
 
         }
         public SQLiteConnection ReturnConnection()

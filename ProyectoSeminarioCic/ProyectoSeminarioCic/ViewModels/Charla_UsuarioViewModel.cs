@@ -17,7 +17,6 @@ namespace ProyectoSeminarioCic.ViewModels
         {
             dbConnection = App.DAUtil.ReturnConnection();
         }
-
         public List<Charla_Usuario> GetList()
         {
             return dbConnection.Table<Charla_Usuario>().ToList();

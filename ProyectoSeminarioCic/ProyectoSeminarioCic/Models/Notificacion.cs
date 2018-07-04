@@ -14,9 +14,6 @@ namespace ProyectoSeminarioCic.Models
         public string Link { get; set; }
         public string Titulo { get; set; }
         public string Subtitulo { get; set; }
-       /* [ForeignKey(typeof(Permiso_Usuario))]
-        public int Id_permiso_usuario { get; set; }*/
-        //[ManyToOne]
-        public Permiso_Usuario Permiso_Usuario { get; set; }
+        public Usuario Administrador { get; set; }
     }
 }

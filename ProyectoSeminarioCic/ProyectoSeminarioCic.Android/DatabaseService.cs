@@ -22,13 +22,14 @@ namespace ProyectoSeminarioCic.Droid
     {
         SQLiteConnection IDBInterface.CreateConnection()
         {
-            var sqliteFilename = "SeminarioCic.db3";
+            var sqliteFilename = "SeminarioC.db3";
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
             var path = Path.Combine(documentsPath, sqliteFilename);
             Console.WriteLine(path);
-            if (!File.Exists(path)) File.Create(path);
+            if (!File.Exists(path)) 
+            File.Create(path);
             var plat = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
-            var conn = new SQLite.Net.SQLiteConnection(plat, path);
+            var conn = new SQLite.Net.SQLiteConnection (plat, path);
             // Return the database connection 
             return conn;
         }

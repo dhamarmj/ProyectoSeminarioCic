@@ -5,6 +5,14 @@ using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
+   public enum Rol
+    {
+       Charlista,
+       Participante, 
+       Administrador, 
+       Personal
+    };
+
     [Table("Usuario")]
     public class Usuario
     {
@@ -15,15 +23,10 @@ namespace ProyectoSeminarioCic.Models
         public string Username { get; set; }
         public string Correo { get; set; }
         public string Contrasenia { get; set; }
-        public string Fecha_Nacimiento { get; set; }
-        public string Genero { get; set; }
-        public byte [] Foto { get; set; }
+        public DateTime Fecha_Nacimiento { get; set; }
+        public char Genero { get; set; }
+        public byte[] Foto { get; set; }
         public string Ocupacion { get; set; }
         public string Rol { get; set; }
-
-        //[OneToMany]
-        public List<Publicacion> Publicaciones { get; set; }
-        //[OneToMany]
-        public List<Permiso_Usuario> Permiso_Usuarios { get; set; }
     }
 }

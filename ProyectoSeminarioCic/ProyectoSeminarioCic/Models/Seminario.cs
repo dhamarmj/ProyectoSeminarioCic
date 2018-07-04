@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("seminario")]
+    [Table("Seminario")]
     public class Seminario
     {
         [PrimaryKey, AutoIncrement]
@@ -13,10 +13,6 @@ namespace ProyectoSeminarioCic.Models
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public DateTime Anio { get; set; }
-        public byte Imagen { get; set; }
-        //[OneToMany]
-        public List<Boleta> Boletas { get; set; }
-        //[OneToMany]
-        public List<Evento> Eventos { get; set; }
+        public byte [] Imagen { get; set; }
     }
 }
