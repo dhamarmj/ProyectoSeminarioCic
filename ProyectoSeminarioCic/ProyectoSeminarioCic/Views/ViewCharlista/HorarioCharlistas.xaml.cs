@@ -33,29 +33,7 @@ namespace ProyectoSeminarioCic.Views.ViewCharlista
                 BtnPReguntas.IsVisible = true;
 
         }
-
-        async private void ButtonHome_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new ViewGeneral.HomeFeed());
-        }
-
-        async private void ButtonNotifications_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new ViewGeneral.HomeNotificaciones());
-        }
-        private void ButtonPost_Clicked(object sender, EventArgs e)
-        {
-        }
-        async private void ButtonSchedule_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new HorarioCharlistas());
-        }
-
-        private void ButtonConfiguration_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
+        
         async private void BtnPReguntas_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new DetallePreguntas());

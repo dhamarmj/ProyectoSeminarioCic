@@ -1,17 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Naxam.BottomTabbedPage" Version="0.2.0.3" />
     <PackageReference Include="SQLite.Net-PCL" Version="3.1.1" />
     <PackageReference Include="SQLiteNetExtensions" Version="2.0.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.108" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />  
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
+    <PackageReference Include="XFControls" Version="1.0.0.6" />  
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ViewAdmin\ConfiguracionHome.xaml.cs">
+      <DependentUpon>ConfiguracionHome.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ViewGeneral\HomeFeed.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -21,20 +26,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\ViewAdmin\AgregarEvento.xaml">
+    <EmbeddedResource Update="Views\ViewAdmin\CU_Evento.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewAdmin\ConfiguracionHome.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAdmin\Configuracion.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <EmbeddedResource Update="Views\ViewAdmin\CU_Seminario.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAdmin\ControlTabbedPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <EmbeddedResource Update="Views\ViewAdmin\EventoHome.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAdmin\EventosAdmin.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <EmbeddedResource Update="Views\ViewAdmin\MainMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAdmin\Inicio.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <EmbeddedResource Update="Views\ViewAdmin\SeminarioHome.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCharlista\DetallePreguntas.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -43,6 +51,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewGeneral\DetalleNotificaciones.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewGeneral\Home.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewGeneral\Login.xaml">
@@ -54,10 +65,13 @@
     <EmbeddedResource Update="Views\ViewAdmin\Publicacion.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAdmin\Registro1.xaml">
+    <EmbeddedResource Update="Views\ViewGeneral\Page1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewGeneral\Registro1.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAdmin\Registro2.xaml">
+    <EmbeddedResource Update="Views\ViewGeneral\Registro2.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCharlista\HorarioCharlistas.xaml">

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.SeminarioHome"
+             Title="Administrar Seminarios">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout Padding="10,15">
+            <Button Image="website.png" Text="Agregar Seminario" x:Name="btnAgregar"  TextColor="Black" Clicked="btnAgregar_Clicked"/>
+            <Label Text="Seminarios registrados..." FontSize="Large" TextColor="Black"/>
+            <BoxView HeightRequest="1" Color="Gray" />
+            <ListView x:Name="ListSeminar" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Titulo}" Detail="{Binding Anio, StringFormat='{}{0:yyyy}'}"  TextColor="Black" DetailColor="Gray">
+                            <TextCell.ContextActions>
+                                <MenuItem Text="Editar" Clicked="Editar_Clicked" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" IsDestructive="True"/>
+                            </TextCell.ContextActions>
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -18,7 +18,7 @@ namespace ProyectoSeminarioCic.iOS
     {
         public SQLiteConnection CreateConnection()
         {
-            var sqliteFilename = "Seminario.db3";
+            var sqliteFilename = "SeminarioDB.db3";
 
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
             string libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
@@ -37,5 +37,6 @@ namespace ProyectoSeminarioCic.iOS
             // Return the database connection 
             return conn;
         }
+
     }
 }

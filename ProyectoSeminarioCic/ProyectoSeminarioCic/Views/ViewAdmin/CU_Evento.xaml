@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.CU_Evento"
+             Title="Crear Eventos"
+             >
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <ScrollView HorizontalScrollBarVisibility="Never">
+            <StackLayout Padding="15,10">
+                <Entry Placeholder="Titulo" Text="{Binding Titulo}" PlaceholderColor="Gray" />
+                <Grid RowSpacing="0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center"  Text="Fecha" TextColor="Black"/>
+                    <DatePicker Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2"  x:Name="btnfecha" TextColor="Gray" Date="{Binding Fecha}"/>
+                    <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="Hora" TextColor="Black"/>
+                    <TimePicker Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="bthora" TextColor="Gray" Time="{Binding Fecha}"/>
+                    <Label Grid.Row="2" Grid.Column="0" VerticalOptions="Center" Text="Duración" TextColor="Black"/>
+                    <Entry Grid.Row="2" Grid.Column="1" Text="{Binding Duracion}" WidthRequest="15" TextColor="Gray" Keyboard="Numeric"/>
+                    <Label Grid.Row="2" Grid.Column="2" VerticalOptions="Center" Text="Minutos" TextColor="Black" />
+                </Grid>
+                <Label Text="Descripción" TextColor="Black" FontAttributes="Bold" x:Name="LblDescrip"/>
+                <Editor Text="{Binding Descripcion}" TextColor="Black"/>
+                <Picker x:Name="pickerbtn" Title="Seleccionar Charlista" SelectedIndexChanged="pickerbtn_SelectedIndexChanged"/>
+                <Button x:Name="btnmap" Text="Seleccionar Ubicación" Image="MapaIcon.png"/>
+                <Entry Placeholder="Direccion del Evento" Text="{Binding Ubicacion}" PlaceholderColor="Gray"/>
+                <BoxView HeightRequest="10" BackgroundColor="Transparent"/>
+                <Button Text="Agregar" x:Name="btnIniciar" BorderRadius="20" TextColor="Black"/>
+                <!--  <StackLayout VerticalOptions="CenterAndExpand">   
+            <Maps:Map WidthRequest="320" Heig="200" x:name="MyMap" MapType="Street"/>
+        </StackLayout>
+        
+        xmlns:Maps="clr-namespace:Xamarin.Forms.Maps;assenbly=Xamarin.Forms.Maps" -->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

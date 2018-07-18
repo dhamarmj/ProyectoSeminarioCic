@@ -18,6 +18,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                 throw new ArgumentNullException();
 
 			InitializeComponent ();
+            this.Title = notificacion.Titulo;
             this.BindingContext = notificacion;
 		}
 	}

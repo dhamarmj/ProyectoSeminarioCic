@@ -1,16 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage Title="Notif" 
-             Icon="notif.png"
+<ContentPage 
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.Notificacion">
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.Notificacion"
+             Title="Enviar Notificaciones">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout>
-            <!--Grid.Row="1" Padding="30,20"> -->
-            <Label Text="Enviar Notificacion" Font="16"/>
-            <Entry Placeholder="Asunto" PlaceholderColor="Gray" />
-            <Entry Placeholder="Descripcion" PlaceholderColor="Gray" />
-            <Button x:Name="btnenviar" Text="Enviar" HorizontalOptions="EndAndExpand" FontAttributes="Bold"/>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="15,10">
+                <Entry Placeholder="Título" PlaceholderColor="Gray"/>
+                <Entry Placeholder="Subtítulo" PlaceholderColor="Gray" />
+                <Editor Text="Descripción" TextColor="Black" />
+                <Editor Text="Links Agregados" TextColor="#0000EE" />
+                <Picker x:Name="pickerbtn" Title="Seleccionar Destinatarios" SelectedIndexChanged="pickerbtn_SelectedIndexChanged"/>
+                <BoxView HeightRequest="20" BackgroundColor="Transparent"/>
+                <Button Text="Enviar Notificación" x:Name="btnIniciar" BorderRadius="20" TextColor="Black"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

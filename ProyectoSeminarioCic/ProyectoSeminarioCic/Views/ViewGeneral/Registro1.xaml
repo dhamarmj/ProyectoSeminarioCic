@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Title="Registro de Usuario"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewGeneral.Registro1"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout Padding="30,10" VerticalOptions="Center">
+            <Image Source="add_user.png" HeightRequest="150" Opacity="0.90"/>
+            <Entry x:Name="entrynom"  Placeholder="Nombre" PlaceholderColor="Gray"/>
+            <Entry x:Name="entryapellido" Placeholder="Apellido" PlaceholderColor="Gray"/>
+            <Label Text="Género"/>
+            <ctrls:RadioGroup Padding="0,0,10,0"
+                      ItemsSource="{Binding RadioGroupSource}"
+                      Orientation="Horizontal"
+                      DisplayPath="Name"
+                      OnImg="radio1.png"
+                      OffImg="radio2.png"
+                      />
+
+            <Label Text="Fecha de Nacimiento"/>
+            <DatePicker x:Name="btnfecha"/>
+            <Button Text="Siguiente" x:Name="btnsiguiente" BackgroundColor="LightGray" BorderRadius="20" TextColor="Black"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

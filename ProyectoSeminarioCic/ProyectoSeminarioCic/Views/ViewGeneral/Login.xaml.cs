@@ -20,7 +20,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 
         async private void Btnreg_Clicked1(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ViewAdmin.Registro1());
+            await Navigation.PushModalAsync(new NavigationPage(new ViewGeneral.Registro1()));
         }
 
          private void BtnIniciar_Clicked(object sender, EventArgs e)

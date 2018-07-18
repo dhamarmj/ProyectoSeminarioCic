@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.EventoHome"
+             Title="Administrar Eventos">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout Padding="10,15">
+            <Grid Padding="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="35"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Titulo}" FontSize="Large" TextColor="Black" />
+                <Button Grid.Row="0" Grid.Column="1" Clicked="CambiarSeminario_Clicked" HeightRequest="35" BackgroundColor="Transparent" Image="pencil.png"/>
+            </Grid>
+            <Button Image="website.png" Text="Agregar Evento" x:Name="btnAgregar"  TextColor="Black" Clicked="btnAgregar_Clicked"/>
+            <Label Text="Eventos registrados..." FontSize="Large" TextColor="Black"/>
+            <BoxView HeightRequest="1" Color="Gray" />
+            <ListView x:Name="ListEvento" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Titulo}" Detail="{ Binding Fecha, StringFormat='{}{0:dddd hh:mm  tt}'}" TextColor="Black" DetailColor="Gray">
+                            <TextCell.ContextActions>
+                                <MenuItem Text="Editar"  Clicked="Editar_Clicked" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" IsDestructive="True"/>
+                            </TextCell.ContextActions>
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
