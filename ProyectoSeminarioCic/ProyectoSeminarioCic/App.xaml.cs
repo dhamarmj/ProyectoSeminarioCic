@@ -8,25 +8,14 @@ namespace ProyectoSeminarioCic
 {
     public partial class App : Application
     {
-        static Services.DbStartUp dbUtils;
         public App()
         {
             InitializeComponent();
-
-            try
-            {
-                dbUtils = new Services.DbStartUp();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("APP");
-                Console.WriteLine(ex.ToString());
-            }
-            
-
-            MainPage = new NavigationPage(new Views.ViewAdmin.Registro2(new Models.Usuario()));
-            //MainPage = new NavigationPage(new Views.ViewGeneral.Login());  
+            MainPage =// new NavigationPage(new Views.ViewGeneral.Login());
+              //  new Views.ViewAdmin.MainMenu();
+            new Views.ViewGeneral.Home();
         }
+        static Services.DbStartUp dbUtils;
         public static Services.DbStartUp DAUtil
         {
             get

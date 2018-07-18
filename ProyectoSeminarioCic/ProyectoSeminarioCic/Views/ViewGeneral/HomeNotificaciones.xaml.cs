@@ -38,31 +38,6 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             await Navigation.PushAsync(new DetalleNotificaciones(notif));
             listNotif.SelectedItem = null;
         }
-
-        async private void ButtonHome_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new HomeFeed());
-
-        }
-
-        private void ButtonNotifications_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ButtonPost_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ButtonSchedule_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-       async private void ButtonConfiguration_Clicked(object sender, EventArgs e)
-        {
-            //await Navigation.PushModalAsync(new ViewUsuario.VistaPerfil());
-        }
+        
     }
 }

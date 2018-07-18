@@ -10,11 +10,49 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <RelativeLayout Padding="0" HorizontalOptions="Center">
-            <StackLayout
+            <StackLayout IsVisible="False"
                  x:Name="stack" 
+                Spacing="2"
                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
-                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.70}">
-                <Grid Padding="5, 5, 10, 0">
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.72}">
+                <Grid Padding="5, 2, 4, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Row="0" Grid.Column="0" CornerRadius="12.5" Padding="0"  WidthRequest="25" HeightRequest="25" HasShadow="False" 
+                                                        HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="{Binding imagenPerfil}" Aspect="AspectFill"/>
+                    </Frame>
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding nombreUsuario}" TextColor="Black" VerticalOptions="Center" />
+                </Grid>
+                <StackLayout Padding="0" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="280">
+                    <Image Source="{Binding imagenPublicacion}" HeightRequest="280" Aspect="AspectFill"/>
+                </StackLayout>
+                <StackLayout Padding="5,0" Spacing="0">
+                    <Label  Text="{Binding caption}" FontSize="Small"/>
+                </StackLayout>
+                <Grid HorizontalOptions="Start" Padding="3,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" x:Name="KaipNum" Image="baseline_star_black_24.png" Clicked="KaipNum_Clicked"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding numKaip}" VerticalOptions="Center"/>
+                    <Button Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" x:Name="CommentNum" Image="baseline_message_black_24.png" Clicked="CommentNum_Clicked"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding numComent}" VerticalOptions="Center"/>
+                </Grid>
+            </StackLayout>
+            <StackLayout Spacing="2"
+                 x:Name="stack1" IsVisible="False" 
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.65}">
+                <Grid Padding="5, 3, 4, 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
@@ -26,10 +64,10 @@
                     <Label Grid.Row="0" Grid.Column="1" Text="{Binding nombreUsuario}" TextColor="Black" VerticalOptions="Center" />
                 </Grid>
                 <BoxView HeightRequest="1.5" Color="#c5c7c9"/>
-                <StackLayout Padding="0" Spacing="0" HorizontalOptions="FillAndExpand">
+                <StackLayout Padding="0" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="280">
                     <Image Source="{Binding imagenPublicacion}" HeightRequest="280" Aspect="AspectFill"/>
                 </StackLayout>
-                <StackLayout Padding="5,0,0,0">
+                <StackLayout Padding="5,0" Spacing="0">
                     <Label  Text="{Binding caption}" FontSize="Small"/>
                 </StackLayout>
                 <Grid HorizontalOptions="Start" Padding="3,0,0,0">
@@ -39,19 +77,22 @@
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" x:Name="KaipNum" Image="baseline_star_black_24.png" Clicked="KaipNum_Clicked"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" x:Name="KaipNum1" Image="baseline_star_black_24.png" Clicked="KaipNum_Clicked"/>
                     <Label Grid.Row="0" Grid.Column="1" Text="{Binding numKaip}" VerticalOptions="Center"/>
-                    <Button Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" x:Name="CommentNum" Image="baseline_message_black_24.png" Clicked="CommentNum_Clicked"/>
+                    <Button Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" x:Name="CommentNum1" Image="baseline_message_black_24.png" Clicked="CommentNum_Clicked"/>
                     <Label Grid.Row="0" Grid.Column="3" Text="{Binding numComent}" VerticalOptions="Center"/>
                 </Grid>
             </StackLayout>
-            <ListView x:Name="listComments" HasUnevenRows="True" ItemsSource="{Binding comments}"
-                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=stack, Property=Height, Factor=1}"
-                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.20}">
+            <ListView x:Name="listComments1" HasUnevenRows="True" ItemsSource="{Binding comments}" IsVisible="False"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=stack1, Property=Height, Factor=1}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.26}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Padding="5,2,3,0" RowSpacing="0">
+                            <Grid Padding="5,0,3,0" RowSpacing="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="*"/>
@@ -67,11 +108,40 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-           
-            <Entry 
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.93}"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
-                Placeholder="Comentario"/>
+            <ListView x:Name="listComments" HasUnevenRows="True" ItemsSource="{Binding comments}" IsVisible="False"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=stack, Property=Height, Factor=1}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.20}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5,0,3,0" RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="Blue" CornerRadius="12.5" Padding="0"  WidthRequest="25" HeightRequest="25" HasShadow="False" 
+                                                        HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Image Source="{Binding imagenUsuario}" Aspect="AspectFill"/>
+                                </Frame>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding nombreUsuario}" TextColor="Black" VerticalOptions="Center" />
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding comentario}" TextColor="Black" VerticalOptions="Center" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="0" Grid.Column="0" Placeholder="Comenta!"/>
+                <Button Grid.Row="0" Grid.Column="1" Image="right_arrow.png" WidthRequest="36" BackgroundColor="Transparent"/>
+            </Grid>
         </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

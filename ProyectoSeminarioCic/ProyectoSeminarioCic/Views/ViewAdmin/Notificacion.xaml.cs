@@ -15,6 +15,24 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
 		public Notificacion ()
 		{
 			InitializeComponent ();
+            destinatarios = new List<string>
+            {
+                "Charlistas",
+                "Participantes"
+            };
+            pickerbtn.ItemsSource = destinatarios;
 		}
-	}
+
+        private List<string> destinatarios;
+
+        private void pickerbtn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+            if (selectedIndex > -1)
+            {
+                picker.SelectedItem.ToString();
+            }
+        }
+    }
 }

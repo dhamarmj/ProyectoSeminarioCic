@@ -3,21 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSeminarioCic.Views.ViewGeneral.Login"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
     <ContentPage.Content>
         <Grid>
-            <Image Source="fondo.jpg" Aspect="AspectFill"/>
-            <BoxView Color="AliceBlue" Opacity="0.6"/>
-
-            <Grid>
-                <Grid.RowDefinitions>
+          <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-            </Grid>
-
+          </Grid.RowDefinitions>
             <Image Grid.Row="0" Source="logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
-
             <StackLayout Grid.Row="1" Padding="30,20">
                 <Entry Placeholder="Nombre de Usuario" PlaceholderColor="Gray" x:Name="nombre" />
                 <Entry Placeholder="Contraseña" PlaceholderColor="Gray" IsPassword="True" />
@@ -25,15 +23,6 @@
                 <StackLayout Orientation="Horizontal">
                 <Label Text="¿Olvidaste tu contraseña?" />
                 <Button Text="Registrarse" x:Name="btnreg" Clicked="Btnreg_Clicked1" BackgroundColor="White" FontAttributes="Bold"/>
-                </StackLayout>
-            </StackLayout>
-
-
-            <StackLayout Grid.Row="2" HorizontalOptions="Center" Margin="0,0,0,50">
-                <StackLayout Orientation="Horizontal">
-                    <Image Grid.Row="0" Source="logo.png" WidthRequest="45" HeightRequest="45" Margin="0,50,0,30" />
-                    <Image Grid.Row="0" Source="logo.png" WidthRequest="45" HeightRequest="45" Margin="0,50,0,30" />
-                    <Image Grid.Row="0" Source="logo.png" WidthRequest="45" HeightRequest="45" Margin="0,50,0,30" />
                 </StackLayout>
             </StackLayout>
         </Grid>

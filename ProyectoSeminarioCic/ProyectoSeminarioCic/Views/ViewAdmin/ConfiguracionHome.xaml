@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.ConfiguracionHome"
+             Title="Ajustes">
+    <ContentPage.Content>
+        <StackLayout Padding="15,10">
+            <ListView HasUnevenRows="False" x:Name="ListConf" ItemSelected="ListConf_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Start" Source="{Binding Icon}"/>
+                                <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Text="{Binding Titulo}" TextColor="Black" FontSize="Medium"/>
+                                <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding Descrip}" TextColor="Gray" FontSize="Small"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

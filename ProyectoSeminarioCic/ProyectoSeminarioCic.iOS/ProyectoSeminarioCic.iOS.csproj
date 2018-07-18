@@ -136,6 +136,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Naxam.BottomTabbedPage">
+      <Version>0.2.0.3</Version>
+    </PackageReference>
     <PackageReference Include="SQLite.Net-PCL">
       <Version>3.1.1</Version>
     </PackageReference>
@@ -146,6 +149,9 @@
       <Version>1.0.108</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
+    <PackageReference Include="XFControls">
+      <Version>1.0.0.6</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -270,5 +276,89 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\baseline_star_black_24%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_user%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_user%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\radio2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\radio1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NameSIC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_black_36%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_black_36%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_black_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_settings_black_36%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_settings_black_36%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_settings_black_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_pie_chart_black_36%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_pie_chart_black_36%40x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_pie_chart_black_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_note_black_36%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_note_black_36%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_note_black_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_available_black_36%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_available_black_36%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_event_available_black_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\addimage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\website.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MapaIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\right_arrow.png" />
   </ItemGroup>
 </Project>

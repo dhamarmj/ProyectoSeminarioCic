@@ -11,12 +11,23 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 {
     public partial class DetalleFeed : ContentPage
     {
-        public DetalleFeed(Publicacion p)
+        public DetalleFeed(Publicacion p, bool NaviBar)
         {
-            if(p == null)
+            if (p == null)
                 throw new ArgumentNullException();
-
             InitializeComponent();
+            if (NaviBar)
+            {
+                listComments1.IsVisible = true;
+                stack1.IsVisible = true;
+            }
+               
+            else
+            {
+                listComments.IsVisible = true;
+                stack.IsVisible = true;
+            }
+
             this.BindingContext = p;
         }
 
