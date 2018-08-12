@@ -13,7 +13,7 @@
             <Button Image="website.png" Text="Agregar Seminario" x:Name="btnAgregar"  TextColor="Black" Clicked="btnAgregar_Clicked"/>
             <Label Text="Seminarios registrados..." FontSize="Large" TextColor="Black"/>
             <BoxView HeightRequest="1" Color="Gray" />
-            <ListView x:Name="ListSeminar" HasUnevenRows="True">
+            <ListView x:Name="ListSeminar" HasUnevenRows="True" IsPullToRefreshEnabled="True" Refreshing="ListSeminar_Refreshing">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Titulo}" Detail="{Binding Anio, StringFormat='{}{0:yyyy}'}"  TextColor="Black" DetailColor="Gray">

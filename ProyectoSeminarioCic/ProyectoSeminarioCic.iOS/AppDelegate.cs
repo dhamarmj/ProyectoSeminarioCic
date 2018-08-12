@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AsNum.XFControls.iOS;
 using Foundation;
+using Naxam.Controls.Platform.iOS;
 using UIKit;
 
 namespace ProyectoSeminarioCic.iOS
@@ -22,10 +23,11 @@ namespace ProyectoSeminarioCic.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            TopTabbedRenderer.Init();
             AsNumAssemblyHelper.HoldAssembly();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            
 
             return base.FinishedLaunching(app, options);
         }

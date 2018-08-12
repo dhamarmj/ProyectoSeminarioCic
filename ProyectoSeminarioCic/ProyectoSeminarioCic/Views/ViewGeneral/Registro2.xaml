@@ -15,8 +15,7 @@
                 <Entry Placeholder="Correo Electrónico" PlaceholderColor="Gray" x:Name="TxtEmail" />
                 <Entry Placeholder="Contraseña" PlaceholderColor="Gray" IsPassword="True" x:Name="TxtPass" />
                 <BoxView BackgroundColor="Transparent" HeightRequest="10"/>
-                <!--<Button Text="Imagen de perfil" BackgroundColor="LightGray" BorderRadius="20" TextColor="Black"/>-->
-                <Button Text="Confirmar!" x:Name="btnconfirmar" BackgroundColor="LightGray" BorderRadius="20" TextColor="Black" Clicked="Btnconfirmar_Clicked"/>
+                <Button Text="Siguiente" x:Name="btnconfirmar" BackgroundColor="LightGray" BorderRadius="20" TextColor="Black" Clicked="Btnconfirmar_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
