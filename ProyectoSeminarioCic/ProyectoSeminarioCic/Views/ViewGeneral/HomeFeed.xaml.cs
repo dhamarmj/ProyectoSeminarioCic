@@ -17,7 +17,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         {
             NavBar = hasNavigationBar;
             InitializeComponent();
-            if (hasNavigationBar == true)
+            if (hasNavigationBar)
             {
                 HeaderBar.IsVisible = HeaderText.IsVisible = HeaderSeparator.IsVisible = false;
                 listPictures1.IsVisible = true;

@@ -9,22 +9,29 @@
         </OnPlatform>
     </ContentPage.Padding>
     <ContentPage.Content>
-        <Grid>
-          <Grid.RowDefinitions>
+        <RelativeLayout>
+            <Grid x:Name="BlockA" RelativeLayout.HeightConstraint="{ConstraintExpression Property=Height, Type=RelativeToParent, Factor=0.9}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Property=Width, Type=RelativeToParent, Factor=1}">
+                <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-            <Image Grid.Row="0" Source="logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
-            <StackLayout Grid.Row="1" Padding="30,20">
-                <Entry Placeholder="Nombre de Usuario" PlaceholderColor="Gray" x:Name="nombre" />
-                <Entry Placeholder="Contraseña" PlaceholderColor="Gray" IsPassword="True" />
-                <Button Text="Iniciar Sesion" x:Name="btnIniciar" BackgroundColor="WhiteSmoke" BorderRadius="20" TextColor="Black"/>
-                <StackLayout Orientation="Horizontal">
-                <Label Text="¿Olvidaste tu contraseña?" />
-                <Button Text="Registrarse" x:Name="btnreg" Clicked="Btnreg_Clicked1" BackgroundColor="White" FontAttributes="Bold"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <Entry Placeholder="Correo Electrónico" x:Name="Txtnombre" PlaceholderColor="Gray" />
+                    <Entry Placeholder="Contraseña" x:Name="TxtPass" PlaceholderColor="Gray" IsPassword="True" />
+                    <Button Text="Iniciar Sesion" x:Name="btnIniciar" BackgroundColor="LightGray" BorderRadius="20" TextColor="Black" Clicked="BtnIniciar_Clicked"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Olvidaste tu contraseña?" x:Name="lblrestablecer" BackgroundColor="Transparent" HeightRequest="50" HorizontalOptions="Start"/>
+                
+                    </StackLayout>
                 </StackLayout>
+            </Grid>
+            <StackLayout RelativeLayout.YConstraint="{ConstraintExpression Property=Height, Type=RelativeToView, ElementName=BlockA, Factor=1 ,Constant=5}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Property=Width, Type=RelativeToParent, Factor=1}">
+                <Button Text="No tienes una cuenta? Registrate!" x:Name="btnreg" BackgroundColor="Transparent" HorizontalOptions="End" Clicked="Btnreg_Clicked1" />
             </StackLayout>
-        </Grid>
-    </ContentPage.Content>
+        </RelativeLayout>
+</ContentPage.Content>
 </ContentPage>

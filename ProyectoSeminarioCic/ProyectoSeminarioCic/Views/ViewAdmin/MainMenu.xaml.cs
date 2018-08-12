@@ -30,12 +30,12 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             List<Menu> menu = new List<Menu>
             {
                 new Menu { Page = new ViewGeneral.HomeFeed(true), MenuTitle="Inicio", Icon = "baseline_home_black_36.png" },
-                new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Publicar", Icon = "baseline_photo_camera_black_36.png" },
+               // new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Publicar", Icon = "baseline_photo_camera_black_36.png" },
                 new Menu { Page = new SeminarioHome(), MenuTitle="Seminarios", Icon = "baseline_event_available_black_36.png" },
                 new Menu { Page = new EventoHome(), MenuTitle="Eventos", Icon = "baseline_event_note_black_36.png" },
                 new Menu { Page = new Notificacion(), MenuTitle="Notificaciones",  Icon = "baseline_notifications_black_36.png" },
-                new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Estadísticas",  Icon = "baseline_pie_chart_black_36.png" },
-                new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Perfil",  Icon = "baseline_person_black_36.png" },
+               // new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Estadísticas",  Icon = "baseline_pie_chart_black_36.png" },
+              //  new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Perfil",  Icon = "baseline_person_black_36.png" },
                 new Menu { Page = new ConfiguracionHome(), MenuTitle="Ajustes",  Icon = "baseline_settings_black_36.png" },
             };
             ListMenu.ItemsSource = menu;
@@ -59,6 +59,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                     BarTextColor = Color.Black,
                     BarBackgroundColor = Color.LightSlateGray
                 };
+                
                 Detail = start;
             }
         }

@@ -2,8 +2,10 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSeminarioCic.Views.ViewAdmin.MainMenu"
-             xmlns:pages="clr-namespace:ProyectoSeminarioCic.Views.ViewAdmin">
-  <MasterDetailPage.Master>
+             xmlns:pages="clr-namespace:ProyectoSeminarioCic.Views.ViewAdmin"
+                   NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False">
+    <MasterDetailPage.Master>
         <ContentPage Title="Menú" BackgroundColor="LightSlateGray" Padding="0,25,0,0" >
             <StackLayout>
                 <Label Text="Menú" BackgroundColor="LightSlateGray" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
@@ -21,8 +23,8 @@
                 </ListView>
             </StackLayout>
         </ContentPage>
-  </MasterDetailPage.Master>
-  <!--<MasterDetailPage.Detail>
+    </MasterDetailPage.Master>
+    <!--<MasterDetailPage.Detail>
     <NavigationPage>
     </NavigationPage>
   </MasterDetailPage.Detail>-->

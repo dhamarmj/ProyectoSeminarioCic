@@ -5,21 +5,21 @@ using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("Seminario")]
     public class Seminario
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id_seminario { get; set; }
+        public int Id { get; set; }
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public DateTime Anio { get; set; }
-        public byte[] Imagen { get; set; }
-        public string icon { get; set; }
+        public string ImagenPath { get; set; }
+        public byte[] ImagenArray { get; set; }
+        public string Icon { get; set; }
 
-        public Seminario()
-        {
-            Descripcion = "/n /n Descripción del seminario";
-        }
+
+        public virtual ICollection<Boleta> Boleta { get; set; }
+        public virtual ICollection<Charla> Charla { get; set; }
+        public virtual ICollection<Evento> Evento { get; set; }
+
     }
 
 }
