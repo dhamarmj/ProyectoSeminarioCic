@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewUsuario.DetalleActividades">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout Padding="10,5" Margin="3">
+            <Label Text="Descripción" FontSize="Medium" TextColor="Black"/>
+            <Label Text="{Binding Descripcion}"/>
+            <BoxView HeightRequest="1" Color="Gray"/>
+            <BoxView HeightRequest="3" Color="Transparent"/>
+            <Label Text="{Binding Id_Charlista}" x:Name="TxtCharlista" TextColor="Black" FontSize="Medium" IsVisible="False" FontAttributes="Bold"/>
+            <Label Text="{Binding RangoHora}" TextColor="Black" FontSize="Small"/>
+            <Label Text="{Binding Ubicacion,StringFormat='Ubicación: {0}'}" FontSize="Small"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

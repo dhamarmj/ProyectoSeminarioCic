@@ -43,13 +43,14 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             }
            else
             {
+
                 var res = await DisplayAlert("Aviso", "Está a punto de eliminar un Seminario, ¿Está seguro?", "Sí", "No");
                 if (res)
                 {
-                   
+                    BtnLoading.IsRunning = true;
                     //Lo quito de la lista en la nube
                     var response = await api.EliminarSeminario(sem.Id);
-                    if (response.IsSuccessStatusCode)
+                    if (response)
                     {
                         //Lo quito de la lista local si no hay errores
                         _seminario.Remove(sem);
@@ -57,6 +58,8 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                     }
                     else
                         await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
+
+                    BtnLoading.IsRunning = false;
                 }
             }
             

@@ -5,6 +5,11 @@
              xmlns:pages="clr-namespace:ProyectoSeminarioCic.Views.ViewAdmin"
                    NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
+    <MasterDetailPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </MasterDetailPage.Padding>
     <MasterDetailPage.Master>
         <ContentPage Title="Menú" BackgroundColor="LightSlateGray" Padding="0,25,0,0" >
             <StackLayout>

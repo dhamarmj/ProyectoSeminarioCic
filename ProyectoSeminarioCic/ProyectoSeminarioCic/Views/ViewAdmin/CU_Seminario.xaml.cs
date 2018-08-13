@@ -58,7 +58,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             {
                 //Actualizar = Put 
                 var response = await api.ActualizarSeminario(_seminario);
-                if (response.IsSuccessStatusCode)
+                if (response)
                 {
                     await DisplayAlert("Aviso", "Seminario actualizado exitosamente", "Ok");
                     await Navigation.PopAsync();

@@ -11,8 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace ProyectoSeminarioCic.Views.ViewAdmin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
     public partial class EventoHome : ContentPage
     {
+        Services.ApiServices_CharlaUsuario apiCharlaUsuario = new Services.ApiServices_CharlaUsuario();
+        Services.ApiServices_EventoUsuario apiEventoUsuario = new Services.ApiServices_EventoUsuario();
+        Services.ApiServices_Eventos api = new Services.ApiServices_Eventos();
         private ObservableCollection<Models.Evento> _eventos;
         public EventoHome()
         {
@@ -20,16 +24,18 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
 
             var sem1 = new Models.Seminario { Titulo = "Seminario", Anio = new DateTime(2016, 06, 15), Descripcion = "ALGO" };
 
-            _eventos = new ObservableCollection<Models.Evento>
-            {
-                new Models.Charla { Titulo = "Comida en el dia de hoy", Duracion = "90", Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself." ,Fecha = new DateTime(2016,06,15), Seminario=sem1 , TSHora = new TimeSpan(5,0,0),  },
-                new Models.Charla { Titulo = "Bebida en el dia de hoy", Duracion = "90", Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself.", Fecha = new DateTime(2016,06,15), Seminario=sem1 , TSHora = new TimeSpan(6,0,0)  },
-                new Models.Evento { Titulo = "Llegada", Duracion = "30", Fecha = new DateTime(2016,06,15,5,0,0), Seminario=sem1, Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself.", TSHora = new TimeSpan(7,0,0) },
-            };
+            LoadEvents();
             this.BindingContext = sem1;
             ListEvento.ItemsSource = _eventos;
         }
 
+        public async void LoadEvents()
+        {
+            var list = await api.GetEventos();
+            _eventos = new ObservableCollection<Models.Evento>(list);
+            ListEvento.ItemsSource = _eventos;
+            ListEvento.EndRefresh();
+        }
 
         async private void Editar_Clicked(object sender, EventArgs e)
         {
@@ -40,17 +46,40 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
 
         async private void Eliminar_Clicked(object sender, EventArgs e)
         {
-            //VALIDAR SI SE PUEDE BORRAR <SI NO TIENE NINGUNA PERSONA AGREGADA>
-            var res = await DisplayAlert("Aviso", "Está a punto de eliminar un Evento, ¿Está seguro?", "Sí", "No");
-            if (res)
+            var eve = (sender as MenuItem).CommandParameter as Models.Evento;
+
+            BtnLoading.IsRunning = true;
+            var charla = await apiCharlaUsuario.GetCharla_Usuario(Convert.ToInt32(Settings.idUsuario), eve.Id);
+            var evento = await apiEventoUsuario.GetEvento_Usuario(Convert.ToInt32(Settings.idUsuario), eve.Id);
+
+            if (charla == null && evento == null)
             {
-                var eve = (sender as MenuItem).CommandParameter as Models.Evento;
-                _eventos.Remove(eve);
-                await DisplayAlert("Éxito", "Registro eliminado", "Aceptar");
+                var res = await DisplayAlert("Aviso", "Está a punto de eliminar un Evento, ¿Está seguro?", "Sí", "No");
+                if (res)
+                {
+                    BtnLoading.IsRunning = true;
+                    var respuesta = await api.EliminarEvento(eve.Id);
+                    if (respuesta)
+                    {
+                        _eventos.Remove(eve);
+                        await DisplayAlert("Éxito", "Evento eliminado", "Aceptar");
+                    }
+                    else
+                        await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
+                }
+
             }
+            else
+            {
+                await DisplayAlert("Aviso", "Este Evento tiene participantes registrados y no se puede eliminar", "Ok");
+            }
+
+            BtnLoading.IsRunning = false;
+
+
         }
 
-       async private void btnAgregar_Clicked(object sender, EventArgs e)
+        async private void btnAgregar_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CU_Evento(new Models.Evento("Descripción del evento")));
         }
@@ -58,6 +87,11 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         private void CambiarSeminario_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        private void ListEvento_Refreshing(object sender, EventArgs e)
+        {
+            LoadEvents();
         }
     }
 }

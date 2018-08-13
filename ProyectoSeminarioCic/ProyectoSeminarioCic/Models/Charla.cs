@@ -6,13 +6,22 @@ using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("Charla")]
+  //  [Table("Charla")]
     public class Charla : Evento
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id_charla { get; set; }
 
-        [ForeignKey(typeof(Usuario))]
+      //  [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+      //  [ForeignKey(typeof(Usuario))]
         public int Id_Charlista { get; set; }
+
+        //public string returnCharlista
+        //{
+        //    get
+        //    {
+                
+        //    }
+        //}
     }
 }

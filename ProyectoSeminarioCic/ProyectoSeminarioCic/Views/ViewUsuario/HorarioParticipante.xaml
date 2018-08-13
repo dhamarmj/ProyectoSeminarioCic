@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <forms:TopTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:forms="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.TopTabbedPage.Forms"
-            x:Class="ProyectoSeminarioCic.Views.ViewUsuario.HorarioParticipante"
-            x:Name="Tab"
-            NavigationPage.HasBackButton="False"
-               NavigationPage.HasNavigationBar="False"     
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.TopTabbedPage.Forms"
+             x:Class="ProyectoSeminarioCic.Views.ViewUsuario.HorarioParticipante"
+             x:Name="Tab"
             BarTextColor="Black"
-            BarIndicatorColor="SlateGray"
-            BarBackgroundColor="LightSlateGray">
-
-
+            BarIndicatorColor="LightSlateGray"
+            BarBackgroundColor="SlateGray">
+    <forms:TopTabbedPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </forms:TopTabbedPage.Padding>
 </forms:TopTabbedPage>
