@@ -1,14 +1,13 @@
-﻿using SQLite.Net.Attributes;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("Notificacion")]
+    
     public class Notificacion
     {
-        [PrimaryKey, AutoIncrement]
         public int Id_notificacion { get; set; }
         public string Descripcion { get; set; }
         public string Link { get; set; }

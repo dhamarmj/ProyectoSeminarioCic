@@ -1,27 +1,27 @@
-﻿using SQLite.Net.Attributes;
-using SQLiteNetExtensions.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-  //  [Table("Charla")]
+
     public class Charla : Evento
     {
+        //  [Table("Charla")]
 
-      //  [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+            //  [PrimaryKey, AutoIncrement]
+            public int Id { get; set; }
 
-      //  [ForeignKey(typeof(Usuario))]
-        public int Id_Charlista { get; set; }
+            //  [ForeignKey(typeof(Usuario))]
+            public int Id_Charlista { get; set; }
 
-        //public string returnCharlista
-        //{
-        //    get
-        //    {
-                
-        //    }
-        //}
-    }
+            //public string returnCharlista
+            //{
+            //    get
+            //    {
+
+            //    }
+            //}
+        }
 }
+

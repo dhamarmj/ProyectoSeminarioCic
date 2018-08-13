@@ -5,7 +5,7 @@ using AsNum.XFControls.iOS;
 using Foundation;
 using Naxam.Controls.Platform.iOS;
 using UIKit;
-
+using ProyectoSeminarioCic;
 namespace ProyectoSeminarioCic.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -26,7 +26,7 @@ namespace ProyectoSeminarioCic.iOS
             TopTabbedRenderer.Init();
             AsNumAssemblyHelper.HoldAssembly();
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new ProyectoSeminarioCic.App());
             
 
             return base.FinishedLaunching(app, options);

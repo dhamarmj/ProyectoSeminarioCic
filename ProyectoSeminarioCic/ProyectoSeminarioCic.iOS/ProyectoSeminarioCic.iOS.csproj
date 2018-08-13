@@ -51,6 +51,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -63,8 +64,10 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DatabaseService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -129,6 +132,9 @@
     <BundleResource Include="Resources\xamarin_logo.png" />
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
@@ -171,12 +177,6 @@
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\ProyectoSeminarioCic\ProyectoSeminarioCic.csproj">
-      <Project>{5253A45F-A1BE-4461-A54B-77E19B5253E9}</Project>
-      <Name>ProyectoSeminarioCic</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\store.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -377,5 +377,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\right_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProyectoSeminarioCic\ProyectoSeminarioCic.csproj">
+      <Project>{ed7fd46e-85dd-4911-83b1-b9caca793cbc}</Project>
+      <Name>ProyectoSeminarioCic</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

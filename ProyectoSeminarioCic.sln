@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoSeminarioCic.Android", "ProyectoSeminarioCic\ProyectoSeminarioCic.Android\ProyectoSeminarioCic.Android.csproj", "{1E61E455-6951-4F01-9046-36FB8AB8DE6E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32E187F8-C3BC-49AA-8C92-A873A5B4A235} = {32E187F8-C3BC-49AA-8C92-A873A5B4A235}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoSeminarioCic.iOS", "ProyectoSeminarioCic\ProyectoSeminarioCic.iOS\ProyectoSeminarioCic.iOS.csproj", "{32E187F8-C3BC-49AA-8C92-A873A5B4A235}"
 EndProject

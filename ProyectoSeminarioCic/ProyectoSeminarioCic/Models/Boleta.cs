@@ -1,14 +1,13 @@
-﻿using SQLite.Net.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("Boleta")]
+    //[Table("Boleta")]
     public class Boleta
     {
-        [PrimaryKey, AutoIncrement]
+       // [PrimaryKey, AutoIncrement]
         public int Id_boleta { get; set; }
         public string Numero_serie { get; set; }
         public byte QR { get; set; }
