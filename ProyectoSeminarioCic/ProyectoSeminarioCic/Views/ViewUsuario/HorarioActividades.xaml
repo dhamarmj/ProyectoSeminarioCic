@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              
+             x:Class="ProyectoSeminarioCic.Views.ViewUsuario.HorarioActividades">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout Padding="5, 5">
+            <ListView x:Name="ListEventos" HasUnevenRows="True" ItemSelected="ListEventos_ItemSelected" Refreshing="ListEventos_Refreshing" IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Titulo}" FontSize="Medium" TextColor="Black"/>
+                                <Label Grid.Row="1" Grid.Column="0" FontSize="Small" Text="{Binding RangoHora}"/>
+                                <Switch Grid.Row="0" Grid.Column="1" Toggled="Switch_Toggled" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

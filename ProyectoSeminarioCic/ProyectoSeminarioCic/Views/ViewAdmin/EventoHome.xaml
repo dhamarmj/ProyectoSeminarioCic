@@ -9,33 +9,41 @@
         </OnPlatform>
     </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout Padding="10,15">
-            <Grid Padding="10,0,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="35"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Titulo}" FontSize="Large" TextColor="Black" />
-                <Button Grid.Row="0" Grid.Column="1" Clicked="CambiarSeminario_Clicked" HeightRequest="35" BackgroundColor="Transparent" Image="pencil.png"/>
-            </Grid>
-            <Button Image="website.png" Text="Agregar Evento" x:Name="btnAgregar"  TextColor="Black" Clicked="btnAgregar_Clicked"/>
-            <Label Text="Eventos registrados..." FontSize="Large" TextColor="Black"/>
-            <BoxView HeightRequest="1" Color="Gray" />
-            <ListView x:Name="ListEvento" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Titulo}" Detail="{ Binding Fecha, StringFormat='{}{0:dddd hh:mm  tt}'}" TextColor="Black" DetailColor="Gray">
-                            <TextCell.ContextActions>
-                                <MenuItem Text="Editar"  Clicked="Editar_Clicked" CommandParameter="{Binding .}"/>
-                                <MenuItem Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" IsDestructive="True"/>
-                            </TextCell.ContextActions>
-                        </TextCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+        <AbsoluteLayout>
+            <StackLayout Padding="10,15" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid Padding="10,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Titulo}" FontSize="Large" TextColor="Black" />
+                    <Button Grid.Row="0" Grid.Column="1" Clicked="CambiarSeminario_Clicked" HeightRequest="35" BackgroundColor="Transparent" Image="pencil.png"/>
+                </Grid>
+                <Button Image="website.png" Text="Agregar Evento" x:Name="btnAgregar"  TextColor="Black" Clicked="btnAgregar_Clicked"/>
+                <Label Text="Eventos registrados..." FontSize="Large" TextColor="Black"/>
+                <BoxView HeightRequest="1" Color="Gray" />
+                <ListView x:Name="ListEvento" HasUnevenRows="True" IsPullToRefreshEnabled="True" Refreshing="ListEvento_Refreshing">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Titulo}" Detail="{ Binding Fecha, StringFormat='{}{0:dddd hh:mm  tt}'}" TextColor="Black" DetailColor="Gray">
+                                <TextCell.ContextActions>
+                                    <MenuItem Text="Editar"  Clicked="Editar_Clicked" CommandParameter="{Binding .}"/>
+                                    <MenuItem Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding .}" IsDestructive="True"/>
+                                </TextCell.ContextActions>
+                            </TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <ActivityIndicator x:Name="BtnLoading"
+                               Color="Black"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,50,50" 
+                               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        </AbsoluteLayout>
+           
+        
     </ContentPage.Content>
 </ContentPage>

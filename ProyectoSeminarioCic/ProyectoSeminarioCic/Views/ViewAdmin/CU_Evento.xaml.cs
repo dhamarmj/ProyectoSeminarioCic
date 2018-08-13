@@ -13,6 +13,9 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
     public partial class CU_Evento : ContentPage
     {
         private Models.Evento _Evento;
+
+        Services.ApiServices_Eventos apiEvento = new Services.ApiServices_Eventos();
+        Services.ApiServices_Charlas apiCharla = new Services.ApiServices_Charlas();
         public CU_Evento(Models.Evento eve)
         {
             _Evento = eve;
@@ -48,6 +51,71 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             {
                 picker.SelectedItem.ToString();
             }
+        }
+
+        private async void btnIniciar_Clicked(object sender, EventArgs e)
+        {
+            BtnLoading.IsRunning = true;
+            if (_Evento == null) //Es uno nuevo que tu vas a salvar?
+            {
+                if(pickerbtn.SelectedIndex > -1)
+                {
+                    var _charla = new Models.Charla
+                    {
+                        Titulo = TxtTitulo.Text,
+                        Fecha = btnfecha.Date,
+                        Duracion = btnduracion.Text,
+                        TSHora = btnhora.Time,
+                        Descripcion = TxtDescripcion.Text,
+                        Id_Charlista = 1,
+                        Ubicacion = TxtUbicacion.Text,
+                    };
+                    var response = await apiCharla.RegistrarCharla(_charla);
+                    if (response)
+                    {
+                        await DisplayAlert("Aviso", "Charla Salvada exitosamente", "Ok");
+                        await Navigation.PopAsync();
+                    }
+
+                    else
+                        await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
+                }
+                else
+                {
+                    var _evento = new Models.Evento
+                    {
+                        Titulo = TxtTitulo.Text,
+                        Fecha = btnfecha.Date,
+                        Duracion = btnduracion.Text,
+                        TSHora = btnhora.Time,
+                        Descripcion = TxtDescripcion.Text,
+                        Ubicacion = TxtUbicacion.Text,
+                    };
+                    var response = await apiEvento.RegistrarEvento(_evento);
+                    if (response)
+                    {
+                        await DisplayAlert("Aviso", "Evento Salvado exitosamente", "Ok");
+                        await Navigation.PopAsync();
+                    }
+                    else
+                        await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
+                }
+              
+            }
+            else //si no es uno nuevo es que Vas a actualizar
+            {
+                //Actualizar = Put 
+                var response = await apiEvento.ActualizarEvento(_Evento);
+                if (response)
+                {
+                    await DisplayAlert("Aviso", "Evento actualizado exitosamente", "Ok");
+                    await Navigation.PopAsync();
+                }
+                else
+                    await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
+            }
+            //Quito el boton de cargar 
+            BtnLoading.IsRunning = false;
         }
     }
 }
