@@ -88,11 +88,17 @@
     <EmbeddedResource Update="Views\ViewUsuario\DetalleActividades.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewUsuario\EditarPerfil.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewUsuario\HorarioActividades.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewUsuario\HorarioParticipante.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewUsuario\Profile.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewUsuario\VistaPerfil.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
