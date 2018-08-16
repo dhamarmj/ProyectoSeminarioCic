@@ -19,7 +19,7 @@
             <BoxView HeightRequest="1.5" Color="#c5c7c9"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=1}"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
-            <ListView    x:Name="listNotif" 
+            <ListView    x:Name="listNotif" IsPullToRefreshEnabled="True" Refreshing="listNotif_Refreshing"
                          SeparatorColor="#c5c7c9"
                             HasUnevenRows="True"
                             RelativeLayout.WidthConstraint="{ConstraintExpression
