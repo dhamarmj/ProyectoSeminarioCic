@@ -21,8 +21,11 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             _Evento = eve;
             InitializeComponent();
             Init();
-            if (_Evento.Titulo == null)
+            if (_Evento == null)
+            {
                 LblDescrip.IsVisible = false;
+                TxtDescripcion.Text = "Descripción del evento";
+            }
             this.BindingContext = _Evento;
         }
 
@@ -31,7 +34,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         {
             charlistas = new List<charlistas>()
             {
-                new charlistas { nombre = "Alberto", apellido = "Castro" },
+                new charlistas { nombre = "Alberto", apellido = "Castro"},
                 new charlistas { nombre = "Flor", apellido = "Martinez" },
                 new charlistas { nombre = "Gilberto", apellido = "Rosa" },
                 new charlistas { nombre = "Amanda", apellido = "Jimenza" },

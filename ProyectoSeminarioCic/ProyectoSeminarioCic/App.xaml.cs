@@ -11,11 +11,11 @@ namespace ProyectoSeminarioCic
         public App()
         {
             InitializeComponent();
-            Settings.AccesToken = "eeBQtHugj3HUUCoJMcXYG8dsPGKQ5zjVwB4LHNIxPY8rdjxNtuvw3H21_vNBevz89qZCD9-gygc-90YpxNHSqrSdfAby3PoSWl0L9m-MuQWn0nby50aurXAjgB1ahfhez4U4H41OMD9nxTYNxVMmWpry1mgm503mYEuGUCRAYNn8RmyMTPsHcDjg0rtEkfFmS_PQk3nOtLmvuvzpXBuuEDMhgyt94vrNI_CLadZepuLYa0lUfXcpAmBB23mfYblzPMGdgcCRgd9V42IZLHBcbpLYJkadPmOGWYrm4EXdDghK88tadpt6U6pNEdoyoPzCp42eeUHI4sUmQETUBhYrnkQ8uHggJ6wFq9o5n3E258-hBCIP_QUWXfezAN4OuHmo_ABNsCzk7u5FYl-dZfVA4Q-6COhnpXfTN07VYa3e76UxmpeXsjx08nTNWSsMaL3yF4OYclfzK-gkeNNRsNZSO_PES37AF0DRAYe4Z8r6RDvxK6PBeO-ODU06kmWci89z";
-            Settings.Email = "dhamarmj@ce.pucmm.edu.do";
-            Settings.Password = "Tarea.123";
+            //Settings.AccesToken = "eeBQtHugj3HUUCoJMcXYG8dsPGKQ5zjVwB4LHNIxPY8rdjxNtuvw3H21_vNBevz89qZCD9-gygc-90YpxNHSqrSdfAby3PoSWl0L9m-MuQWn0nby50aurXAjgB1ahfhez4U4H41OMD9nxTYNxVMmWpry1mgm503mYEuGUCRAYNn8RmyMTPsHcDjg0rtEkfFmS_PQk3nOtLmvuvzpXBuuEDMhgyt94vrNI_CLadZepuLYa0lUfXcpAmBB23mfYblzPMGdgcCRgd9V42IZLHBcbpLYJkadPmOGWYrm4EXdDghK88tadpt6U6pNEdoyoPzCp42eeUHI4sUmQETUBhYrnkQ8uHggJ6wFq9o5n3E258-hBCIP_QUWXfezAN4OuHmo_ABNsCzk7u5FYl-dZfVA4Q-6COhnpXfTN07VYa3e76UxmpeXsjx08nTNWSsMaL3yF4OYclfzK-gkeNNRsNZSO_PES37AF0DRAYe4Z8r6RDvxK6PBeO-ODU06kmWci89z";
+            //Settings.Email = "dhamarmj@ce.pucmm.edu.do";
+            //Settings.Password = "Tarea.123";
             Settings.Rol = "Administrador";
-            Settings.idUsuario = "1";
+           // Settings.idUsuario = "1";
             //MainPage = new Views.ViewAdmin.MainMenu();
             // MainPage = new Views.ViewGeneral.Home("Participante");
             //Settings.AccesToken = Settings.Email = Settings.Password = Settings.Rol = string.Empty;

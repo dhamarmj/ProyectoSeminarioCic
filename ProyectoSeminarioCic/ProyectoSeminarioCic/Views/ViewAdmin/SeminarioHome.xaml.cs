@@ -18,6 +18,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         public SeminarioHome()
         {
             InitializeComponent();
+            LoadSeminars();
             ListSeminar.ItemsSource = _seminario;
         }
 

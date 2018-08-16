@@ -13,18 +13,27 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HorarioActividades : ContentPage
     {
+        Services.ApiServices_Eventos api = new Services.ApiServices_Eventos();
         public HorarioActividades()
         {
             InitializeComponent();
 
-            _eventos = new ObservableCollection<Models.Evento>
-            {
-                new Models.Charla { Id_Charlista =1, Ubicacion= "Aula 1", Titulo = "Comida en el dia de hoy", Duracion = "90", Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself." ,Fecha = new DateTime(2016,06,15), TSHora = new TimeSpan(5,0,0),  },
-                new Models.Charla { Id_Charlista =2, Ubicacion= "Aula 2",Titulo = "Bebida en el dia de hoy", Duracion = "90", Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself.", Fecha = new DateTime(2016,06,15),  TSHora = new TimeSpan(6,0,0)  },
-                new Models.Evento { Titulo = "Llegada", Ubicacion= "Teatro", Duracion = "30", Fecha = new DateTime(2016,06,15,5,0,0),  Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself.", TSHora = new TimeSpan(7,0,0) },
-            };
-
+            //_eventos = new ObservableCollection<Models.Evento>
+            //{
+            //    new Models.Charla { Id_Charlista =1, Ubicacion= "Aula 1", Titulo = "Comida en el dia de hoy", Duracion = "90", Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself." ,Fecha = new DateTime(2016,06,15), TSHora = new TimeSpan(5,0,0),  },
+            //    new Models.Charla { Id_Charlista =2, Ubicacion= "Aula 2",Titulo = "Bebida en el dia de hoy", Duracion = "90", Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself.", Fecha = new DateTime(2016,06,15),  TSHora = new TimeSpan(6,0,0)  },
+            //    new Models.Evento { Titulo = "Llegada", Ubicacion= "Teatro", Duracion = "30", Fecha = new DateTime(2016,06,15,5,0,0),  Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself.", TSHora = new TimeSpan(7,0,0) },
+            //};
+            LoadEventos();
             ListEventos.ItemsSource = _eventos;
+        }
+
+        public async void LoadEventos()
+        {
+            var list = await api.GetEventos();
+            _eventos = new ObservableCollection<Models.Evento>(list);
+            ListEventos.ItemsSource = _eventos;
+            ListEventos.EndRefresh();
         }
 
         ObservableCollection<Models.Evento> _eventos;
@@ -63,7 +72,7 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
 
         private void ListEventos_Refreshing(object sender, EventArgs e)
         {
-
+            LoadEventos();
         }
     }
 }

@@ -81,7 +81,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
 
         async private void btnAgregar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CU_Evento(new Models.Evento("Descripción del evento")));
+            await Navigation.PushAsync(new CU_Evento(null));
         }
 
         private void CambiarSeminario_Clicked(object sender, EventArgs e)
