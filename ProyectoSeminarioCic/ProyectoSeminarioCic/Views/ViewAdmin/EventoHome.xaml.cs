@@ -14,33 +14,48 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
 
     public partial class EventoHome : ContentPage
     {
-        Services.ApiServices_CharlaUsuario apiCharlaUsuario = new Services.ApiServices_CharlaUsuario();
         Services.ApiServices_EventoUsuario apiEventoUsuario = new Services.ApiServices_EventoUsuario();
         Services.ApiServices_Eventos api = new Services.ApiServices_Eventos();
+        Services.ApiServices_Seminario apiSeminario = new Services.ApiServices_Seminario();
         private ObservableCollection<Models.Evento> _eventos;
+        string opcion = "INSERTAR";
         public EventoHome()
         {
             InitializeComponent();
-
-            var sem1 = new Models.Seminario { Titulo = "Seminario", Anio = new DateTime(2016, 06, 15), Descripcion = "ALGO" };
-
-            LoadEvents();
-            this.BindingContext = sem1;
-            ListEvento.ItemsSource = _eventos;
+            LoadSeminario();
+            //  LoadEvents();
         }
-
+        protected override void OnAppearing()
+        {
+            if (opcion == "INSERTAR")
+            {
+                LoadEvents();
+                opcion = "";
+            }
+                
+        }
+        private async void LoadSeminario()
+        {
+            BtnLoading.IsRunning = true;
+            var sem = await apiSeminario.GetSeminario(Convert.ToInt32(Settings.idSeminario));
+            this.BindingContext = sem;
+            BtnLoading.IsRunning = false;
+        }
         public async void LoadEvents()
         {
-            var list = await api.GetEventos();
+            BtnLoading.IsRunning = true;
+            var list = await api.GetEventos(Convert.ToInt32(Settings.idSeminario));
             _eventos = new ObservableCollection<Models.Evento>(list);
             ListEvento.ItemsSource = _eventos;
             ListEvento.EndRefresh();
+            BtnLoading.IsRunning = false;
         }
 
         async private void Editar_Clicked(object sender, EventArgs e)
         {
             var item = sender as MenuItem;
             var eve = item.CommandParameter as Models.Evento;
+
             await Navigation.PushAsync(new CU_Evento(eve));
         }
 
@@ -49,10 +64,9 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             var eve = (sender as MenuItem).CommandParameter as Models.Evento;
 
             BtnLoading.IsRunning = true;
-            var charla = await apiCharlaUsuario.GetCharla_Usuario(Convert.ToInt32(Settings.idUsuario), eve.Id);
             var evento = await apiEventoUsuario.GetEvento_Usuario(Convert.ToInt32(Settings.idUsuario), eve.Id);
 
-            if (charla == null && evento == null)
+            if (evento == null)
             {
                 var res = await DisplayAlert("Aviso", "Está a punto de eliminar un Evento, ¿Está seguro?", "Sí", "No");
                 if (res)
@@ -75,23 +89,18 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             }
 
             BtnLoading.IsRunning = false;
-
-
         }
 
         async private void btnAgregar_Clicked(object sender, EventArgs e)
         {
+            opcion = "INSERTAR";
             await Navigation.PushAsync(new CU_Evento(null));
-        }
-
-        private void CambiarSeminario_Clicked(object sender, EventArgs e)
-        {
-
         }
 
         private void ListEvento_Refreshing(object sender, EventArgs e)
         {
             LoadEvents();
         }
+
     }
 }

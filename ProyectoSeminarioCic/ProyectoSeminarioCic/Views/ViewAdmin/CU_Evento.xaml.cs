@@ -15,95 +15,107 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         private Models.Evento _Evento;
 
         Services.ApiServices_Eventos apiEvento = new Services.ApiServices_Eventos();
-        Services.ApiServices_Charlas apiCharla = new Services.ApiServices_Charlas();
+        Services.ApiServices_Usuario apiUsuario = new Services.ApiServices_Usuario();
+        CharlistasList newForm = new CharlistasList();
+
+        int idCharlista = -1;
+        string opcion;
         public CU_Evento(Models.Evento eve)
         {
-            _Evento = eve;
             InitializeComponent();
-            Init();
+            _Evento = eve;
+            this.BindingContext = _Evento;
+            loadCharlistaName();
             if (_Evento == null)
             {
                 LblDescrip.IsVisible = false;
                 TxtDescripcion.Text = "Descripción del evento";
+                LblCharlista.Text = "Seleccionar Charlista";
             }
-            this.BindingContext = _Evento;
+            else
+            {
+                if (eve.Id_Charlista != -1)
+                {
+                    GridChalistas.IsVisible = true;
+                    loadcharlista();
+                }
+
+                else
+                    GridChalistas.IsVisible = false;
+            }
         }
 
-        List<charlistas> charlistas;
-        private void Init()
+        private async void loadcharlista()
         {
-            charlistas = new List<charlistas>()
+            var cha = await apiUsuario.GetUsuario(Convert.ToInt32(_Evento.Id_Charlista));
+            LblCharlista.Text = cha.Nombre + " " + cha.Apellido;
+        }
+        protected override void OnAppearing()
+        {
+            BtnLoading.IsRunning = true;
+                loadCharlistaName();
+            BtnLoading.IsRunning = false;
+        }
+        private void loadCharlistaName()
+        {
+            LblCharlista.Text = newForm.NameCharlista;
+            idCharlista = newForm.idCharlista;
+        }
+
+        private bool Validate()
+        {
+            if (TxtTitulo.Text != string.Empty & btnfecha.Date != null & btnhora.Time != null)
+                return true;
+            else
             {
-                new charlistas { nombre = "Alberto", apellido = "Castro"},
-                new charlistas { nombre = "Flor", apellido = "Martinez" },
-                new charlistas { nombre = "Gilberto", apellido = "Rosa" },
-                new charlistas { nombre = "Amanda", apellido = "Jimenza" },
-                new charlistas { nombre = "Karol", apellido = "Peralta" },
-                new charlistas { nombre = "Antonio", apellido = "Ortega" },
-                new charlistas { nombre = "Casemiro", apellido = "Vidal" },
-                new charlistas { nombre = "Pedro", apellido = "Olivas" }
+                DisplayAlert("Aviso", "Debe digitar un Título, Fecha y Hora para salvar el evento", "Ok");
+                return false;
+            }
+        }
+
+        private async void SaveEvento()
+        {
+            var time = DateTime.Today.Add(btnhora.Time);
+            var _evento = new Models.Evento
+            {
+                Titulo = TxtTitulo.Text,
+                Fecha = new DateTime(btnfecha.Date.Year, btnfecha.Date.Month, btnfecha.Date.Day, time.Hour, time.Minute, time.Second),
+                Duracion = Convert.ToInt32(btnduracion.Text),
+                Descripcion = TxtDescripcion.Text,
+                Ubicacion = TxtUbicacion.Text,
+                Id_seminario = Convert.ToInt32(Settings.idSeminario)
             };
-            pickerbtn.ItemsSource = charlistas;
+            if (idCharlista > -1)
+                _evento.Id_Charlista = idCharlista;
 
-        }
-        private void pickerbtn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var picker = (Picker)sender;
-            int selectedIndex = picker.SelectedIndex;
-            if (selectedIndex > -1)
+            _evento.SetFechaFin();
+
+            var response = await apiEvento.RegistrarEvento(_evento);
+            if (response)
             {
-                picker.SelectedItem.ToString();
+                await DisplayAlert("Aviso", "Evento Salvado exitosamente", "Ok");
+                await Navigation.PopAsync();
             }
+            else
+                await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
         }
+
 
         private async void btnIniciar_Clicked(object sender, EventArgs e)
         {
             BtnLoading.IsRunning = true;
             if (_Evento == null) //Es uno nuevo que tu vas a salvar?
             {
-                if(pickerbtn.SelectedIndex > -1)
+                if (Validate())
                 {
-                    var _charla = new Models.Charla
-                    {
-                        Titulo = TxtTitulo.Text,
-                        Fecha = btnfecha.Date,
-                        Duracion = btnduracion.Text,
-                        TSHora = btnhora.Time,
-                        Descripcion = TxtDescripcion.Text,
-                        Id_Charlista = 1,
-                        Ubicacion = TxtUbicacion.Text,
-                    };
-                    var response = await apiCharla.RegistrarCharla(_charla);
-                    if (response)
-                    {
-                        await DisplayAlert("Aviso", "Charla Salvada exitosamente", "Ok");
-                        await Navigation.PopAsync();
-                    }
-
+                    var checkTitulo = await apiEvento.GetEvento(TxtTitulo.Text);
+                    if (checkTitulo != null)
+                        await DisplayAlert("Aviso", "No pueden haber 2 Eventos con el mismo Título", "Ok");
                     else
-                        await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
-                }
-                else
-                {
-                    var _evento = new Models.Evento
                     {
-                        Titulo = TxtTitulo.Text,
-                        Fecha = btnfecha.Date,
-                        Duracion = btnduracion.Text,
-                        TSHora = btnhora.Time,
-                        Descripcion = TxtDescripcion.Text,
-                        Ubicacion = TxtUbicacion.Text,
-                    };
-                    var response = await apiEvento.RegistrarEvento(_evento);
-                    if (response)
-                    {
-                        await DisplayAlert("Aviso", "Evento Salvado exitosamente", "Ok");
-                        await Navigation.PopAsync();
+                        SaveEvento();
                     }
-                    else
-                        await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
                 }
-              
             }
             else //si no es uno nuevo es que Vas a actualizar
             {
@@ -119,6 +131,11 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             }
             //Quito el boton de cargar 
             BtnLoading.IsRunning = false;
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(newForm);
         }
     }
 }

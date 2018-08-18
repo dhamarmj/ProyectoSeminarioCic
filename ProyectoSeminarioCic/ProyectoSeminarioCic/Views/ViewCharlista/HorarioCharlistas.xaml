@@ -8,33 +8,40 @@
             <On Platform="iOS" Value="0, 20, 0, 0" />
         </OnPlatform>
     </ContentPage.Padding>
-    <RelativeLayout  Padding="0" HorizontalOptions="Center">
-        <BoxView BackgroundColor="SlateGray" HeightRequest="40" x:Name="HeaderBar"
+    <AbsoluteLayout>
+        <RelativeLayout  Padding="0" HorizontalOptions="Center" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <BoxView BackgroundColor="SlateGray" HeightRequest="40" x:Name="HeaderBar"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"/>
-        <Label Text="Horario" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Start" FontAttributes="Italic,Bold" 
+            <Label Text="Horario" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Start" FontAttributes="Italic,Bold" 
                             HorizontalOptions="Center" VerticalOptions="Center"
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=0.30}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
-        <Label Text="Charla Programada" FontSize="Large" HeightRequest="30" TextColor="Black" FontAttributes="Italic,Bold" 
+            <Label Text="Charla Programada" FontSize="Large" HeightRequest="30" TextColor="Black" FontAttributes="Italic,Bold" 
                    x:Name="TitleLabel"
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=HeaderBar, Property=Height, Factor=1, Constant=10}"
                          RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=1, Constant=5}"/>
-        
-        <StackLayout x:Name="ContentStack"  Spacing="0" Padding="5,10,0,0"
+
+            <StackLayout x:Name="ContentStack"  Spacing="0" Padding="5,10,0,0"
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TitleLabel, Property=Height, Factor=1, Constant=60}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
-            <Label Text="{Binding Titulo}"  FontSize="Medium" FontAttributes="Italic" HeightRequest="25" TextColor="Black" x:Name="EventNameLabel"/>
-            <Label Text="{Binding FechaHora, StringFormat='Fecha: {0:dd/MM/yyyy hh:mm tt}'}" FontSize="Small"/>
-            <Label Text="{Binding Ubicacion, StringFormat='Lugar: {0}'}" FontSize="Small"/>
-            <BoxView  Color="Black" HeightRequest="1" Opacity="0.5"/>
-            <Label Text="Descripción" FontSize="Medium" TextColor="Black"/>
-            <StackLayout Padding="15,5,0,0">
-                <Label x:Name="TxtDesc" Text="{Binding Descripcion}" FontSize="Small" HorizontalTextAlignment="Start" TextColor="Black"/>
+                <Label Text="{Binding Titulo}"  FontSize="Medium" FontAttributes="Italic" HeightRequest="25" TextColor="Black" x:Name="EventNameLabel"/>
+                <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy hh:mm tt}'}" FontSize="Small"/>
+                <Label Text="{Binding Ubicacion, StringFormat='Lugar: {0}'}" FontSize="Small"/>
+                <BoxView  Color="Black" HeightRequest="1" Opacity="0.5"/>
+                <Label Text="Descripción" FontSize="Medium" TextColor="Black"/>
+                <StackLayout Padding="15,5,0,0">
+                    <Label x:Name="TxtDesc" Text="{Binding Descripcion}" FontSize="Small" HorizontalTextAlignment="Start" TextColor="Black"/>
+                </StackLayout>
+                <BoxView Color="Transparent" HeightRequest="10" />
+                <Button Text="Ver Preguntas" IsVisible="False" x:Name="BtnPReguntas" Clicked="BtnPReguntas_Clicked"  WidthRequest="260" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
-            <BoxView Color="Transparent" HeightRequest="10" />
-            <Button Text="Ver Preguntas" IsVisible="False" x:Name="BtnPReguntas" Clicked="BtnPReguntas_Clicked"  WidthRequest="260" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </StackLayout>
-           </RelativeLayout>
+        </RelativeLayout>
+        <ActivityIndicator x:Name="BtnLoading"
+                               Color="Black"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,50,50" 
+                               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+    </AbsoluteLayout>
+        
 
 </ContentPage>

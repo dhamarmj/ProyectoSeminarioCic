@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace ProyectoSeminarioCic.Services
 {
-    public class ApiServices_Charlas
+    public class ApiServices_Preguntas
     {
-        string BaseUri = "http://proyectosapi.azurewebsites.net/api/Charlas";
+        string BaseUri = "http://proyectosapi.azurewebsites.net/api/Preguntas";
         HttpClient httpClient = new HttpClient();
-        async public Task<List<Models.Charla>> GetCharla()
+        async public Task<List<Models.Pregunta>> GetPregunta()
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var json = await httpClient.GetStringAsync(BaseUri);
 
-            return JsonConvert.DeserializeObject<List<Models.Charla>>(json);
+            return JsonConvert.DeserializeObject<List<Models.Pregunta>>(json);
         }
-        async public Task<bool> RegistrarCharla(Models.Charla semi)
+        async public Task<bool> RegistrarPregunta(Models.Pregunta semi)
         {
             var json = JsonConvert.SerializeObject(semi);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -27,7 +27,14 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-        async public Task<bool> ActualizarCharla(Models.Evento semi)
+        async public Task<Models.Pregunta> GetPregunta(string idEu)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
+            var json = await httpClient.GetStringAsync($"{BaseUri}?idEu={idEu}");
+
+            return JsonConvert.DeserializeObject<Models.Pregunta>(json);
+        }
+        async public Task<bool> ActualizarPregunta(Models.Pregunta semi)
         {
             var json = JsonConvert.SerializeObject(semi);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -37,15 +44,7 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-        async public Task<Models.Charla> GetCharla(int id)
-        {
-            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var path = string.Format("{0}/{1}", BaseUri, id);
-            var json = await httpClient.GetStringAsync(path);
-
-            return JsonConvert.DeserializeObject<Models.Charla>(json);
-        }
-        async public Task<bool> EliminarCharla(int Id)
+        async public Task<bool> EliminarPregunta(int Id)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var path = string.Format("{0}/{1}", BaseUri, Id);

@@ -18,7 +18,7 @@ namespace ProyectoSeminarioCic.Services
             {
                 dbConnection = DependencyService.Get<IDBInterface>().CreateConnection();
                 dbConnection.CreateTable<Usuario>();
-                dbConnection.CreateTable<Charla>();
+                
             }
             catch (Exception ex)
             {

@@ -14,23 +14,17 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
     public partial class HorarioActividades : ContentPage
     {
         Services.ApiServices_Eventos api = new Services.ApiServices_Eventos();
+        Services.ApiServices_EventoUsuario apiEventosU = new Services.ApiServices_EventoUsuario();
         public HorarioActividades()
         {
             InitializeComponent();
-
-            //_eventos = new ObservableCollection<Models.Evento>
-            //{
-            //    new Models.Charla { Id_Charlista =1, Ubicacion= "Aula 1", Titulo = "Comida en el dia de hoy", Duracion = "90", Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself." ,Fecha = new DateTime(2016,06,15), TSHora = new TimeSpan(5,0,0),  },
-            //    new Models.Charla { Id_Charlista =2, Ubicacion= "Aula 2",Titulo = "Bebida en el dia de hoy", Duracion = "90", Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself.", Fecha = new DateTime(2016,06,15),  TSHora = new TimeSpan(6,0,0)  },
-            //    new Models.Evento { Titulo = "Llegada", Ubicacion= "Teatro", Duracion = "30", Fecha = new DateTime(2016,06,15,5,0,0),  Descripcion ="Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself.", TSHora = new TimeSpan(7,0,0) },
-            //};
             LoadEventos();
             ListEventos.ItemsSource = _eventos;
         }
 
         public async void LoadEventos()
         {
-            var list = await api.GetEventos();
+            var list = await api.GetEventos(Convert.ToInt32(Settings.idSeminario));
             _eventos = new ObservableCollection<Models.Evento>(list);
             ListEventos.ItemsSource = _eventos;
             ListEventos.EndRefresh();
@@ -39,27 +33,48 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
         ObservableCollection<Models.Evento> _eventos;
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
-            
             var task = (sender as Switch).BindingContext as Models.Evento;
             if(e.Value)
             {
                 if (task != null)
                 {
-                    DisplayAlert("Aviso", task.Titulo + " fue agregado a tus eventos!", "Ok");
-                    //  await ApiManager.UpdateTasksFromListAsync(task);
-                    //  TaskList.Remove(task);
+                    var eu = new Models.Evento_Usuario()
+                    {
+                        Id_evento = task.Id,
+                        Id_usuario = Convert.ToInt32(Settings.idUsuario)
+                    };
+                    GuardarEu(eu, task.Titulo);
                 }
             }
             else
             {
                 if (task != null)
                 {
-                    DisplayAlert("Aviso", "Haz eliminado " + task.Titulo + " de tus eventos", "Ok");
-                    //  await ApiManager.UpdateTasksFromListAsync(task);
-                    //  TaskList.Remove(task);
+                    EliminarEu(task.Id, task.Titulo);
                 }
             }
             
+        }
+        private async void EliminarEu(int idEve, string Titulo)
+        {
+            var objectEve = await apiEventosU.GetEvento_Usuario(Convert.ToInt32(Settings.idUsuario),idEve);
+            if(objectEve != null)
+            {
+                var resp = await apiEventosU.EliminarEvento_Usuario(objectEve.Id);
+                if (resp)
+                    await DisplayAlert("Aviso", "Haz eliminado " + Titulo + " de tus eventos", "Ok");
+                else
+                    await DisplayAlert("Aviso", "Error de conexión, intenta de nuevo", "Ok");
+            }
+          
+        }
+        private async void GuardarEu(Models.Evento_Usuario EveU, string Titulo)
+        {
+            var resp = await apiEventosU.RegistrarEvento_Usuario(EveU);
+            if(resp)
+               await  DisplayAlert("Aviso", Titulo + " fue agregado a tus eventos!", "Ok");
+            else
+                await DisplayAlert("Aviso", "Error de conexión, intenta de nuevo", "Ok");
         }
 
         private void ListEventos_ItemSelected(object sender, SelectedItemChangedEventArgs e)

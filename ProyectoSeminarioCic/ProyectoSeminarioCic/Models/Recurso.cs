@@ -5,10 +5,10 @@ using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("Recurso")]
+   
     public class Recurso
     {
-        [PrimaryKey, AutoIncrement]
+        
         public int Id_recurso { get; set; }
         public string Titulo { get; set; }
         public string Recursos { get; set; }

@@ -20,7 +20,7 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
             BarTextColor = Color.Black;
 
             var P1 = new HorarioActividades() { Title = "Actividades" };
-            var P2 = new ViewGeneral.Page1() { Title = "Mi Horario" };
+            var P2 = new ActividadesPersonales() { Title = "Mi Horario" };
 
             Tab.Children.Add(P1);
             Tab.Children.Add(P2);

@@ -13,15 +13,16 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SeminarioHome : ContentPage
     {
-        //inicializar la clase para buscar en la nube
+        Services.ApiServices_Eventos apiEventos = new Services.ApiServices_Eventos();
+        Services.ApiServices_Boletas apiBoletas = new Services.ApiServices_Boletas();
         Services.ApiServices_Seminario api = new Services.ApiServices_Seminario();
         public SeminarioHome()
         {
             InitializeComponent();
             LoadSeminars();
+            LoadCurrentSeminar();
             ListSeminar.ItemsSource = _seminario;
         }
-
         //en esta clase se realizan las busquedas y se actualiza la lista de seminarios
         public async void LoadSeminars()
         {
@@ -31,18 +32,26 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             ListSeminar.EndRefresh();
         }
 
-        public ObservableCollection<Models.Seminario> _seminario;
+        public async void LoadCurrentSeminar()
+        {
+            var value = await api.GetSeminario(Convert.ToInt32(Settings.idSeminario));
+            LblCurrentSeminario.Text = value.Titulo;
+        }
+
+        ObservableCollection<Models.Seminario> _seminario;
 
         //Eliminando un seminario
         async private void Eliminar_Clicked(object sender, EventArgs e)
         {
             var sem = (sender as MenuItem).CommandParameter as Models.Seminario;
+            var valuesEvento = await apiEventos.GetEventos(Convert.ToInt32(Settings.idSeminario));
+            var valuesBoleta = await apiBoletas.GetBoleta(Convert.ToInt32(Settings.idSeminario));
             //Validacion
-           if(sem.Boleta != null || sem.Charla != null || sem.Evento != null)
+            if (valuesEvento != null || valuesBoleta != null)
             {
-                await DisplayAlert("Aviso", "Este Seminario tiene eventos registrados y no se puede eliminar","Ok");
+                await DisplayAlert("Aviso", "Este Seminario tiene eventos registrados y no se puede eliminar", "Ok");
             }
-           else
+            else
             {
 
                 var res = await DisplayAlert("Aviso", "Está a punto de eliminar un Seminario, ¿Está seguro?", "Sí", "No");
@@ -53,6 +62,8 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                     var response = await api.EliminarSeminario(sem.Id);
                     if (response)
                     {
+                        if (sem.Id == Convert.ToInt32(Settings.idSeminario))
+                            Settings.idSeminario = "0";
                         //Lo quito de la lista local si no hay errores
                         _seminario.Remove(sem);
                         await DisplayAlert("Aviso", "Seminario eliminado exitosamente", "Ok");
@@ -63,7 +74,6 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                     BtnLoading.IsRunning = false;
                 }
             }
-            
         }
 
         private void Editar_Clicked(object sender, EventArgs e)
@@ -87,5 +97,16 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         {
             LoadSeminars();
         }
+
+        private void Actual_Clicked(object sender, EventArgs e)
+        {
+            var item = sender as MenuItem;
+            var Seminario = item.CommandParameter as Models.Seminario;
+            LblCurrentSeminario.Text = Seminario.Titulo;
+            Settings.idSeminario = Seminario.Id.ToString();
+        }
     }
+
+
+
 }

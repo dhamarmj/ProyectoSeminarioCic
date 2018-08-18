@@ -14,6 +14,8 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
     public partial class Registro1 : ContentPage
     {
         Models.Usuario usuario;
+        Services.ApiServices api = new Services.ApiServices();
+        Services.ApiServices_Usuario apiUsuario = new Services.ApiServices_Usuario();
         public Registro1(Models.Usuario u)
         {
             InitializeComponent();
@@ -31,27 +33,29 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 
         async private void Btnsiguiente_Clicked(object sender, EventArgs e)
         {
-            var Val = await Validate();
-            if (Val)
+            
+            if (Validate())
             {
+                
                 usuario.Nombre = Txtnom.Text;
                 usuario.Apellido = Txtapellido.Text;
                 usuario.Fecha_Nacimiento = btnfecha.Date;
-                usuario.Genero = pickergenero.Items[pickergenero.SelectedIndex].ToCharArray()[0];
+                usuario.Genero = pickergenero.Items[pickergenero.SelectedIndex].ToString();
                 usuario.Rol = "Participante";
 
-                Services.ApiServices api = new Services.ApiServices();
+                BtnLoading.IsRunning = true;
+
                 var httpclient = await api.RegisterUser(usuario.Correo, usuario.Contrasenia, usuario.Contrasenia);
-                if (httpclient.IsSuccessStatusCode)
+                if (httpclient)
                 {
                     var res = await api.LoginUser(usuario.Correo, usuario.Contrasenia);
                     if (res)
                     {
-                        var usersaved = await api.RegisterUser(usuario);
+                        var usersaved = await apiUsuario.RegistrarUsuario(usuario);
                         if (usersaved)
                         {
-                            var us = await api.CheckUsername(usuario.Correo, usuario.Contrasenia);
-                            Settings.Rol = us.Rol;
+                            Settings.Rol = usuario.Rol;
+                            Settings.idUsuario = usuario.Id.ToString();
                             if (Settings.Rol == "Charlista" || Settings.Rol == "Participante")
                             {
                                 Navigation.InsertPageBefore(new ViewGeneral.Home(usuario.Rol), this);
@@ -62,41 +66,39 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                                 Navigation.InsertPageBefore(new ViewAdmin.MainMenu(), this);
                                 await Navigation.PopAsync();
                             }
+
                         }
                         else
-                            await DisplayAlert("Alerta", "Error al crear el Usuario", "Cancelar");
+                            await DisplayAlert("Alerta", "Error de conexión, intente de nuevo", "ok");
                     }
                     else
-                        await DisplayAlert("Alerta", "Error al obtener la llave de conexión", "Cancelar");
+                        await DisplayAlert("Alerta", "Error de conexión, intente de nuevo", "Ok");
                 }
                 else
-                {
-                    //var text = await httpclient.Content.ReadAsStringAsync();
-                    await DisplayAlert("Alerta", "Error al registrar autenticación", "Cancelar");
-                }
-
+                    await DisplayAlert("Alerta", "Error de conexión, intente de nuevo", "Ok");
             }
+            BtnLoading.IsRunning = false;
         }
-        private async Task<bool> Validate()
+        private bool Validate()
         {
             if (!string.IsNullOrEmpty(Txtnom.Text) && !string.IsNullOrEmpty(Txtapellido.Text))
             {
                 if (btnfecha.Date.Year + 10 > DateTime.Now.Year)
                 {
-                    await DisplayAlert("Alerta", "Fecha de nacimiento incorrecta", "Ok");
+                    DisplayAlert("Alerta", "Fecha de nacimiento incorrecta", "Ok");
                     pickergenero.Focus();
                     return false;
                 }
                 if (pickergenero.SelectedIndex == -1)
                 {
-                    await DisplayAlert("Alerta", "Escoge tu género", "Ok");
+                    DisplayAlert("Alerta", "Escoge tu género", "Ok");
                     pickergenero.Focus();
                     return false;
                 }
             }
             else
             {
-                await DisplayAlert("Alerta", "Completa todas las informaciones!", "Ok");
+                DisplayAlert("Alerta", "Completa todas las informaciones!", "Ok");
                 return false;
             }
             return true;
@@ -115,7 +117,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                 return;
             //lblfotodireccion.Text = file.AlbumPath;
             mainImage.Source = ImageSource.FromStream(() => file.GetStream());
-           // user.imagen = ImageSource.FromStream(() => file.GetStream());
+            // user.imagen = ImageSource.FromStream(() => file.GetStream());
         }
 
         private async Task BtnCam_Clicked(object sender, EventArgs e)

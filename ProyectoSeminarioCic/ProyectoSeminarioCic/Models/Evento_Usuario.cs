@@ -12,5 +12,7 @@ namespace ProyectoSeminarioCic.Models
         public int Id { get; set; }
         public int Id_evento { get; set; }
         public int Id_usuario { get; set; }
+       
+
     }
 }
