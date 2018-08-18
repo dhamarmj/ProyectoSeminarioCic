@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.CharlistasList">
+    <ContentPage.Content>
+            <StackLayout>
+            <SearchBar Placeholder="Buscar" TextColor="Gray" TextChanged="SearchBar_TextChanged"/>
+            <ListView x:Name="ListCharlistas" HasUnevenRows="True" IsPullToRefreshEnabled="True" Refreshing="ListCharlistas_Refreshing" ItemSelected="ListCharlistas_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                        <TextCell Text="{Binding NombreCompleto}" Detail="{ Binding User.Ocupacion}" TextColor="Black" DetailColor="Gray"/>
+                    </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

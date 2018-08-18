@@ -16,9 +16,14 @@ namespace ProyectoSeminarioCic.Models
         public string Icon { get; set; }
 
 
-        public virtual ICollection<Boleta> Boleta { get; set; }
-        public virtual ICollection<Charla> Charla { get; set; }
-        public virtual ICollection<Evento> Evento { get; set; }
+        public List<Boleta> Boleta { get; set; }
+        public List<Evento> Evento { get; set; }
+
+        public Seminario()
+        {
+            Boleta = new List<Boleta>();
+            Evento = new List<Evento>();
+        }
 
     }
 

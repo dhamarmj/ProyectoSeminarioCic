@@ -7,47 +7,40 @@ using System.Threading.Tasks;
 
 namespace ProyectoSeminarioCic.Services
 {
-   public class ApiServices_EventoUsuario
+    public class ApiServices_Usuario
     {
-        string BaseUri = "http://proyectosapi.azurewebsites.net/api/Evento_usuario";
+        string BaseUri = "http://proyectosapi.azurewebsites.net/api/Usuarios";
         HttpClient httpClient = new HttpClient();
-        async public Task<List<Models.Evento_Usuario>> GetEvento_Usuario()
+        async public Task<List<Models.Usuario>> GetUsuario()
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var json = await httpClient.GetStringAsync(BaseUri);
 
-            return JsonConvert.DeserializeObject<List<Models.Evento_Usuario>>(json);
+            return JsonConvert.DeserializeObject<List<Models.Usuario>>(json);
         }
-        //async public Task<Models.Evento_Usuario> GetEventoUsuario(int id)
-        //{
-        //    httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-        //    var path = string.Format("{0}/{1}", BaseUri, id);
-        //    var json = await httpClient.GetStringAsync(path);
-
-        //    return JsonConvert.DeserializeObject<Models.Evento_Usuario>(json);
-        //}
-        async public Task<Models.Evento_Usuario> GetEvento_Usuario(int IdUsuario, int idEvento)
+        async public Task<Models.Usuario> GetUsuario(int id)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?idUsuario={IdUsuario}&idEvento={idEvento}");
+            var path = string.Format("{0}/{1}", BaseUri, id);
+            var json = await httpClient.GetStringAsync(path);
 
-            return JsonConvert.DeserializeObject<Models.Evento_Usuario>(json);
+            return JsonConvert.DeserializeObject<Models.Usuario>(json);
         }
-        async public Task<List<Models.Evento_Usuario>> GetEvento_Usuario(string IdUsuario)
+        async public Task<List<Models.Usuario>> GetUsuario(string rol)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?idUsuario={IdUsuario}");
+            var json = await httpClient.GetStringAsync($"{BaseUri}?rol={rol}");
 
-            return JsonConvert.DeserializeObject<List<Models.Evento_Usuario>>(json);
+            return JsonConvert.DeserializeObject<List<Models.Usuario>>(json);
         }
-        async public Task<List<Models.Evento_Usuario>> GetEvento_Usuario(int idEvento)
+        async public Task<Models.Usuario> GetUsuario(string username, string contrasenia)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?idEvento={idEvento}");
+            var json = await httpClient.GetStringAsync($"{BaseUri}?username={username}&contrasenia={contrasenia}");
 
-            return JsonConvert.DeserializeObject<List<Models.Evento_Usuario>>(json);
+            return JsonConvert.DeserializeObject<Models.Usuario>(json);
         }
-        async public Task<bool> RegistrarEvento_Usuario(Models.Evento_Usuario semi)
+        async public Task<bool> RegistrarUsuario(Models.Usuario semi)
         {
             var json = JsonConvert.SerializeObject(semi);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -56,7 +49,7 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-        async public Task<bool> ActualizarEvento_Usuario(Models.Evento_Usuario semi)
+        async public Task<bool> ActualizarUsuario(Models.Usuario semi)
         {
             var json = JsonConvert.SerializeObject(semi);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -66,7 +59,7 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-        async public Task<bool> EliminarEvento_Usuario(int Id)
+        async public Task<bool> EliminarUsuario(int Id)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var path = string.Format("{0}/{1}", BaseUri, Id);

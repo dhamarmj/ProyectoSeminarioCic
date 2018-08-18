@@ -13,56 +13,57 @@ namespace ProyectoSeminarioCic.Views.ViewCharlista
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetallePreguntas : ContentPage
     {
-        ObservableCollection<Pregunta> PreguntasL { get; set; }
-
-        public DetallePreguntas()
+        ObservableCollection<Pregunta> PreguntasL = new ObservableCollection<Pregunta>();
+        Services.ApiServices_Preguntas apiPreguntas = new Services.ApiServices_Preguntas();
+        Services.ApiServices_Usuario apiUsuarios = new Services.ApiServices_Usuario();
+        Services.ApiServices_EventoUsuario apiEveu = new Services.ApiServices_EventoUsuario();
+        int IdCharla;
+        public DetallePreguntas(int Id)
         {
             InitializeComponent();
-            PreguntasL = new ObservableCollection<Pregunta>
-            {
-                new Pregunta{ PreguntaText ="ETO o lo otro que yo queria preguntar?", ImagenUsuario="http://placeimg.com/100/100/people/1",NombreUsuario="Morgan" },
-                new Pregunta { PreguntaText = "Miusov, as a man man of breeding and deilcacy, could not but feel some inwrd qualms, when he reached the Father Superior's with Ivan: he felt ashamed of havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by ?", ImagenUsuario = "http://placeimg.com/100/100/people/2", NombreUsuario = "MorganA" },
-                new Pregunta { PreguntaText = "ETO o l queria preguntar?", ImagenUsuario = "http://placeimg.com/100/100/people/3", NombreUsuario = "MorganB" },
-                new Pregunta { PreguntaText = "ETO o lo otro que y preguntar?", ImagenUsuario = "http://placeimg.com/100/100/people/4", NombreUsuario = "MorganC" },
-                new Pregunta { PreguntaText = "ETO o lo otro que yo queria preguntar?", ImagenUsuario = "http://placeimg.com/100/100/people/5", NombreUsuario = "MorganD" },
-            };
-
+            IdCharla = Id;
+            loadPreguntas();
             listPregunta.ItemsSource = PreguntasL;
         }
-
-
-        private void answered_Clicked(object sender, EventArgs e)
+        public class Pregunta
         {
-            //listPregunta.ItemSelected += new EventHandler<SelectedItemChangedEventArgs>(listPregunta_ItemSelected);
-            //listPregunta_ItemSelected(sender, new SelectedItemChangedEventArgs(e.));
-            //DisplayAlert("OK", "OK", "OK");
+            public string Texto { get; set; }
+            public int id_Usuario { get; set; }
+            public string ImagenUsuario { get; set; }
+            public string Username { get; set; }
         }
 
-        private void listPregunta_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void loadPreguntas()
         {
-            //var p = e.SelectedItem as Pregunta;
-            //var index = PreguntasL.IndexOf(PreguntasL.Where(x => x.PreguntaText == p.PreguntaText).FirstOrDefault());
-            //PreguntasL.RemoveAt(index);
-            //PreguntasL.Insert(PreguntasL.Count, p);
-            //listPregunta.ItemsSource = PreguntasL;
+            BtnLoading.IsRunning = true;
+            var value = await apiEveu.GetEvento_Usuario(IdCharla);
+            foreach (var item in value)
+            {
+                var c = await apiPreguntas.GetPregunta(item.Id.ToString());
+                if (c != null)
+                    PreguntasL.Add(new Pregunta { id_Usuario = item.Id_usuario, Texto = c.Texto });
+            }
+            foreach (var item in PreguntasL)
+            {
+                var a = await apiUsuarios.GetUsuario(item.id_Usuario);
+                item.Username = a.Username;
+                item.ImagenUsuario = a.FotoPath;
+            }
+            BtnLoading.IsRunning = false;
         }
-
         private void listPregunta_Refreshing(object sender, EventArgs e)
         {
-            //PreguntasL.Add(new Pregunta { PreguntaText = "ETO o lo otro que yo queria preguntar?", ImagenUsuario = "http://placeimg.com/100/100/people/1", NombreUsuario = "Morgan1" });
-
-            //DisplayAlert("OK", PreguntasL.Count.ToString(), "OK");
-            ////var p = preg[2];
-            ////var index = preg.FindIndex(x => x.PreguntaText == p.PreguntaText);
-            ////preg.Add(p);
-            ////preg.RemoveAt(index);
-            //listPregunta.ItemsSource = PreguntasL;
-            //listPregunta.IsRefreshing = false;
+            loadPreguntas();
         }
 
         private void answered_Toggled(object sender, ToggledEventArgs e)
         {
-
+            var task = (sender as Switch).BindingContext as Pregunta;
+            if (e.Value)
+            {
+                var i = PreguntasL.IndexOf(task);
+                PreguntasL.Move(i, PreguntasL.Count-1);
+            }
         }
     }
 }

@@ -84,6 +84,17 @@ namespace ProyectoSeminarioCic
                 AppSettings.AddOrUpdateValue("idusuario", value);
             }
         }
+        public static string idSeminario
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("idusuario", SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("idusuario", value);
+            }
+        }
 
     }
 }

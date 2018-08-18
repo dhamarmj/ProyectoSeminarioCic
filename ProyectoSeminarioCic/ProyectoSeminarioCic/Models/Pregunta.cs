@@ -5,11 +5,12 @@ using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("Pregunta")]
     public class Pregunta
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id_pregunta { get; set; }
+       
+        public int Id { get; set; }
+        public int Id_usuario { get; set; }
         public string Texto { get; set; }
+        public int Id_evento_participante { get; set; }
     }
 }

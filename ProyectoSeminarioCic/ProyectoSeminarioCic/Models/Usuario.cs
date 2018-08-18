@@ -25,7 +25,7 @@ namespace ProyectoSeminarioCic.Models
         public string Contrasenia { get; set; }
         public DateTime Fecha_Nacimiento { get; set; }
         public string FotoPath { get; set; }
-        public char Genero { get; set; }
+        public string Genero { get; set; }
         public byte[] FotoArray { get; set; }
         public string Ocupacion { get; set; }
         public string Rol { get; set; }

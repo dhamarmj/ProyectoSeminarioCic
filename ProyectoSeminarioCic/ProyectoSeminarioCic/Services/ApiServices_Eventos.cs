@@ -45,6 +45,27 @@ namespace ProyectoSeminarioCic.Services
 
             return JsonConvert.DeserializeObject<Models.Evento>(json);
         }
+        async public Task<Models.Evento> GetEvento(string titulo)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
+            var json = await httpClient.GetStringAsync($"{BaseUri}?titulo={titulo}");
+
+            return JsonConvert.DeserializeObject<Models.Evento>(json);
+        }
+        async public Task<Models.Evento> GetEvento(string NomUsu, int idUsuario)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
+            var json = await httpClient.GetStringAsync($"{BaseUri}?NomUsu={NomUsu}&idUsuario={idUsuario}");
+
+            return JsonConvert.DeserializeObject<Models.Evento>(json);
+        }
+        async public Task<List<Models.Evento>> GetEventos(int idSeminario)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
+            var json = await httpClient.GetStringAsync($"{BaseUri}?id={idSeminario}&idV={idSeminario}");
+
+            return JsonConvert.DeserializeObject<List<Models.Evento>>(json);
+        }
         async public Task<bool> EliminarEvento(int Id)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);

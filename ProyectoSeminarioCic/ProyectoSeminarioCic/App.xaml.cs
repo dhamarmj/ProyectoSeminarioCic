@@ -11,14 +11,13 @@ namespace ProyectoSeminarioCic
         public App()
         {
             InitializeComponent();
-            //Settings.AccesToken = "eeBQtHugj3HUUCoJMcXYG8dsPGKQ5zjVwB4LHNIxPY8rdjxNtuvw3H21_vNBevz89qZCD9-gygc-90YpxNHSqrSdfAby3PoSWl0L9m-MuQWn0nby50aurXAjgB1ahfhez4U4H41OMD9nxTYNxVMmWpry1mgm503mYEuGUCRAYNn8RmyMTPsHcDjg0rtEkfFmS_PQk3nOtLmvuvzpXBuuEDMhgyt94vrNI_CLadZepuLYa0lUfXcpAmBB23mfYblzPMGdgcCRgd9V42IZLHBcbpLYJkadPmOGWYrm4EXdDghK88tadpt6U6pNEdoyoPzCp42eeUHI4sUmQETUBhYrnkQ8uHggJ6wFq9o5n3E258-hBCIP_QUWXfezAN4OuHmo_ABNsCzk7u5FYl-dZfVA4Q-6COhnpXfTN07VYa3e76UxmpeXsjx08nTNWSsMaL3yF4OYclfzK-gkeNNRsNZSO_PES37AF0DRAYe4Z8r6RDvxK6PBeO-ODU06kmWci89z";
-            //Settings.Email = "dhamarmj@ce.pucmm.edu.do";
-            //Settings.Password = "Tarea.123";
-            Settings.Rol = "Administrador";
-           // Settings.idUsuario = "1";
-            //MainPage = new Views.ViewAdmin.MainMenu();
-            // MainPage = new Views.ViewGeneral.Home("Participante");
-            //Settings.AccesToken = Settings.Email = Settings.Password = Settings.Rol = string.Empty;
+            Settings.AccesToken = "6XVlscyrJcQb4NyBgX7FKoMZFbVNOvNoWe0DxcyG_pVogYAhRvh9wwILHzDGxvOb_7xKIj22h3SNg-j7CKjkLg3SfMcuB402ZPOlz-kFSnkfc5pC4MHXT8oHsyEupsuiWlAgGvzNr5glSl5FvWsROLpTqaktIRH6T_XWzc6pS2Fz_cu8F8MaDyE8Wx5m6EU_nFnGtB5uGA4A8rkLousUIvoLq5cW89MsIW_AOIcImkQ4gzuDE1ew0i5a7d9cRjl0vXS89YA2gNqBfDc7RoRG49ShRKbVgnwrLL8pD7p-jDgOlzZxByHCu_AgtAw-jPgnFsI0SwqsioAkak1wnhmRcL8bpcFmfxiwla_FvRh2Xc_EFg2YGTEcN67Iwghmo-CT2ZDIYaA-VWytvAvNRcKyUHXlysv8VWJgengIXM7oO_a4e48vgTgh8ntY0yHA3ObKNG2GbSgi5EcLX58rgkI5yJnmBTqMzuKDmESmnz2ME0mA2z3X5t8jeWrf_2cAr8Ia";
+            Settings.Email = "dhamarmj@gmail.com";
+            Settings.Password = "Tarea.123";
+            Settings.Rol = "Charlista";
+            Settings.idUsuario = "1";
+            //Settings.idSeminario = "1";
+            // Settings.AccesToken = Settings.Email = Settings.Password = Settings.Rol = Settings.idUsuario = string.Empty;
             if (!string.IsNullOrEmpty(Settings.AccesToken))
             {
                 if (Settings.Rol == "Charlista" || Settings.Rol == "Participante")
@@ -36,9 +35,9 @@ namespace ProyectoSeminarioCic
                 nv.BarBackgroundColor = Color.SlateGray;
                 MainPage = nv;
             }
-            // new NavigationPage(new Views.ViewGeneral.Login());
-            //  new Views.ViewAdmin.MainMenu();
-            // new Views.ViewGeneral.Home();
+            //new NavigationPage(new Views.ViewGeneral.Login());
+            //new Views.ViewAdmin.MainMenu();
+            //new Views.ViewGeneral.Home();
 
         }
         //static Services.DbStartUp dbUtils;

@@ -12,7 +12,7 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <ScrollView HorizontalScrollBarVisibility="Never" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                <StackLayout Padding="15,10">
+                <StackLayout Padding="15,10" >
                     <Entry Placeholder="Titulo" Text="{Binding Titulo}" x:Name="TxtTitulo" PlaceholderColor="Gray" />
                     <Grid RowSpacing="0" Padding="0">
                         <Grid.ColumnDefinitions>
@@ -35,11 +35,23 @@
                     </Grid>
                     <Label Text="Descripción" TextColor="Black" FontAttributes="Bold" x:Name="LblDescrip"/>
                     <Editor Text="{Binding Descripcion}" TextColor="Black" x:Name="TxtDescripcion"/>
-                    <Picker x:Name="pickerbtn" Title="Seleccionar Charlista" SelectedIndexChanged="pickerbtn_SelectedIndexChanged"/>
+                    <Grid x:Name="GridChalistas">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" x:Name="LblCharlista" Text="{Binding CharlistaName}" TextColor="Black" FontSize="Medium"/>
+                        <Button Grid.Column="1" Grid.Row="0" Image="search.png" Clicked="Button_Clicked" BackgroundColor="Transparent"/>
+                    </Grid>
                     <Button x:Name="btnmap" Text="Seleccionar Ubicación" Image="MapaIcon.png"/>
                     <Entry Placeholder="Direccion del Evento" x:Name="TxtUbicacion" Text="{Binding Ubicacion}" PlaceholderColor="Gray"/>
                     <BoxView HeightRequest="10" BackgroundColor="Transparent"/>
                     <Button Text="Salvar" Clicked="btnIniciar_Clicked" x:Name="btnIniciar" BorderRadius="20" TextColor="Black"/>
+
                     <!--  <StackLayout VerticalOptions="CenterAndExpand">   
             <Maps:Map WidthRequest="320" Heig="200" x:name="MyMap" MapType="Street"/>
         </StackLayout>

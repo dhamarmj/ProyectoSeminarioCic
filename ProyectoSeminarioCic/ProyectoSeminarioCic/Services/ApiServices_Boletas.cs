@@ -7,44 +7,26 @@ using System.Threading.Tasks;
 
 namespace ProyectoSeminarioCic.Services
 {
-    public class ApiServices_CharlaUsuario
+    public class ApiServices_Boletas
     {
-        string BaseUri = "http://proyectosapi.azurewebsites.net/api/Charla_usuario";
+        string BaseUri = "http://proyectosapi.azurewebsites.net/api/Boletas";
         HttpClient httpClient = new HttpClient();
-        async public Task<List<Models.Charla_Usuario>> GetCharla_Usuario()
+        async public Task<List<Models.Boleta>> GetBoleta()
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var json = await httpClient.GetStringAsync(BaseUri);
 
-            return JsonConvert.DeserializeObject<List<Models.Charla_Usuario>>(json);
+            return JsonConvert.DeserializeObject<List<Models.Boleta>>(json);
         }
-        async public Task<Models.Charla_Usuario> GetCharla_Usuario(int IdUsuario, int idCharla)
+        async public Task<List<Models.Boleta>> GetBoleta(int idSeminario)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?idUsuario={IdUsuario}&idCharla={idCharla}");
-            
-            var value = JsonConvert.DeserializeObject<Models.Charla_Usuario>(json);
+            var json = await httpClient.GetStringAsync($"{BaseUri}?id={idSeminario}&idV={idSeminario}");
 
-            return value;
+            return JsonConvert.DeserializeObject<List<Models.Boleta>>(json);
         }
-        async public Task<Models.Charla_Usuario> GetCharla_Usuario(int idCharla)
+        async public Task<bool> RegistrarBoleta(Models.Boleta semi)
         {
-            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?idCharla={idCharla}");
-
-            return JsonConvert.DeserializeObject<Models.Charla_Usuario>(json);
-        }
-        //async public Task<Models.Charla_Usuario> GetCharla_Usuario(int id)
-        //{
-        //    httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-        //    var path = string.Format("{0}/{1}", BaseUri, id);
-        //    var json = await httpClient.GetStringAsync(path);
-
-        //    return JsonConvert.DeserializeObject<Models.Charla_Usuario>(json);
-        //}
-        async public Task<bool> RegistrarCharla_Usuario(Models.Charla_Usuario semi)
-        {
-
             var json = JsonConvert.SerializeObject(semi);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
@@ -52,7 +34,7 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-        async public Task<bool> ActualizarCharla_Usuario(Models.Charla_Usuario semi)
+        async public Task<bool> ActualizarBoleta(Models.Boleta semi)
         {
             var json = JsonConvert.SerializeObject(semi);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -62,7 +44,7 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-        async public Task<bool> EliminarCharla_Usuario(int Id)
+        async public Task<bool> EliminarEvento(int Id)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var path = string.Format("{0}/{1}", BaseUri, Id);
@@ -70,10 +52,5 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-
-
-
-
-
     }
 }

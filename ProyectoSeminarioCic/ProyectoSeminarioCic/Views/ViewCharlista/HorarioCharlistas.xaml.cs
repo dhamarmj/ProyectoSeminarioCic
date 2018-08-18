@@ -6,37 +6,45 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ProyectoSeminarioCic.Models;
 
 namespace ProyectoSeminarioCic.Views.ViewCharlista
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HorarioCharlistas : ContentPage
     {
+        Services.ApiServices_Eventos api = new Services.ApiServices_Eventos();
         public HorarioCharlistas()
         {
             InitializeComponent();
 
-            var horario1 = new Charla
-            {
-                Titulo = "La gente",
-                FechaHora = new DateTime(2018, 06, 28, 19, 22, 00),
-                Duracion = 50,
-                Descripcion = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-                Ubicacion = "Teatro universitario, sala principal"
-            };
+            LoadCharla();
+            
+        }
 
-            //ListContent.ItemsSource = horario;
-            this.BindingContext = horario1;
-
-            if (DateTime.Now >= horario1.FechaHora)
+        protected override void OnAppearing()
+        {
+            BtnLoading.IsRunning = true;
+            if (_evento.FechaFin >= DateTime.Now)
                 BtnPReguntas.IsVisible = true;
+            else if (_evento.FechaFin.AddMinutes(10) >= DateTime.Now)
+                BtnPReguntas.IsVisible = false;
+            BtnLoading.IsRunning = false;
+        }
+
+            Models.Evento _evento;
+        private async void LoadCharla()
+        {
+            BtnLoading.IsRunning = true;
+            var resp = await api.GetEvento(Settings.idUsuario, Convert.ToInt32(Settings.idUsuario));
+            _evento = resp;
+            this.BindingContext = resp;
+            BtnLoading.IsRunning = false;
 
         }
-        
+
         async private void BtnPReguntas_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DetallePreguntas());
+            await Navigation.PushAsync(new DetallePreguntas(_evento.Id));
         }
     }
 }

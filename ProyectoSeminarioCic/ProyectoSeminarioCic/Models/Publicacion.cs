@@ -5,10 +5,10 @@ using System.Text;
 
 namespace ProyectoSeminarioCic.Models
 {
-    [Table("Publicacion")]
+   
     public class Publicacion
     {
-        [PrimaryKey, AutoIncrement]
+       
         public int Id_publicacion { get; set; }
         public string Pie_imagen { get; set; }
         public int Kaip { get; set; }
