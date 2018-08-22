@@ -17,6 +17,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         public CharlistasList()
         {
             InitializeComponent();
+            Title = "Lista de Charlistas Registrados";
             LoadCharlistas();
         }
         public string NameCharlista;

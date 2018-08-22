@@ -44,7 +44,7 @@
                             <RowDefinition Height="25"/>
                             <RowDefinition Height="25"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" x:Name="LblCharlista" Text="{Binding CharlistaName}" TextColor="Black" FontSize="Medium"/>
+                        <Label Grid.Column="0" Grid.Row="0" x:Name="LblCharlista" TextColor="Black" FontSize="Medium"/>
                         <Button Grid.Column="1" Grid.Row="0" Image="search.png" Clicked="Button_Clicked" BackgroundColor="Transparent"/>
                     </Grid>
                     <Button x:Name="btnmap" Text="Seleccionar Ubicación" Image="MapaIcon.png"/>

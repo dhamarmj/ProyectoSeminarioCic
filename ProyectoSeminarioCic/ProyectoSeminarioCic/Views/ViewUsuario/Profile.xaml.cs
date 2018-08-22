@@ -13,6 +13,7 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Profile : ContentPage
 	{
+        Services.ApiServices_Usuario api = new Services.ApiServices_Usuario();
 		public Profile ()
 		{
             InitializeComponent();
@@ -28,14 +29,15 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
 
         private void Btnpregunta_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new RealizarPregunta());
+            //Navigation.PushModalAsync(new RealizarPregunta());
         }
 
-        private void Init()
+        private async void Init()
         {
-            Models.Usuario user = new Models.Usuario();
-            user = Controladora.Instance.User;
-            profilefoto.Source = user.imagen;
+           // Models.Usuario user = new Models.Usuario();
+            var user = await api.GetUsuario(Convert.ToInt32(Settings.idUsuario));
+            //user = Controladora.Instance.User;
+           // profilefoto.Source = user.FotoPath;
             lblnomuser.Text = user.Username;
             lblocupacion.Text = user.Ocupacion;
             lblRol.Text = user.Rol;

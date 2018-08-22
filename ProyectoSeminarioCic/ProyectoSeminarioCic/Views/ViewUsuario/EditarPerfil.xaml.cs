@@ -13,6 +13,7 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditarPerfil : ContentPage
 	{
+        Services.ApiServices_Usuario api = new Services.ApiServices_Usuario();
         Usuario user = new Usuario();
         public EditarPerfil ()
 		{
@@ -21,23 +22,28 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
             btnaceptar.Clicked += Btnaceptar_Clicked;
         }
 
-        private void Init()
+        private async void Init()
         {
-            user = Controladora.Instance.tomarUsuario();
-            entrynomuser.Text = user.Username;
-            entrycontrasegna.Text = user.Contrasenia;
-            entryRol.Text = user.Rol;
-            entryOcupacion.Text = user.Ocupacion;
+            var resp = await api.GetUsuario(Convert.ToInt32(Settings.idUsuario));
+            //user = Controladora.Instance.tomarUsuario();
+            entrynomuser.Text = resp.Username;
+            entrycontrasegna.Text = resp.Contrasenia;
+            entryRol.Text = resp.Rol;
+            entryOcupacion.Text = resp.Ocupacion;
+            _usuario = resp;
         }
 
-        private void Btnaceptar_Clicked(object sender, EventArgs e)
+        Usuario _usuario; 
+
+        private async void Btnaceptar_Clicked(object sender, EventArgs e)
         {
             user.Username = entrynomuser.Text;
             user.Contrasenia = entrycontrasegna.Text;
             user.Rol = entryRol.Text;
             user.Ocupacion = entryOcupacion.Text;
-            DisplayAlert("Aviso", "Su perfil ha sido editado correctamente", "Aceptar");
-            Navigation.PushModalAsync(new Profile());
+            var V = await api.ActualizarUsuario(_usuario);
+            await DisplayAlert("Aviso", "Su perfil ha sido editado correctamente", "Aceptar");
+            await Navigation.PushModalAsync(new Profile());
         }
     }
 }

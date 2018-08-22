@@ -9,7 +9,6 @@ namespace ProyectoSeminarioCic.Models
     {
         public int Id { get; set; }
         public string Numero_serie { get; set; }
-        public byte QR { get; set; }
         public int Id_seminario { get; set; }
         public int Id_usuario { get; set; }
        

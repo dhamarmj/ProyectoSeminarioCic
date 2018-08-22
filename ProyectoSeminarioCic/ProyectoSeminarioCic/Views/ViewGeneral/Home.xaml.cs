@@ -11,7 +11,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Home : Naxam.Controls.Forms.BottomTabbedPage
     {
-        public Home(string rol)
+        public Home()
         {
             InitializeComponent();
             NavigationPage P1 = new NavigationPage(new HomeFeed(false))
@@ -30,7 +30,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                 Icon = "baseline_photo_camera_black_36.png"
             };
             Page P4 = null;
-            if (rol == "Charlista")
+            if (Settings.Rol == "Charlista")
             {
                 P4 = new NavigationPage(new ViewCharlista.HorarioCharlistas())
                 {
@@ -38,7 +38,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                     Icon = "baseline_schedule_black_36.png"
                 };
             }
-            else if (rol == "Participante")
+            else if (Settings.Rol == "Participante")
             {
                 P4 = new NavigationPage(new ViewUsuario.HorarioParticipante())
                 {

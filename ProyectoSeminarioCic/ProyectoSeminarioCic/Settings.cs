@@ -95,6 +95,17 @@ namespace ProyectoSeminarioCic
                 AppSettings.AddOrUpdateValue("idusuario", value);
             }
         }
+        public static string idBoleta
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("idboleta", SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("idboleta", value);
+            }
+        }
 
     }
 }

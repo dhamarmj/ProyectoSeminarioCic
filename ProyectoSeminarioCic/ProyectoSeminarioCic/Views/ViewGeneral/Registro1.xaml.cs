@@ -56,10 +56,16 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                         {
                             Settings.Rol = usuario.Rol;
                             Settings.idUsuario = usuario.Id.ToString();
-                            if (Settings.Rol == "Charlista" || Settings.Rol == "Participante")
+                            if (Settings.Rol == "Charlista" )
                             {
-                                Navigation.InsertPageBefore(new ViewGeneral.Home(usuario.Rol), this);
+                                Navigation.InsertPageBefore(new ViewGeneral.Home(), this);
                                 await Navigation.PopAsync();
+                            }
+                            else if (Settings.Rol == "Participante")
+                            {
+                                Navigation.InsertPageBefore(new ViewUsuario.ScanHome(), this);
+                                await Navigation.PopAsync();
+
                             }
                             else
                             {

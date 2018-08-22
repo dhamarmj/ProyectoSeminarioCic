@@ -39,12 +39,20 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         private async Task btnIniciar_Clicked(object sender, EventArgs e)
         {
             BtnLoading.IsRunning = true;
+            if (TxtLinks.Text == "Links Agregados")
+            {
+                TxtLinks.Text = "";
+            }
+            var desti = pickerbtn.SelectedItem.ToString();
+            desti = desti.Remove(desti.Length - 1);
             var _notif = new Models.Notificacion
             {
                 Titulo = TxtTitulo.Text,
                 Subtitulo = TxtSubtitulo.Text,
                 Descripcion = TxtDescripcion.Text,
-                Link = TxtLinks.Text
+                Link = TxtLinks.Text,
+                Destinatario = desti
+
             };
             if (_notif.Titulo != string.Empty && _notif.Descripcion != "Descripción" && pickerbtn.SelectedIndex > -1)
             {
@@ -67,7 +75,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             TxtSubtitulo.Text = TxtTitulo.Text = string.Empty;
             pickerbtn.SelectedIndex = -1;
             TxtDescripcion.Text = "Descripción";
-            TxtLinks.Text = "Agregar Links";
+            TxtLinks.Text = "Links Agregados";
         }
     }
 }

@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace ProyectoSeminarioCic.Services
 {
-    public class ApiServices_Eventos
+    public class ApiServices_Comentario
     {
-        string BaseUri = "http://proyectosapi.azurewebsites.net/api/Eventos";
+        string BaseUri = "http://proyectosapi.azurewebsites.net/api/Comentarios";
         HttpClient httpClient = new HttpClient();
-        async public Task<List<Models.Evento>> GetEventos()
+        async public Task<List<Models.Comentario>> GetComentario()
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var json = await httpClient.GetStringAsync(BaseUri);
 
-            return JsonConvert.DeserializeObject<List<Models.Evento>>(json);
+            return JsonConvert.DeserializeObject<List<Models.Comentario>>(json);
         }
-        async public Task<bool> RegistrarEvento(Models.Evento semi)
+        async public Task<bool> RegistrarComentario(Models.Comentario semi)
         {
             var json = JsonConvert.SerializeObject(semi);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -27,7 +27,7 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-        async public Task<bool> ActualizarEvento(Models.Evento semi)
+        async public Task<bool> ActualizarComentario(Models.Comentario semi)
         {
             var json = JsonConvert.SerializeObject(semi);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -37,37 +37,15 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-        async public Task<Models.Evento> GetEvento(int id)
+        async public Task<Models.Comentario> GetComentario(int id)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var path = string.Format("{0}/{1}", BaseUri, id);
             var json = await httpClient.GetStringAsync(path);
 
-            return JsonConvert.DeserializeObject<Models.Evento>(json);
+            return JsonConvert.DeserializeObject<Models.Comentario>(json);
         }
-        async public Task<Models.Evento> GetEvento(string titulo, string idSeminario)
-        {
-            var id = Convert.ToInt32(idSeminario);
-            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?titulo={titulo}&idSem={idSeminario}&idSeminario={id}");
-
-            return JsonConvert.DeserializeObject<Models.Evento>(json);
-        }
-        async public Task<Models.Evento> GetEvento(string NomUsu, int idUsuario)
-        {
-            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?NomUsu={NomUsu}&idUsuario={idUsuario}");
-
-            return JsonConvert.DeserializeObject<Models.Evento>(json);
-        }
-        async public Task<List<Models.Evento>> GetEventos(int idSeminario)
-        {
-            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?id={idSeminario}&idV={idSeminario}");
-
-            return JsonConvert.DeserializeObject<List<Models.Evento>>(json);
-        }
-        async public Task<bool> EliminarEvento(int Id)
+        async public Task<bool> EliminarComentario(int Id)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var path = string.Format("{0}/{1}", BaseUri, Id);
