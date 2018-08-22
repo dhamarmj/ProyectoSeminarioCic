@@ -23,37 +23,49 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         public CU_Evento(Models.Evento eve)
         {
             InitializeComponent();
+            LblCharlista.Text = "Escoger Charlista";
             _Evento = eve;
             this.BindingContext = _Evento;
             loadCharlistaName();
-            if (_Evento == null)
+            if (eve == null)
             {
                 LblDescrip.IsVisible = false;
                 TxtDescripcion.Text = "Descripción del evento";
-                LblCharlista.Text = "Seleccionar Charlista";
+                // LblCharlista.Text = "Seleccionar Charlista";
             }
             else
             {
                 if (eve.Id_Charlista != -1)
                 {
                     GridChalistas.IsVisible = true;
-                    loadcharlista();
+
                 }
 
                 else
                     GridChalistas.IsVisible = false;
             }
+            loadcharlista();
         }
 
         private async void loadcharlista()
         {
-            var cha = await apiUsuario.GetUsuario(Convert.ToInt32(_Evento.Id_Charlista));
-            LblCharlista.Text = cha.Nombre + " " + cha.Apellido;
+            if (_Evento != null)
+            {
+                var cha = await apiUsuario.GetUsuario(Convert.ToInt32(_Evento.Id_Charlista));
+                LblCharlista.Text = cha.Nombre + " " + cha.Apellido;
+            }
+            else
+            {
+                LblCharlista.Text = "Charlista";
+               await DisplayAlert("Ok", LblCharlista.Text, "Ok");
+            }
+                
+
         }
         protected override void OnAppearing()
         {
             BtnLoading.IsRunning = true;
-                loadCharlistaName();
+            loadCharlistaName();
             BtnLoading.IsRunning = false;
         }
         private void loadCharlistaName()
@@ -108,7 +120,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             {
                 if (Validate())
                 {
-                    var checkTitulo = await apiEvento.GetEvento(TxtTitulo.Text);
+                    var checkTitulo = await apiEvento.GetEvento(TxtTitulo.Text, Settings.idSeminario);
                     if (checkTitulo != null)
                         await DisplayAlert("Aviso", "No pueden haber 2 Eventos con el mismo Título", "Ok");
                     else

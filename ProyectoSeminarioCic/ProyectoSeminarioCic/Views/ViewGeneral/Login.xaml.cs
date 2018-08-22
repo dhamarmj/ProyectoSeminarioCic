@@ -34,7 +34,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             {
                 if (Settings.Email == string.Empty)
                 {
-                    var resp = await api.RegisterUser(Txtnombre.Text + "@hotmail.com.do", TxtPass.Text, TxtPass.Text);
+                    var resp = await api.RegisterUser(Txtnombre.Text + "@hotmailedu.com.do", TxtPass.Text, TxtPass.Text);
                     if (resp)
                     {
                         gettoken();
@@ -63,10 +63,14 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                 {
                     Settings.Rol = checkUser.Rol;
                     Settings.idUsuario = checkUser.Id.ToString();
-                    if (Settings.Rol == "Charlista" || Settings.Rol == "Participante")
+                    if (Settings.Rol == "Charlista" || ( Settings.Rol == "Participante"  && !string.IsNullOrEmpty(Settings.idBoleta)))
                     {
-                        Navigation.InsertPageBefore(new ViewGeneral.Home(Settings.Rol), this);
+                        Navigation.InsertPageBefore(new ViewGeneral.Home(), this);
                         await Navigation.PopAsync();
+                    }
+                    else if ((Settings.Rol == "Participante" && string.IsNullOrEmpty(Settings.idBoleta)))
+                    {
+                       await Navigation.PushModalAsync(new Views.ViewUsuario.ScanHome());
                     }
                     else
                     {

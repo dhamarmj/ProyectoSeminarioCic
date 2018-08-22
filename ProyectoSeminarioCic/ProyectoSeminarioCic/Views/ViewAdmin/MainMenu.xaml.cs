@@ -32,7 +32,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                 new Menu { Page = new SeminarioHome(), MenuTitle="Seminarios", Icon = "baseline_event_available_black_36.png" },
                 new Menu { Page = new EventoHome(), MenuTitle="Eventos", Icon = "baseline_event_note_black_36.png" },
                 new Menu { Page = new Notificacion(), MenuTitle="Notificaciones",  Icon = "baseline_notifications_black_36.png" },
-                new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Estadísticas",  Icon = "baseline_pie_chart_black_36.png" },
+               // new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Estadísticas",  Icon = "baseline_pie_chart_black_36.png" },
                 new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Perfil",  Icon = "baseline_person_black_36.png" },
                 new Menu { Page = new ConfiguracionHome(), MenuTitle="Ajustes",  Icon = "baseline_settings_black_36.png" },
             };

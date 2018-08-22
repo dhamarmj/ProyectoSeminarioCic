@@ -34,7 +34,6 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 
         public async void LoadNotificaciones()
         {
-          
             var list = await api.GetNotificacion(Settings.Rol);
             _notificacion = new ObservableCollection<Models.Notificacion>(list);
             listNotif.ItemsSource = _notificacion;
