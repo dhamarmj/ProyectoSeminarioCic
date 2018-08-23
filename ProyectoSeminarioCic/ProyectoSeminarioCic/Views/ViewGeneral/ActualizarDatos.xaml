@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCIC.Views.ViewGeneral.ActualizarDatos">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <StackLayout BackgroundColor="LightGray">
+        <Label Text="Actualizar Perfil" Font="Bold"/>
+        <Entry x:Name="Usario_entry" Placeholder="Usuario" MinimumHeightRequest="0.52" />
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="Nombre_entry" Placeholder="Nombre" WidthRequest="50"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="Apellido_entry" Placeholder="Apellido" WidthRequest="50"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="correo_entry" Placeholder="Correo" WidthRequest="60"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="Password_entry" Placeholder="Contraseña" WidthRequest="40"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="correo_confirmacion_entry" Placeholder="Confirmar Correo" WidthRequest="60"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="Password_confirmation_entry" Placeholder="Confirmar Contraseña" WidthRequest="40"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Button x:Name="SaveUpdate" Text="Salvar" BackgroundColor="White" Clicked="SaveUpdate_Clicked"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Button x:Name="CancelarUpdate" Text="Cancelar" BackgroundColor="White" Clicked="CancelarUpdate_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCIC.Views.ViewGeneral.DetalleEvento">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <StackLayout BackgroundColor="LightGray">
+        <Label Text="Detalle Evento" Font="Bold" HorizontalOptions="CenterAndExpand"/>
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="Tipo_evento" Placeholder="Tipo Evento" WidthRequest="50"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="Lugar_Evento" Placeholder="Lugar" WidthRequest="50"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="Hora_Evento" Placeholder="Hora Inicio" WidthRequest="50"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Entry x:Name="Fecha_Evento" Placeholder="Fecha" WidthRequest="50"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout>
+            <Editor x:Name="Descripcion_Evento" Text="Descripción del evento"/>
+        </StackLayout>
+        <StackLayout>
+            <Button x:Name="MapButton" Text="Go Map" Clicked="MapButton_Clicked"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

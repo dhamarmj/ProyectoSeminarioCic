@@ -26,6 +26,7 @@ namespace ProyectoSeminarioCic.iOS
             TopTabbedRenderer.Init();
             AsNumAssemblyHelper.HoldAssembly();
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsMaps.Init();
             LoadApplication(new ProyectoSeminarioCic.App());
             
 
