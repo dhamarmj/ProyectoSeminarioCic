@@ -25,18 +25,17 @@ namespace ProyectoSeminarioCIC.Views.ViewAdmin
             }
             else
             {
-                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$&";
-                var stringChars = new char[8];
-                var random = new Random();
+                var charsALL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz!@$%.,";
+                var randomIns = new Random();
+                int N = 8;
+                var rndChars = Enumerable.Range(0, N)
+                                .Select(_ => charsALL[randomIns.Next(charsALL.Length)])
+                                .ToArray();
+                rndChars[randomIns.Next(rndChars.Length)] = "0123456789"[randomIns.Next(10)];
 
-                for (int i = 0; i < stringChars.Length; i++)
-                {
-                    stringChars[i] = chars[random.Next(chars.Length)];
-                }
+                var randomstr = new String(rndChars);
+                ClaveResultado.Text = randomstr;
 
-                var finalString = new String(stringChars);
-                // DisplayAlert("Clave Generada", finalString, "Aceptar");
-                ClaveResultado.Text = finalString;
 
             }
         }
