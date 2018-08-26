@@ -15,6 +15,8 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         public MainMenu()
         {
             InitializeComponent();
+            ContentP.BackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.SecondaryColor);
+            MenuTitle.BackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.SecondaryColor);
             MyMenu();
         }
         public void MyMenu()
@@ -22,18 +24,17 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             var start = new NavigationPage(new ViewGeneral.HomeFeed(true))
             {
                 BarTextColor = Color.Black,
-                BarBackgroundColor = Color.LightSlateGray
+                BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor)
             };
             Detail = start;
             List<Menu> menu = new List<Menu>
             {
                 new Menu { Page = new ViewGeneral.HomeFeed(true), MenuTitle="Inicio", Icon = "baseline_home_black_36.png" },
-                new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Publicar", Icon = "baseline_photo_camera_black_36.png" },
+                new Menu { Page = new ViewGeneral.HomePublicar(), MenuTitle="Publicar", Icon = "baseline_photo_camera_black_36.png" },
                 new Menu { Page = new SeminarioHome(), MenuTitle="Seminarios", Icon = "baseline_event_available_black_36.png" },
                 new Menu { Page = new EventoHome(), MenuTitle="Eventos", Icon = "baseline_event_note_black_36.png" },
                 new Menu { Page = new Notificacion(), MenuTitle="Notificaciones",  Icon = "baseline_notifications_black_36.png" },
-               // new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Estadísticas",  Icon = "baseline_pie_chart_black_36.png" },
-                new Menu { Page = new ViewGeneral.Page1(), MenuTitle="Perfil",  Icon = "baseline_person_black_36.png" },
+               new Menu { Page = new ViewGeneral.Profile(), MenuTitle="Perfil",  Icon = "baseline_person_black_36.png" },
                 new Menu { Page = new ConfiguracionHome(), MenuTitle="Ajustes",  Icon = "baseline_settings_black_36.png" },
             };
             ListMenu.ItemsSource = menu;
@@ -54,11 +55,10 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                 IsPresented = false;
                 var start = new NavigationPage(menu.Page)
                 {
-                    BarTextColor = Color.Black,
-                    BarBackgroundColor = Color.LightSlateGray
+                   BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor)
                 };
-                
                 Detail = start;
+
             }
         }
     }

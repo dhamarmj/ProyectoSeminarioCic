@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoSeminarioCic.Views.ViewGeneral.HomeFeed"
-             Title="Seminario IC">
+             x:Class="ProyectoSeminarioCic.Views.ViewGeneral.HomeFeed">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0, 20, 0, 0" />
@@ -12,13 +11,15 @@
         <BoxView BackgroundColor="Transparent" HeightRequest="40" x:Name="HeaderBar"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.08}"/>
-        <Label Text="Seminario Civil" x:Name="HeaderText" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Italic" 
+        <Label  x:Name="HeaderText" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Bold" 
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=0.30}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
         <BoxView HeightRequest="1.5" Color="#c5c7c9" x:Name="HeaderSeparator"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=1}"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
         <ListView    x:Name="listPictures1"  IsVisible="False"
+                     IsPullToRefreshEnabled="True"
+                     Refreshing="listPictures_Refreshing"
                            SeparatorVisibility="None"
                             HasUnevenRows="True"
                             RelativeLayout.WidthConstraint="{ConstraintExpression
@@ -45,16 +46,16 @@
                                 </Grid.ColumnDefinitions>
                                 <Frame Grid.Row="0" Grid.Column="0" CornerRadius="12.5" Padding="0"  WidthRequest="25" HeightRequest="25" HasShadow="False" 
                                                         HorizontalOptions="Center" VerticalOptions="Center">
-                                    <Image Source="{Binding imagenPerfil}" Aspect="AspectFill"/>
+                                    <Image Source="{Binding User.FotoPath}" Aspect="AspectFill"/>
                                 </Frame>
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding nombreUsuario}" TextColor="Black" VerticalOptions="Center" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding User.Username}" TextColor="Black" VerticalOptions="Center" />
                             </Grid>
                             <BoxView HeightRequest="1.5" Color="#c5c7c9"/>
                             <StackLayout Padding="0" Spacing="0" HorizontalOptions="FillAndExpand">
-                                <Image Source="{Binding imagenPublicacion}" HeightRequest="280" Aspect="AspectFill"/>
+                                <Image Source="{Binding Publicacion.ImagenPath}" HeightRequest="280" Aspect="AspectFit"/>
                             </StackLayout>
-                            <StackLayout Padding="3,5,0,0">
-                                <Label  Text="{Binding caption}" FontSize="Small"/>
+                            <StackLayout Padding="3,2,0,0">
+                                <Label  Text="{Binding Publicacion.Pie_imagen}" FontSize="Small"/>
                             </StackLayout>
                             <Grid HorizontalOptions="Start" Padding="0,2,0,0">
                                 <Grid.ColumnDefinitions>
@@ -64,9 +65,9 @@
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Button Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" x:Name="KaipNum" Image="baseline_star_black_24.png" Clicked="KaipNum_Clicked"/>
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding numKaip}" VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Publicacion.Kaip}" x:Name="LblKaip"  VerticalOptions="Center"/>
                                 <Button Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" x:Name="CommentNum" Image="baseline_message_black_24.png" Clicked="CommentNum_Clicked"/>
-                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding numComent}" VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding Comentario}" x:Name="LblComment1" VerticalOptions="Center"/>
                             </Grid>
                         </StackLayout>
                     </ViewCell>
@@ -74,6 +75,8 @@
             </ListView.ItemTemplate>
         </ListView>
         <ListView    x:Name="listPictures" IsVisible="False"
+                     IsPullToRefreshEnabled="True"
+                     Refreshing="listPictures_Refreshing"
                            SeparatorVisibility="None"
                             HasUnevenRows="True"
                             RelativeLayout.WidthConstraint="{ConstraintExpression
@@ -100,16 +103,16 @@
                                 </Grid.ColumnDefinitions>
                                 <Frame Grid.Row="0" Grid.Column="0" CornerRadius="12.5" Padding="0"  WidthRequest="25" HeightRequest="25" HasShadow="False" 
                                                         HorizontalOptions="Center" VerticalOptions="Center">
-                                    <Image Source="{Binding imagenPerfil}" Aspect="AspectFill"/>
+                                    <Image Source="{Binding User.FotoPath}" Aspect="AspectFill"/>
                                 </Frame>
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding nombreUsuario}" TextColor="Black" VerticalOptions="Center" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding User.Username}" TextColor="Black" VerticalOptions="Center" />
                             </Grid>
                             <BoxView HeightRequest="1.5" Color="#c5c7c9"/>
                             <StackLayout Padding="0" Spacing="0" HorizontalOptions="FillAndExpand">
-                                <Image Source="{Binding imagenPublicacion}" HeightRequest="280" Aspect="AspectFill"/>
+                                <Image Source="{Binding Publicacion.ImagenPath}" HeightRequest="280" Aspect="AspectFill"/>
                             </StackLayout>
                             <StackLayout Padding="3,5,0,0">
-                                <Label  Text="{Binding caption}" FontSize="Small"/>
+                                <Label  Text="{Binding Publicacion.Pie_imagen}" FontSize="Small"/>
                             </StackLayout>
                             <Grid HorizontalOptions="Start" Padding="0,2,0,0">
                                 <Grid.ColumnDefinitions>
@@ -119,9 +122,9 @@
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Button Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" x:Name="KaipNum" Image="baseline_star_black_24.png" Clicked="KaipNum_Clicked"/>
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding numKaip}" VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Publicacion.Kaip}"  VerticalOptions="Center"/>
                                 <Button Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" x:Name="CommentNum" Image="baseline_message_black_24.png" Clicked="CommentNum_Clicked"/>
-                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding numComent}" VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding Comentario}" x:Name="LblComment"  VerticalOptions="Center"/>
                             </Grid>
                         </StackLayout>
                     </ViewCell>

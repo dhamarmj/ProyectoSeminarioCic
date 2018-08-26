@@ -4,9 +4,7 @@
              xmlns:forms="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.TopTabbedPage.Forms"
              x:Class="ProyectoSeminarioCic.Views.ViewUsuario.HorarioParticipante"
              x:Name="Tab"
-            BarTextColor="Black"
-            BarIndicatorColor="LightSlateGray"
-            BarBackgroundColor="SlateGray">
+          >
     <forms:TopTabbedPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0, 20, 0, 0" />

@@ -1,6 +1,7 @@
 ﻿using Plugin.Media;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         Models.Usuario usuario;
         Services.ApiServices api = new Services.ApiServices();
         Services.ApiServices_Usuario apiUsuario = new Services.ApiServices_Usuario();
+        Services.ApiServices_CurrentSem apiCurrent = new Services.ApiServices_CurrentSem();
         public Registro1(Models.Usuario u)
         {
             InitializeComponent();
@@ -30,20 +32,31 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             pickergenero.Items.Add("Femenino");
 
         }
+        private async void checkCharlista()
+        {
+
+            var clave = await apiCurrent.GetMainSeminario(1);
+            if (usuario.Contrasenia == clave.ClaveCharlistas)
+            {
+                usuario.Rol = "Charlista";
+            }
+            Settings.idSeminario = clave.Id_Seminario.ToString();
+        }
+
 
         async private void Btnsiguiente_Clicked(object sender, EventArgs e)
         {
-            
             if (Validate())
             {
-                
-                usuario.Nombre = Txtnom.Text;
-                usuario.Apellido = Txtapellido.Text;
+                usuario.Nombre = Txtnom.Text.ToLower();
+                usuario.Apellido = Txtapellido.Text.ToLower();
                 usuario.Fecha_Nacimiento = btnfecha.Date;
                 usuario.Genero = pickergenero.Items[pickergenero.SelectedIndex].ToString();
                 usuario.Rol = "Participante";
 
                 BtnLoading.IsRunning = true;
+
+                checkCharlista();
 
                 var httpclient = await api.RegisterUser(usuario.Correo, usuario.Contrasenia, usuario.Contrasenia);
                 if (httpclient)
@@ -54,16 +67,17 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                         var usersaved = await apiUsuario.RegistrarUsuario(usuario);
                         if (usersaved)
                         {
+                            LoadidSem();
                             Settings.Rol = usuario.Rol;
-                            Settings.idUsuario = usuario.Id.ToString();
-                            if (Settings.Rol == "Charlista" )
+                            if (Settings.Rol == "Charlista")
                             {
-                                Navigation.InsertPageBefore(new ViewGeneral.Home(), this);
+                                Navigation.InsertPageBefore(new Home(), this);
                                 await Navigation.PopAsync();
                             }
                             else if (Settings.Rol == "Participante")
                             {
-                                Navigation.InsertPageBefore(new ViewUsuario.ScanHome(), this);
+                                var nv = new ViewUsuario.ScanHome();
+                                Navigation.InsertPageBefore(nv, this);
                                 await Navigation.PopAsync();
 
                             }
@@ -109,7 +123,15 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             }
             return true;
         }
-
+        private async void LoadidSem()
+        {
+            if (string.IsNullOrEmpty(Settings.idUsuario))
+            {
+                var Y = await apiUsuario.GetUsuario(usuario.Username, Settings.Password);
+                if (Y != null)
+                    Settings.idUsuario = Y.Id.ToString();
+            }
+        }
         private async void BtnGal_Clicked(object sender, EventArgs e)
         {
             if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -123,29 +145,14 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                 return;
             //lblfotodireccion.Text = file.AlbumPath;
             mainImage.Source = ImageSource.FromStream(() => file.GetStream());
-            // user.imagen = ImageSource.FromStream(() => file.GetStream());
-        }
 
-        private async Task BtnCam_Clicked(object sender, EventArgs e)
-        {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            using (var memoryStream = new MemoryStream())
             {
-                await DisplayAlert("Error de Camara", "Camara No disponible", "Aceptar");
-                return;
+                file.GetStream().CopyTo(memoryStream);
+                file.Dispose();
+                usuario.FotoArray = memoryStream.ToArray();
             }
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                SaveToAlbum = true,
-                Name = "prueba.jpg"
-            });
-
-            if (file == null)
-                return;
-
-            mainImage.Source = ImageSource.FromStream(() => file.GetStream());
-
         }
+
     }
 }

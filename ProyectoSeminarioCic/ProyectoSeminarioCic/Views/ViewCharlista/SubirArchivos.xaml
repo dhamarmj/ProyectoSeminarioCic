@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewUsuario.SubirArchivos">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 10, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <RelativeLayout Padding="0" HorizontalOptions="Center">
+            <BoxView BackgroundColor="SlateGray" HeightRequest="40" x:Name="HeaderBar"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
+                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"/>
+            <Label Text="Subir Archivos" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Italic,Bold" 
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=0.30}"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, Property=Width, ElementName=HeaderBar,  Factor=0.005}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
+            <BoxView HeightRequest="1.5" Color="#c5c7c9"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=1}"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>
+            <StackLayout Padding="10,80,5,0">
+                <Label Text="Seleccione el archivo que desea subir." FontAttributes="Bold" HorizontalOptions="Center" Font="16"/>
+                <Button Text="Seleccionar" x:Name="btnselec" HorizontalOptions="Center" />
+                <Label Text="nombre de Archivo" x:Name="lblarchivo" HorizontalOptions="Center" FontAttributes="Italic"/>
+                <Button Text="Subir" x:Name="btnsubir" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </StackLayout>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

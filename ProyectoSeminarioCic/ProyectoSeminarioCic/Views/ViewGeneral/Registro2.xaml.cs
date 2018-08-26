@@ -25,28 +25,31 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             //  usuario = u;
         }
 
+
         async private void Btnconfirmar_Clicked(object sender, EventArgs e)
         {
-            if (Validate())
-            {
-                var v = await CheckUsername();
-                if (v)
-                {
+            BtnLoading.IsRunning = true;
+            //if (Validate())
+            //{
+            //    var v = await CheckUsername();
+            //    if (v)
+            //    {
                     var usuario = new Models.Usuario
                     {
-                        Correo = TxtEmail.Text,
+                        Correo = TxtEmail.Text.ToLower(),
                         Contrasenia = TxtPass.Text,
-                        Username = TxtUsername.Text
+                        Username = TxtUsername.Text.ToLower()
                     };
-
+                    BtnLoading.IsRunning = false;
                     await Navigation.PushAsync(new Registro1(usuario));
-                }
-            }
+            //    }
+            //}
+            BtnLoading.IsRunning = false;
         }
 
         private async Task<bool> CheckUsername()
         {
-            var exists = api.GetUsuario(TxtUsername.Text, 1);
+            var exists = await api.GetUsuario(TxtUsername.Text, 1);
             if (exists != null)
             {
                 await DisplayAlert("Aviso", "Este Nombre de Usuario no esta disponible, Intente de nuevo", "Ok");

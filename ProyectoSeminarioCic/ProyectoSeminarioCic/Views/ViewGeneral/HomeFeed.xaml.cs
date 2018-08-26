@@ -7,89 +7,128 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ProyectoSeminarioCic.Models;
+using System.Collections.ObjectModel;
+
 namespace ProyectoSeminarioCic.Views.ViewGeneral
 {
 
     public partial class HomeFeed : ContentPage
     {
         bool NavBar;
+        Services.ApiServices_Comentario apiComm = new Services.ApiServices_Comentario();
+        Services.ApiServices_Usuario apiUsuario = new Services.ApiServices_Usuario();
+        Services.ApiServices_Publicacion api = new Services.ApiServices_Publicacion();
+        ObservableCollection<Post> _listPosts = new ObservableCollection<Post>();
+        bool kaip = true;
+        string baseUri = "http://proyectosapi.azurewebsites.net"; 
         public HomeFeed(bool hasNavigationBar)
         {
             NavBar = hasNavigationBar;
             InitializeComponent();
-            if (hasNavigationBar)
+            Title = Proyecto.CurrrentSeminar.Titulo;
+            HeaderText.Text = Proyecto.CurrrentSeminar.Titulo;
+            HeaderBar.Color = Color.FromHex(Proyecto.CurrrentSeminar.SecondaryColor);
+            if (NavBar)
             {
                 HeaderBar.IsVisible = HeaderText.IsVisible = HeaderSeparator.IsVisible = false;
                 listPictures1.IsVisible = true;
-                listPictures1.ItemsSource = StartView();
             }
             else
             {
-                NavigationPage.SetHasNavigationBar(this, hasNavigationBar);
+                NavigationPage.SetHasNavigationBar(this, NavBar);
                 listPictures.IsVisible = true;
-                listPictures.ItemsSource = StartView();
             }
+
 
         }
 
-        private List<Publicacion> StartView()
+        protected override void OnAppearing()
         {
-
-            return new List<Publicacion>()
-            {
-                new Publicacion { nombreUsuario="Mosh", caption= "Something Deep",  imagenPerfil = "http://placeimg.com/100/100/people/1" , numComent = "1", numKaip = "15", imagenPublicacion="http://placeimg.com/480/280/animals/1", comments = new List<Comentario>()
-            {
-                new Comentario {nombreUsuario="Fulano", comentario= "this girl is on FIRE and some more text p aue la vaina se ponga buena pa ve si e dd", imagenUsuario="http://placeimg.com/100/100/people/5"}
-            }},
-                new Publicacion { nombreUsuario="Josh", caption= "Something Meaningfull", imagenPerfil = "http://placeimg.com/100/100/people/2" , numComent = "2", numKaip = "20", imagenPublicacion="http://placeimg.com/480/280/arch", comments = new List<Comentario>()
-            {
-                new Comentario {nombreUsuario="Fulana", comentario= "this girl is on WATER", imagenUsuario="http://placeimg.com/100/100/people/6"},
-                new Comentario {nombreUsuario="Ful", comentario= "this boy is on FIRE", imagenUsuario="http://placeimg.com/100/100/people/5"}
-            }
-    },
-                new Publicacion { nombreUsuario="Molly", caption= "Something Else", imagenPerfil = "http://placeimg.com/100/100/people/3" , numComent = "3", numKaip = "5", imagenPublicacion="http://placeimg.com/480/280/nature", comments = new List<Comentario>()
-            {
-                new Comentario {nombreUsuario="ulano", comentario= "this boy is on WATER", imagenUsuario="http://placeimg.com/100/100/people/7"},
-                new Comentario {nombreUsuario="Fulano", comentario= "this girl is on FIRE", imagenUsuario="http://placeimg.com/100/100/people/7"},
-                new Comentario {nombreUsuario="Fulana", comentario= "this girl is on WATER", imagenUsuario="http://placeimg.com/100/100/people/8"},
-                 new Comentario {nombreUsuario="Fulana", comentario= "this girl is on WATER", imagenUsuario="http://placeimg.com/100/100/people/6"},
-                new Comentario {nombreUsuario="Ful", comentario= "this boy is on FIRE", imagenUsuario="http://placeimg.com/100/100/people/5"},
-                new Comentario {nombreUsuario="ulano", comentario= "this boy is on WATER", imagenUsuario="http://placeimg.com/100/100/people/7"},
-                new Comentario {nombreUsuario="Fulano", comentario= "this girl is on FIRE", imagenUsuario="http://placeimg.com/100/100/people/7"},
-                new Comentario {nombreUsuario="Fulana", comentario= "this girl is on WATER", imagenUsuario="http://placeimg.com/100/100/people/8"},
-                 new Comentario {nombreUsuario="Fulana", comentario= "this girl is on WATER", imagenUsuario="http://placeimg.com/100/100/people/6"},
-                new Comentario {nombreUsuario="Ful", comentario= "this boy is on FIRE", imagenUsuario="http://placeimg.com/100/100/people/5"},
-
-            }
-    },
-                new Publicacion { nombreUsuario="Johny", caption= "Something Yas", imagenPerfil = "http://placeimg.com/100/100/people/4" , numComent = "1", numKaip = "1", imagenPublicacion="http://placeimg.com/480/280/tech", comments = new List<Comentario>()
-            {
-                new Comentario {nombreUsuario="Fulano", comentario= "this girl is on FIRE and some more text p aue la vaina se ponga buena pa ve si e dd", imagenUsuario="http://placeimg.com/100/100/people/5"}
-            }},
-                new Publicacion { nombreUsuario="Maury", caption= "Something Sip", imagenPerfil = "http://placeimg.com/100/100/people/5" , numComent = "2", numKaip = "30", imagenPublicacion="http://placeimg.com/480/280/animals/2", comments = new List<Comentario>()
-            {
-                new Comentario {nombreUsuario="Fulana", comentario= "this girl is on WATER", imagenUsuario="http://placeimg.com/100/100/people/6"},
-                new Comentario {nombreUsuario="Ful", comentario= "this boy is on FIRE", imagenUsuario="http://placeimg.com/100/100/people/5"}
-            }
-    }
-
-            };
+            StartView();
         }
+
+        private async void StartView()
+        {
+            int count = 0;
+            var listP = await api.GetPublicacion();
+            if (listP.Count > 0)
+            {
+                foreach (var item in listP)
+                {
+                    var exists = _listPosts.FirstOrDefault(x => x.Publicacion.Id == item.Id);
+                    if (exists == null)
+                    {
+                        if (item.ImagenPath != string.Empty)
+                        {
+                            item.ImagenPath = baseUri + item.ImagenPath.Remove(0, 1);
+                        }
+
+                        
+
+                        var user = await apiUsuario.GetUsuario(item.Id_usuario);
+                        if (user != null)
+                        {
+                            if (!string.IsNullOrEmpty(user.FotoPath))
+                                user.FotoPath = baseUri + user.FotoPath.Remove(0, 1);
+
+                            var list = await apiComm.GetComentario(Convert.ToDouble(item.Id));
+                            if (list != null)
+                                count = list.Count;
+
+                            _listPosts.Add(new Post(item, user, count));
+                        }
+                    }
+                    else
+                    {
+                        if (item.ImagenPath != string.Empty)
+                        {
+                            item.ImagenPath = baseUri + item.ImagenPath.Remove(0, 1);
+                        }
+
+                        var list = await apiComm.GetComentario(Convert.ToDouble(item.Id));
+                        if (list != null)
+                            count = list.Count;
+
+                        var index = _listPosts.IndexOf(exists);
+                        _listPosts[index].Publicacion = item;
+                    }
+                }
+            }
+
+            if (NavBar)
+            {
+                listPictures1.ItemsSource = _listPosts;
+                listPictures1.EndRefresh();
+            }
+            else
+            {
+                listPictures.ItemsSource = _listPosts;
+                listPictures.EndRefresh();
+            }
+                
+
+        }
+
         private void listPictures_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var pub = e.SelectedItem as Publicacion;
+            var pub = e.SelectedItem as Post;
             Navigation.PushAsync(new DetalleFeed(pub, NavBar));
-            //listPictures.SelectedItem = null;
         }
 
-        private void KaipNum_Clicked(object sender, EventArgs e)
+        private async void KaipNum_Clicked(object sender, EventArgs e)
         {
-
+            var task = (sender as Button).BindingContext as Post;
+            await Navigation.PushAsync(new DetalleFeed(task, NavBar, 1));
         }
 
         private void CommentNum_Clicked(object sender, EventArgs e)
         {
 
+        }
+       
+        private void listPictures_Refreshing(object sender, EventArgs e)
+        {
+            StartView();
         }
     }
 }

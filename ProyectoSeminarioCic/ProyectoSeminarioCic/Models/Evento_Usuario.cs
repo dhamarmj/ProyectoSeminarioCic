@@ -1,5 +1,4 @@
-﻿using SQLite.Net.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +11,10 @@ namespace ProyectoSeminarioCic.Models
         public int Id { get; set; }
         public int Id_evento { get; set; }
         public int Id_usuario { get; set; }
-       
+       public Evento_Usuario()
+        {
+            Id_evento = Id_usuario = 0;
+        }
 
     }
 }

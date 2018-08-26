@@ -13,7 +13,7 @@
         <AbsoluteLayout>
             <ScrollView HorizontalScrollBarVisibility="Never" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                 <StackLayout Padding="15,10" >
-                    <Entry Placeholder="Titulo" Text="{Binding Titulo}" x:Name="TxtTitulo" PlaceholderColor="Gray" />
+                    <Entry Placeholder="Título" Text="{Binding Titulo}" x:Name="TxtTitulo" PlaceholderColor="Gray" />
                     <Grid RowSpacing="0" Padding="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
@@ -33,22 +33,26 @@
                         <Entry Grid.Row="2" Grid.Column="1" Text="{Binding Duracion}" x:Name="btnduracion" WidthRequest="15" TextColor="Gray" Keyboard="Numeric"/>
                         <Label Grid.Row="2" Grid.Column="2" VerticalOptions="Center" Text="Minutos" TextColor="Black" />
                     </Grid>
-                    <Label Text="Descripción" TextColor="Black" FontAttributes="Bold" x:Name="LblDescrip"/>
-                    <Editor Text="{Binding Descripcion}" TextColor="Black" x:Name="TxtDescripcion"/>
+                    <Label Text="Descripción" FontSize="Small" FontAttributes="Bold" x:Name="LblDescrip"/>
                     <Grid x:Name="GridChalistas">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="25"/>
-                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" x:Name="LblCharlista" TextColor="Black" FontSize="Medium"/>
-                        <Button Grid.Column="1" Grid.Row="0" Image="search.png" Clicked="Button_Clicked" BackgroundColor="Transparent"/>
+                        <Editor Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HeightRequest="50" Text="{Binding Descripcion}" TextColor="Black" x:Name="TxtDescripcion"/>
+                        <Label Grid.Column="0" Grid.Row="1" Text="Escoger Charlista" x:Name="LblLe" FontAttributes="Bold" FontSize="Small"/>
+                        <Label Grid.Column="0" Grid.Row="2" x:Name="LblCharlista" TextColor="Black" FontSize="Medium"/>
+                        <Button Grid.Column="1" Grid.Row="2" Image="search.png" x:Name="BtnSearch" Clicked="Button_Clicked" BackgroundColor="Transparent"/>
                     </Grid>
+                    <Entry Placeholder="Dirección del Evento" x:Name="TxtUbicacion" Text="{Binding Ubicacion}" PlaceholderColor="Gray"/>
                     <Button x:Name="btnmap" Text="Seleccionar Ubicación" Image="MapaIcon.png"/>
-                    <Entry Placeholder="Direccion del Evento" x:Name="TxtUbicacion" Text="{Binding Ubicacion}" PlaceholderColor="Gray"/>
+
+                    <BoxView HeightRequest="1" BackgroundColor="Gray"/>
                     <BoxView HeightRequest="10" BackgroundColor="Transparent"/>
                     <Button Text="Salvar" Clicked="btnIniciar_Clicked" x:Name="btnIniciar" BorderRadius="20" TextColor="Black"/>
 

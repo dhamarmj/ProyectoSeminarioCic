@@ -17,6 +17,8 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
         public ScanHome()
         {
             InitializeComponent();
+            Title = "";
+           
         }
 
         private async void loadBoleta()
@@ -40,17 +42,28 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
                 }
                 else
                     await DisplayAlert("Aviso", "Error de conexión", "Ok");
-                BtnLoading.IsRunning = false;
             }
+            else
+                await DisplayAlert("Aviso", "Error al detectar código de barras. Intente nuevamente", "Ok");
+            BtnLoading.IsRunning = false;
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            string value = string.Empty;
             var scanner = DependencyService.Get<ICodeScanningService>();
             var result = await scanner.ScanAsync();
             if (result != null)
-                Settings.idBoleta = result;
+               value = result.ToString();
 
+            Settings.idBoleta = value;
             loadBoleta();
+        }
+
+        private async void Btnvolver_Clicked(object sender, EventArgs e)
+        {
+            var nv = (new ViewGeneral.Login());
+            Navigation.InsertPageBefore(nv, this);
+            await Navigation.PopAsync();
         }
     }
 }

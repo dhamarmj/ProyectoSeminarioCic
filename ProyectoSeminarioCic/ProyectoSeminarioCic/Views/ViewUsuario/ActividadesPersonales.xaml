@@ -9,23 +9,20 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout Padding="5,5">
-            <ListView x:Name="ListEventos" HasUnevenRows="True" ItemSelected="ListEventos_ItemSelected" Refreshing="ListEventos_Refreshing" IsPullToRefreshEnabled="True">
+            <ListView x:Name="ListEventos" ItemSelected="ListEventos_ItemSelected" HasUnevenRows="True" Refreshing="ListEventos_Refreshing" IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid RowSpacing="0" ColumnSpacing="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="2"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Titulo}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
-                                <Label Grid.Column="0" Grid.Row="1" Text="{Binding RangoHora}" FontSize="Small"/>
-                                <Label  Grid.Column="0" Grid.Row="2" IsVisible="False" Text="{Binding Ubicacion}" FontSize="Small"/>
-                                <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  HorizontalOptions="Center" BorderRadius="20" WidthRequest="200" BorderColor="Gray" IsVisible="True" Text="Enviar Pregunta"/>
-                                <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" IsVisible="False"  HorizontalOptions="Center" WidthRequest="50" BorderRadius="20"  BorderColor="Gray"  Text="Evaluar Charla"/>
-                                <BoxView Grid.Column="0" Grid.Row="3" BackgroundColor=" Transparent" />
+                                <Label Grid.Column="0" Grid.Row="1"  FontSize="Small" Text="{Binding Fecha, StringFormat='{}{0:dd/MM hh:mm tt}'}"/>
+                                <Label  Grid.Column="0" Grid.Row="2" IsVisible="True" Text="{Binding Ubicacion, StringFormat='Ubicación: {0}'}" FontSize="Small"/>
+                               
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

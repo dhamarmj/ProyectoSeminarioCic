@@ -14,15 +14,18 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
     public partial class CharlistasList : ContentPage
     {
         Services.ApiServices_Usuario api = new Services.ApiServices_Usuario();
+        public string Titulo;
+        public List<string> NameCharlista = new List<string>();
+        public List<int> idCharlista = new List<int>();
+        ObservableCollection<Charlistas> _charlistas;
+        public List<Charlistas> _charlistasConfirmados;
+
         public CharlistasList()
         {
             InitializeComponent();
-            Title = "Lista de Charlistas Registrados";
-            LoadCharlistas();
+            Title = "Lista de Charlistas";
         }
-        public string NameCharlista;
-        public int idCharlista;
-        ObservableCollection<Charlistas> _charlistas;
+
         public class Charlistas
         {
             public Models.Usuario User { get; set; }
@@ -33,6 +36,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                 User = _user;
             }
         }
+
         private async void LoadCharlistas()
         {
             var resp = await api.GetUsuario("Charlista");
@@ -41,24 +45,52 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             {
                 _charlistas.Add(new Charlistas(item));
             }
-
-            ListCharlistas.ItemsSource = _charlistas;
+            if(_charlistasConfirmados != null)
+            {
+                foreach (var item in _charlistasConfirmados)
+                {
+                    _charlistas.Insert(0, item);
+                }
+            }
+            ListCharlistas.ItemsSource =   _charlistas;
             ListCharlistas.EndRefresh();
         }
-        
+        protected override void OnAppearing()
+        {
+            LblEvento.Text = "Evento: " + Titulo;
+            LoadCharlistas();
+
+        }
 
         private IEnumerable<Charlistas> SearchOption(string searchText)
         {
             if (_charlistas != null)
             {
                 if (!string.IsNullOrWhiteSpace(searchText))
-                    return _charlistas.Where(x => x.User.Nombre.StartsWith(searchText)).ToList();
+                    return _charlistas.Where(x => x.User.Nombre.StartsWith(searchText, StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
             return _charlistas;
         }
+
         private void ListCharlistas_Refreshing(object sender, EventArgs e)
         {
             LoadCharlistas();
+        }
+        public string returnCharlistas()
+        {
+            string V = string.Empty;
+            if (NameCharlista.Count > 0)
+            {
+
+                foreach (string item in NameCharlista)
+                {
+                    V += item + ", ";
+                }
+                V = V.Remove(V.Length - 2);
+            }
+
+            return V;
+
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -68,14 +100,31 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
 
         private void ListCharlistas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var _charlista = e.SelectedItem as Charlistas;
-            if (_charlista != null)
+            //var _charlista = e.SelectedItem as Charlistas;
+            //if (_charlista != null)
+            //{
+            //    idCharlista = _charlista.User.Id;
+            //    NameCharlista = _charlista.NombreCompleto;
+            //    Navigation.PopAsync();
+            //}
+
+        }
+
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            var task = (sender as Switch).BindingContext as Charlistas;
+            if (e.Value)
             {
-                idCharlista = _charlista.User.Id;
-                NameCharlista = _charlista.NombreCompleto;
-                Navigation.PopAsync();
+                var i = _charlistas.IndexOf(task);
+                _charlistas.Move(i, 0);
+                NameCharlista.Add(task.NombreCompleto);
+                idCharlista.Add(task.User.Id);
             }
-                
+            else
+            {
+                NameCharlista.Remove(task.NombreCompleto);
+                idCharlista.Remove(task.User.Id);
+            }
         }
     }
 }

@@ -33,6 +33,13 @@ namespace ProyectoSeminarioCic.Services
 
             return JsonConvert.DeserializeObject<List<Models.Usuario>>(json);
         }
+        async public Task<List<Models.Usuario>> GetUsuario(int idEvento, double idEve)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
+            var json = await httpClient.GetStringAsync($"{BaseUri}?idEvento={idEvento}&idEve={idEve}");
+
+            return JsonConvert.DeserializeObject<List<Models.Usuario>>(json);
+        }
         async public Task<Models.Usuario> GetUsuario(string username, string contrasenia)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);

@@ -9,10 +9,10 @@
         </OnPlatform>
     </ContentPage.Padding>
         <RelativeLayout Padding="0" HorizontalOptions="Center">
-            <BoxView BackgroundColor="SlateGray" HeightRequest="40" x:Name="HeaderBar"
+            <BoxView  HeightRequest="40" x:Name="HeaderBar"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"/>
-            <Label Text="Notificaciones" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Italic,Bold" 
+            <Label Text="Notificaciones" FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" FontAttributes="Italic,Bold" 
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=0.30}"
                          RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, Property=Width, ElementName=HeaderBar,  Factor=0.005}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>

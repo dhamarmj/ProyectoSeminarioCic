@@ -17,6 +17,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         Services.ApiServices_EventoUsuario apiEventoUsuario = new Services.ApiServices_EventoUsuario();
         Services.ApiServices_Eventos api = new Services.ApiServices_Eventos();
         Services.ApiServices_Seminario apiSeminario = new Services.ApiServices_Seminario();
+        Services.ApiServices_Usuario apiUsuario = new Services.ApiServices_Usuario();
         private ObservableCollection<Models.Evento> _eventos;
         string opcion = "INSERTAR";
         public EventoHome()
@@ -59,6 +60,20 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             await Navigation.PushAsync(new CU_Evento(eve));
         }
 
+        private async void UpdateUsuario(int idE)
+        {
+            var E = await apiUsuario.GetUsuario(idE,0);
+            if(E.Count > 0)
+            {
+                foreach (var item in E)
+                {
+                    item.Id_evento = 0;
+                    var R = await apiUsuario.ActualizarUsuario(item);
+                }
+            }
+            
+        }
+
         async private void Eliminar_Clicked(object sender, EventArgs e)
         {
             var eve = (sender as MenuItem).CommandParameter as Models.Evento;
@@ -75,6 +90,8 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                     var respuesta = await api.EliminarEvento(eve.Id);
                     if (respuesta)
                     {
+                       UpdateUsuario(eve.Id);
+
                         _eventos.Remove(eve);
                         await DisplayAlert("Éxito", "Evento eliminado", "Aceptar");
                     }

@@ -10,17 +10,31 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <AbsoluteLayout>
-            <StackLayout Padding="15,10" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                <Entry Placeholder="Título" x:Name="EntTitulo" Text="{Binding Titulo}"/>
-                <StackLayout HeightRequest="100">
-                    <Editor Text="{Binding Descripcion}" x:Name="EntDescripcion"/>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout Padding="10,10" Spacing="2">
+                    <Label Text="Título" FontAttributes="Bold" FontSize="Small"/>
+                    <Entry x:Name="EntTitulo" Text="{Binding Titulo}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <Label  Grid.Row="0" Grid.Column="0" Text="Descripción" FontAttributes="Bold" FontSize="Small"/>
+                        <Editor Grid.Row="1" Grid.Column="0" HeightRequest="50" Text="{Binding Descripcion}" x:Name="EntDescripcion"/>
+                    </Grid>
+                    <Label Text="Fecha Inicio" FontAttributes="Bold" FontSize="Small"/>
+                    <DatePicker Date="{Binding FechaInicio, StringFormat='{}{0:dd/MM/yyyy}'}" x:Name="DtpInicio"/>
+                    <Label Text="Hora Inicio" FontAttributes="Bold" FontSize="Small"/>
+                    <TimePicker x:Name="DtpHoraIni" Time="{Binding FechaInicio, StringFormat='{}{0:hh:mm tt}'}"/>
+                    <Label Text="Fecha Fin" FontAttributes="Bold" FontSize="Small"/>
+                    <DatePicker Date="{Binding FechaFinal, StringFormat='{}{0:dd/MM/yyyy}'}" x:Name="DtpFin"/>
+                    <Label Text="Hora Fin" FontAttributes="Bold" FontSize="Small"/>
+                    <TimePicker x:Name="DtpHoraFin" Time="{Binding FechaFinal, StringFormat='{}{0:hh:mm tt}'}"/>
+                    <Button Text="Agregar Logo" Image="addimage.png" Clicked="AddLogo_Clicked"/>
+                    <BoxView HeightRequest="10" Color="Transparent"/>
+                    <Button Text="Salvar" x:Name="BtnSalvar" BorderRadius="20" BorderColor="Gray" Clicked="Salvar_Clicked"/>
                 </StackLayout>
-                <Label Text="Fecha"/>
-                <DatePicker Date="{Binding Anio}" x:Name="DtpInicio"/>
-                <Button Text="Agregar Logo" Image="addimage.png" Clicked="AddLogo_Clicked"/>
-                <BoxView HeightRequest="1" Color="Gray"/>
-                <Button Text="Salvar" x:Name="BtnSalvar" BackgroundColor="White" BorderRadius="20" BorderColor="Gray" Clicked="Salvar_Clicked"/>
-            </StackLayout>
+            </ScrollView>
             <ActivityIndicator x:Name="BtnLoading"
                                Color="Black"
                                AbsoluteLayout.LayoutBounds="0.5,0.5,50,50" 

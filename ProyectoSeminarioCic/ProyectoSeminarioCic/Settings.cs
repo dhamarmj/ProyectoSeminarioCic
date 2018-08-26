@@ -88,11 +88,11 @@ namespace ProyectoSeminarioCic
         {
             get
             {
-                return AppSettings.GetValueOrDefault("idusuario", SettingsDefault);
+                return AppSettings.GetValueOrDefault("idseminario", SettingsDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue("idusuario", value);
+                AppSettings.AddOrUpdateValue("idseminario", value);
             }
         }
         public static string idBoleta
@@ -105,7 +105,7 @@ namespace ProyectoSeminarioCic
             {
                 AppSettings.AddOrUpdateValue("idboleta", value);
             }
-        }
 
+        }
     }
 }

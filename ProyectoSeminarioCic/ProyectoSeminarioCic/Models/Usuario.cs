@@ -1,5 +1,4 @@
-﻿using SQLite.Net.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -29,5 +28,14 @@ namespace ProyectoSeminarioCic.Models
         public byte[] FotoArray { get; set; }
         public string Ocupacion { get; set; }
         public string Rol { get; set; }
+        public int Id_evento { get; set; }
+
+        public Usuario()
+        {
+            Nombre = Apellido = Username = Correo = Contrasenia = Genero = Ocupacion = Rol = string.Empty;
+            Id_evento = 0;
+            Fecha_Nacimiento = new DateTime();
+        }
+
     }
 }
