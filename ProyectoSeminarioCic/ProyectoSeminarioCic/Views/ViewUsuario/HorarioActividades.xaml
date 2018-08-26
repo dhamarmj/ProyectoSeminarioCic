@@ -15,9 +15,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid RowSpacing="0" ColumnSpacing="0">
-                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Titulo}" FontSize="Medium" TextColor="Black"/>
-                                <Label Grid.Row="1" Grid.Column="0" FontSize="Small" Text="{Binding RangoHora}"/>
-                                <Switch Grid.Row="0" Grid.Column="1" Toggled="Switch_Toggled" />
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Titulo}" FontSize="Medium" TextColor="Black" Font="Bold" AnchorY="0.5"/>
+                                <Label Grid.Row="1" Grid.Column="0" FontSize="Small" Text = "{Binding NewProperty}"/>
+                                <Switch Grid.Row="0" Grid.Column="1" Toggled="Switch_Toggled" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" AnchorY="1"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
