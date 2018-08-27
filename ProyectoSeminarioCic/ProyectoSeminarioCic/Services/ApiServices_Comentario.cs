@@ -27,6 +27,13 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
+        async public Task<List<Models.Comentario>> GetComentario(double idPublicacion)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
+            var json = await httpClient.GetStringAsync($"{BaseUri}?idPublicacion={idPublicacion}");
+
+            return JsonConvert.DeserializeObject<List<Models.Comentario>>(json);
+        }
         async public Task<bool> ActualizarComentario(Models.Comentario semi)
         {
             var json = JsonConvert.SerializeObject(semi);

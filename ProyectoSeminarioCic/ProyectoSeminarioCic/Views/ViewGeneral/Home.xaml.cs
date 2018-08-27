@@ -16,17 +16,17 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             InitializeComponent();
             NavigationPage P1 = new NavigationPage(new HomeFeed(false))
             {
-                BarBackgroundColor = Color.LightSlateGray,
+                BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.SecondaryColor),
                 Icon = "baseline_home_black_36.png"
             };
             NavigationPage P2 = new NavigationPage(new HomeNotificaciones())
             {
-                BarBackgroundColor = Color.LightSlateGray,
+                BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor),
                 Icon = "baseline_notifications_black_36.png"
             };
-            NavigationPage P3 = new NavigationPage(new Page1())
+            NavigationPage P3 = new NavigationPage(new HomePublicar())
             {
-                BarBackgroundColor = Color.LightSlateGray,
+                BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor),
                 Icon = "baseline_photo_camera_black_36.png"
             };
             Page P4 = null;
@@ -34,7 +34,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             {
                 P4 = new NavigationPage(new ViewCharlista.HorarioCharlistas())
                 {
-                    BarBackgroundColor = Color.LightSlateGray,
+                    BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor),
                     Icon = "baseline_schedule_black_36.png"
                 };
             }
@@ -42,14 +42,19 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             {
                 P4 = new NavigationPage(new ViewUsuario.HorarioParticipante())
                 {
-                    BarBackgroundColor = Color.LightSlateGray,
+                    BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor),
                     Icon = "baseline_schedule_black_36.png"
                 };
+                //P4 = new NavigationPage(new Page1())
+                //{
+                //    BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor),
+                //    Icon = "baseline_schedule_black_36.png"
+                //};
             }
 
-            NavigationPage P5 = new NavigationPage(new Page1())
+            NavigationPage P5 = new NavigationPage(new Profile())
             {
-                BarBackgroundColor = Color.LightSlateGray,
+                BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor),
                 Icon = "baseline_person_black_36.png"
             };
             Tab.Children.Add(P1);
@@ -58,5 +63,6 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             Tab.Children.Add(P4);
             Tab.Children.Add(P5);
         }
+
     }
 }

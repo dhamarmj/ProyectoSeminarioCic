@@ -11,9 +11,9 @@
         </OnPlatform>
     </MasterDetailPage.Padding>
     <MasterDetailPage.Master>
-        <ContentPage Title="Menú" BackgroundColor="LightSlateGray" Padding="0,25,0,0" >
+        <ContentPage Title="Menú" x:Name="ContentP" Padding="0,25,0,0" >
             <StackLayout>
-                <Label Text="Menú" BackgroundColor="LightSlateGray" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
+                <Label Text="Menú" x:Name="MenuTitle" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
                 <ListView BackgroundColor="White" x:Name="ListMenu" ItemSelected="ListMenu_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>

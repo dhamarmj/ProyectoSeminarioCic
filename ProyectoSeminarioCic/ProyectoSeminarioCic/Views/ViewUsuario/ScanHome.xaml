@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoSeminarioCic.Views.ViewUsuario.ScanHome">
+             x:Class="ProyectoSeminarioCic.Views.ViewUsuario.ScanHome"
+             NavigationPage.HasNavigationBar="True" 
+             NavigationPage.HasBackButton="False">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0, 20, 0, 0" />
@@ -9,11 +11,14 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <AbsoluteLayout>
-            <StackLayout Padding="10,15" HorizontalOptions="Center" VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                <Label Text="Para acceder al contenido de este Seminario debes escanear tu boleta" VerticalTextAlignment="Center"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-                <Button Text="Escanear" Clicked="Button_Clicked"/>
+            <StackLayout Padding="10,15" HorizontalOptions="Center" VerticalOptions="Start" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <BoxView BackgroundColor="Transparent" HeightRequest="30"/>
+                <Label Text="Continuar..." FontSize="Large" VerticalOptions="Start" TextColor="Black" FontAttributes="Bold"/>
+                <BoxView BackgroundColor="Transparent" HeightRequest="20"/>
+                <Label Text="Para acceder al contenido de este Seminario debes escanear tu boleta" VerticalTextAlignment="Center" FontSize="Medium" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <BoxView BackgroundColor="Transparent" HeightRequest="10"/>
+                <Button Text="Escanear" x:Name="BtnEscanear" BorderRadius="20" FontSize="Medium" Clicked="Button_Clicked"/>
+                <Button Text="Volver" x:Name="Btnvolver" BackgroundColor="Transparent" TextColor="Black" FontSize="Small" FontAttributes="Italic,Bold" BorderRadius="20" Clicked="Btnvolver_Clicked" />
             </StackLayout>
             <ActivityIndicator x:Name="BtnLoading"
                                Color="Black"

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewGeneral.Profile"
+             Title="Mi Perfil">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 10, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Icon="pencil1.png" Activated="ToolbarItem_Activated" Order="Primary" />
+        <ToolbarItem Text="Cerrar Sesión" Order="Secondary" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout Padding="10,10" HorizontalOptions="Start" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Image Source="{Binding FotoPath}" x:Name="profilefoto" HeightRequest="150" WidthRequest="100" Aspect="AspectFit" />
+                <BoxView HeightRequest="1" BackgroundColor="Gray" />
+                <Label x:Name="LblNombre" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
+                <Grid RowSpacing="0" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Nombre de usuario: " FontSize="Small" FontAttributes="Bold" />
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Username}"  FontSize="Medium"  TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="0" Text="Correo Electrónico: " FontSize="Small" FontAttributes="Bold" />
+                    <Label Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Text="{Binding Correo}"  FontSize="Small" TextColor="Black"/>
+                    <Label Grid.Row="5" Grid.Column="0" Text="Fecha de Nacimiento: " FontSize="Small" FontAttributes="Bold" />
+                    <Label Grid.Row="6" Grid.Column="1" Text="{Binding Fecha_Nacimiento, StringFormat='{}{0:dd MMMM yyyy}'}"  FontSize="Medium" TextColor="Black"/>
+                    <Label Grid.Row="7" Grid.Column="0" Text="Ocupación: " FontSize="Small" FontAttributes="Bold" />
+                    <Label Grid.Row="8" Grid.Column="1" Text="{Binding Ocupacion}"  FontSize="Medium" TextColor="Black"/>
+                </Grid>
+            </StackLayout>
+            <ActivityIndicator x:Name="BtnLoading"
+                               Color="Black"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,50,50" 
+                               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

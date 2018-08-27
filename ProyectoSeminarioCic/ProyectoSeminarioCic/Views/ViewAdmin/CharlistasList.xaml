@@ -1,14 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.CharlistasList">
+             x:Class="ProyectoSeminarioCic.Views.ViewAdmin.CharlistasList"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="True">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
     <ContentPage.Content>
-            <StackLayout>
-            <SearchBar Placeholder="Buscar" TextColor="Gray" TextChanged="SearchBar_TextChanged"/>
+            <StackLayout Padding="5,5">
+            <Label x:Name="LblEvento" FontSize="Large" TextColor="Black"/>
+            <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+            <SearchBar Placeholder="Buscar" TextColor="Gray" TextChanged="SearchBar_TextChanged" />
             <ListView x:Name="ListCharlistas" HasUnevenRows="True" IsPullToRefreshEnabled="True" Refreshing="ListCharlistas_Refreshing" ItemSelected="ListCharlistas_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                        <TextCell Text="{Binding NombreCompleto}" Detail="{ Binding User.Ocupacion}" TextColor="Black" DetailColor="Gray"/>
+                        <ViewCell>
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" Text="{Binding NombreCompleto}" TextColor="Black"/>
+                                <Switch Grid.Row="0" Grid.Column="1" Toggled="Switch_Toggled"/>    
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

@@ -18,7 +18,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         public HomeNotificaciones()
         {
             InitializeComponent();
-
+            HeaderBar.Color = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor);
             //var notificaciones = new List<Notificacion>
             //{
             //    new Notificacion{Titulo="Horario", Subtitulo="Horas de llegada al evento", Descripcion= "A good critic will refer back to the text often. You can find the full text of his speech on his Web site. the text of the Constitution The book is mostly photographs—it has very little text. At this point the Web site is only text. Graphics will be added later. Students will read and discuss various literary texts."},
@@ -28,10 +28,13 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             //    new Notificacion{Titulo="Eto", Subtitulo=" de llegada al evento"},
             //    new Notificacion{Titulo="Aquello", Subtitulo="HHoras de  evento"}
             //};
+           
+        }
+        protected override void OnAppearing()
+        {
             LoadNotificaciones();
             listNotif.ItemsSource = _notificacion;
         }
-
         public async void LoadNotificaciones()
         {
             var list = await api.GetNotificacion(Settings.Rol);

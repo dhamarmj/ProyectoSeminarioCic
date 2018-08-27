@@ -15,9 +15,19 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Titulo}" FontSize="Medium" TextColor="Black"/>
-                                <Label Grid.Row="1" Grid.Column="0" FontSize="Small" Text="{Binding RangoHora}"/>
-                                <Switch Grid.Row="0" Grid.Column="1" Toggled="Switch_Toggled"/>
+                                <Label Grid.Row="1" Grid.Column="0" FontSize="Small" Text="{Binding Fecha, StringFormat='Desde: {0:dd/MM hh:mm tt}'}"/>
+                                <Label Grid.Row="2" Grid.Column="0" FontSize="Small" Text="{Binding FechaFin, StringFormat='Hasta: {0:hh:mm tt}'}"/>
+                                <Switch Grid.Row="1" Grid.Column="1" Toggled="Switch_Toggled"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

@@ -17,50 +17,19 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         Services.ApiServices_Eventos apiEvento = new Services.ApiServices_Eventos();
         Services.ApiServices_Usuario apiUsuario = new Services.ApiServices_Usuario();
         CharlistasList newForm = new CharlistasList();
-
-        int idCharlista = -1;
+        List<CharlistasList.Charlistas> _charlistas = new List<CharlistasList.Charlistas>();
+        List<int> idCharlista = new List<int>();
         string opcion;
         public CU_Evento(Models.Evento eve)
         {
             InitializeComponent();
-            LblCharlista.Text = "Escoger Charlista";
             _Evento = eve;
             this.BindingContext = _Evento;
-            loadCharlistaName();
             if (eve == null)
             {
-                LblDescrip.IsVisible = false;
-                TxtDescripcion.Text = "Descripción del evento";
-                // LblCharlista.Text = "Seleccionar Charlista";
+                TxtDescripcion.Text = "Texto con la descripción del evento";
+                btnfecha.Date = DateTime.Now;
             }
-            else
-            {
-                if (eve.Id_Charlista != -1)
-                {
-                    GridChalistas.IsVisible = true;
-
-                }
-
-                else
-                    GridChalistas.IsVisible = false;
-            }
-            loadcharlista();
-        }
-
-        private async void loadcharlista()
-        {
-            if (_Evento != null)
-            {
-                var cha = await apiUsuario.GetUsuario(Convert.ToInt32(_Evento.Id_Charlista));
-                LblCharlista.Text = cha.Nombre + " " + cha.Apellido;
-            }
-            else
-            {
-                LblCharlista.Text = "Charlista";
-               await DisplayAlert("Ok", LblCharlista.Text, "Ok");
-            }
-                
-
         }
         protected override void OnAppearing()
         {
@@ -68,12 +37,43 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             loadCharlistaName();
             BtnLoading.IsRunning = false;
         }
-        private void loadCharlistaName()
+        private async void loadCharlistaName()
         {
-            LblCharlista.Text = newForm.NameCharlista;
-            idCharlista = newForm.idCharlista;
-        }
+            if (_Evento == null)
+            {
+                LblCharlista.Text = newForm.returnCharlistas();
+                idCharlista = newForm.idCharlista;
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(LblCharlista.Text))
+                {
+                    var chalist = await apiUsuario.GetUsuario(_Evento.Id, 0);
+                    if (chalist.Count > 0)
+                    {
+                        foreach (var item in chalist)
+                        {
+                            _charlistas.Add(new CharlistasList.Charlistas(item));
+                            LblCharlista.Text += item.Nombre + " " + item.Apellido + ", ";
+                        }
 
+                        LblCharlista.Text = LblCharlista.Text.Remove(LblCharlista.Text.Length - 2);
+                        newForm._charlistasConfirmados = _charlistas;
+                    }
+                    else
+                    {
+                        LblCharlista.IsVisible = false;
+                        BtnSearch.IsVisible = false;
+                        LblLe.IsVisible = false;
+                    }
+                }
+                else
+                {
+                    LblCharlista.Text = newForm.returnCharlistas();
+                    idCharlista = newForm.idCharlista;
+                }
+            }
+        }
         private bool Validate()
         {
             if (TxtTitulo.Text != string.Empty & btnfecha.Date != null & btnhora.Time != null)
@@ -84,7 +84,18 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                 return false;
             }
         }
-
+        private async void ActualizarUsuarios(int ide)
+        {
+            foreach (int item in idCharlista)
+            {
+                var V = await apiUsuario.GetUsuario(item);
+                if (V != null)
+                {
+                    V.Id_evento = ide;
+                    var R = await apiUsuario.ActualizarUsuario(V);
+                }
+            }
+        }
         private async void SaveEvento()
         {
             var time = DateTime.Today.Add(btnhora.Time);
@@ -97,21 +108,52 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                 Ubicacion = TxtUbicacion.Text,
                 Id_seminario = Convert.ToInt32(Settings.idSeminario)
             };
-            if (idCharlista > -1)
-                _evento.Id_Charlista = idCharlista;
 
             _evento.SetFechaFin();
-
             var response = await apiEvento.RegistrarEvento(_evento);
             if (response)
             {
-                await DisplayAlert("Aviso", "Evento Salvado exitosamente", "Ok");
-                await Navigation.PopAsync();
+                var id = await apiEvento.GetEvento(_evento.Titulo, Settings.idSeminario);
+                if (id != null)
+                {
+                    ActualizarUsuarios(id.Id);
+
+                    await DisplayAlert("Aviso", "Evento Salvado exitosamente", "Ok");
+                    await Navigation.PopAsync();
+                }
+
             }
             else
                 await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
         }
 
+        private async void EditarUsuarios(int idE)
+        {
+            if(_charlistas.Count > 0)
+            {
+                foreach (var item in _charlistas)
+                {
+                    var Us = await apiUsuario.GetUsuario(item.User.Id);
+                    if(Us != null)
+                    {
+                        Us.Id_evento = 0;
+                        var R = await apiUsuario.ActualizarUsuario(Us);
+                    }
+                }
+            }
+            if(idCharlista.Count > 0)
+            {
+                foreach (var item in idCharlista)
+                {
+                    var Us = await apiUsuario.GetUsuario(item);
+                    if (Us != null)
+                    {
+                        Us.Id_evento = idE;
+                        var R = await apiUsuario.ActualizarUsuario(Us);
+                    }
+                }
+            }
+        }
 
         private async void btnIniciar_Clicked(object sender, EventArgs e)
         {
@@ -126,17 +168,33 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                     else
                     {
                         SaveEvento();
+
+                        newForm.NameCharlista = new List<string>();
+                        newForm.idCharlista = new List<int>();
                     }
                 }
             }
             else //si no es uno nuevo es que Vas a actualizar
             {
+                var time = DateTime.Today.Add(btnhora.Time);
+                _Evento.Titulo = TxtTitulo.Text;
+                _Evento.Fecha = new DateTime(btnfecha.Date.Year, btnfecha.Date.Month, btnfecha.Date.Day, time.Hour, time.Minute, time.Second);
+                _Evento.Duracion = Convert.ToInt32(btnduracion.Text);
+                _Evento.Descripcion = TxtDescripcion.Text;
+                _Evento.Ubicacion = TxtUbicacion.Text;
+                _Evento.SetFechaFin();
                 //Actualizar = Put 
                 var response = await apiEvento.ActualizarEvento(_Evento);
                 if (response)
                 {
+                    EditarUsuarios(_Evento.Id);
+
                     await DisplayAlert("Aviso", "Evento actualizado exitosamente", "Ok");
                     await Navigation.PopAsync();
+
+                    newForm.NameCharlista = new List<string>();
+                    newForm.idCharlista = new List<int>();
+                    _charlistas = new List<CharlistasList.Charlistas>();
                 }
                 else
                     await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
@@ -147,6 +205,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            newForm.Titulo = TxtTitulo.Text;
             await Navigation.PushAsync(newForm);
         }
     }

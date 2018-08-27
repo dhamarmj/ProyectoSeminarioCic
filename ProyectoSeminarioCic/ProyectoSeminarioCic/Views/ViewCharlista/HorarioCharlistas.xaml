@@ -10,10 +10,10 @@
     </ContentPage.Padding>
     <AbsoluteLayout>
         <RelativeLayout  Padding="0" HorizontalOptions="Center" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-            <BoxView BackgroundColor="SlateGray" HeightRequest="40" x:Name="HeaderBar"
+            <BoxView HeightRequest="40" x:Name="HeaderBar"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"/>
-            <Label Text="Horario" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Start" FontAttributes="Italic,Bold" 
+            <Label Text="Horario" FontSize="Large" TextColor="White" HorizontalTextAlignment="Start" FontAttributes="Italic,Bold" 
                             HorizontalOptions="Center" VerticalOptions="Center"
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Height, ElementName=HeaderBar,  Factor=0.30}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"/>

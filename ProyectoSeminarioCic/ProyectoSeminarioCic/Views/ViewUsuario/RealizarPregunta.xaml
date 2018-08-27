@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewUsuario.RealizarPregunta">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 10, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <StackLayout Padding="10,50,5,0">
+        <Label Text="Realizar Pregunta" HorizontalOptions="Center" Font="20" TextColor="Black" FontAttributes="Bold"/>
+        <Label Text="Escriba su pregunta y luego presione a Enviar" HorizontalOptions="Center" FontAttributes="Italic" Font="12"/>
+        <Editor x:Name="entryPregunta" HeightRequest="100" IsSpellCheckEnabled="false"/>
+        <Button Text="Enviar" x:Name="btnenviar" BorderRadius="20" HorizontalOptions="End"/>
+    </StackLayout>
+</ContentPage>

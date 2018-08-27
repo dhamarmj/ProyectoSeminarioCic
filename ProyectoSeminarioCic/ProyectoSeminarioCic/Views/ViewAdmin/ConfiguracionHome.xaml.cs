@@ -15,15 +15,18 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         public ConfiguracionHome()
         {
             InitializeComponent();
-            StartConfig();
+
         }
 
+        protected override void OnAppearing()
+        {
+            StartConfig();
+        }
         private void StartConfig()
         {
             var conf = new List<ConfigItems>
             {
-                new ConfigItems{ Page = new ViewGeneral.Page1(), Titulo="Contraseñas Especiales", Descrip = "Para registrar charlistas y personal", Icon = "key.png" },
-                new ConfigItems{ Page = new ViewGeneral.Page1(), Titulo="Cambiar Contraseña", Descrip = "De la cuenta Admin", Icon = "password.png" }
+                new ConfigItems{ Page = new GenerarClave(), Titulo="Contraseñas Especiales", Descrip = "Para registrar charlistas y personal", Icon = "key.png" },
                 //new ConfigItems{ Page = new ViewGeneral.Page1(), Titulo="Cambiar Logo Seminario", Descrip = "Para toda la aplicación", Icon = "password.png" }
             };
 
@@ -43,7 +46,8 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             var menu = e.SelectedItem as ConfigItems;
             if (menu != null)
             {
-              await Navigation.PushAsync(menu.Page);
+
+                await Navigation.PushAsync(menu.Page);
             }
         }
     }

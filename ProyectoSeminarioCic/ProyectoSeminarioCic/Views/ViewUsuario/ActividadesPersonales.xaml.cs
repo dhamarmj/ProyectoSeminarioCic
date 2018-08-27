@@ -19,24 +19,36 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
         public ActividadesPersonales()
         {
             InitializeComponent();
-          //  LoadEventos();
+           
         }
 
+        protected override void OnAppearing()
+        {
+            LoadEventos();
+
+
+
+        }
         public async void LoadEventos()
         {
             var listE = await apiEventoU.GetEvento_Usuario(Settings.idUsuario);
             foreach (Models.Evento_Usuario i in listE)
             {
-              //  if (_eventos.Where(x => x.Id == i.Id_evento) == null)
-                    _eventos.Add(await apiEventos.GetEvento(i.Id_evento));
+                foreach (var item in listE)
+                {
+                    var exist = _eventos.FirstOrDefault(x => x.Id == item.Id);
+                    if (exist == null)
+                    {
+                        var R = await apiEventos.GetEvento(item.Id_evento);
+                        if (R != null)
+                        {
+                            _eventos.Add(R);
+                        }
+                    }
+                }
             }
-            ListEventos.ItemsSource = _eventos;
+            ListEventos.ItemsSource = _eventos.OrderBy(x => x.Fecha);
             ListEventos.EndRefresh();
-        }
-
-        private void ListEventos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-
         }
 
         private void ListEventos_Refreshing(object sender, EventArgs e)
@@ -44,9 +56,13 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
             LoadEventos();
         }
 
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        private void ListEventos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
+          var evento = e.SelectedItem as Models.Evento;
+            if (evento != null)
+            {
+                Navigation.PushAsync(new PreguntasHome(evento));
+            }
         }
     }
 }

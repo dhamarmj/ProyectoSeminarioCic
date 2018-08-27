@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using ProyectoSeminarioCic.Views;
 using Xamarin.Forms.Xaml;
+using System.Globalization;
+using System.Threading;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ProyectoSeminarioCic
@@ -11,16 +13,20 @@ namespace ProyectoSeminarioCic
         public App()
         {
             InitializeComponent();
-            //Settings.AccesToken = "6XVlscyrJcQb4NyBgX7FKoMZFbVNOvNoWe0DxcyG_pVogYAhRvh9wwILHzDGxvOb_7xKIj22h3SNg-j7CKjkLg3SfMcuB402ZPOlz-kFSnkfc5pC4MHXT8oHsyEupsuiWlAgGvzNr5glSl5FvWsROLpTqaktIRH6T_XWzc6pS2Fz_cu8F8MaDyE8Wx5m6EU_nFnGtB5uGA4A8rkLousUIvoLq5cW89MsIW_AOIcImkQ4gzuDE1ew0i5a7d9cRjl0vXS89YA2gNqBfDc7RoRG49ShRKbVgnwrLL8pD7p-jDgOlzZxByHCu_AgtAw-jPgnFsI0SwqsioAkak1wnhmRcL8bpcFmfxiwla_FvRh2Xc_EFg2YGTEcN67Iwghmo-CT2ZDIYaA-VWytvAvNRcKyUHXlysv8VWJgengIXM7oO_a4e48vgTgh8ntY0yHA3ObKNG2GbSgi5EcLX58rgkI5yJnmBTqMzuKDmESmnz2ME0mA2z3X5t8jeWrf_2cAr8Ia";
+
+            var userSelectedCulture = new CultureInfo("es-DO");
+            Thread.CurrentThread.CurrentCulture = userSelectedCulture;
+        //    Settings.AccesToken = Settings.Rol = Settings.Email = Settings.Password = Settings.idUsuario = string.Empty;
+            Settings.AccesToken = "RfyO_HkJxK9CbeyTc75mOHiosUpWukw4WjAvoHbj5AtQlaZX_H_yzEiz0YuQ5JNLJl1-_lLMwf2xLkww3a-iCOIndYsly5AlOuCdwH1E3guo6lgTJTwyP_c4p-tQfRBJm1FMpinTz-RlnkFj--BJinFQf0vBKrLuvpC8IjyKhv2whz4Tw0P8MHnEjgK5ksclwgqUe9JsmfGAkpAMFDYz2wPWTU6lnQoMR4pvM-1YLkgOfC18yB8PBAYBZw_1RcD1ENZhuDohEthKyPRj4mXnOG8Vq5w_V6Pw4CJ37ONy0SUzlYxDm2a1sM2M_e3hlLDLUeL97eAXdT2Ti18uijcQ_QWGHukZ4pCW9KXPXukXXbGb7cOkNtNbz3TFREiUQ2L1coDP59e06wQfQYoQ9oyNZkJfeIwUYF3b9XKX1dChw0siYU9-dW1EyisxuG51S52mozD99yhtCitibltPRgvISYjOkJ1sW2pI1YfkvBSiOrf42m64Fl79RmPbr-ZKv4Gl";
+
             //Settings.Email = "dhamarmj@gmail.com";
             //Settings.Password = "Tarea.123";
-            // Settings.Rol = "Participante";
-            //Settings.idUsuario = "1";
-            //Settings.AccesToken = Settings.Rol = Settings.Email = Settings.Password = Settings.idUsuario = string.Empty;
+            //Settings.Rol = "Administrador";
             //Settings.idSeminario = "1";
-            //Settings.idBoleta = string.Empty;
-            
-            if (!string.IsNullOrEmpty(Settings.AccesToken))
+            //Settings.idBoleta = "1854545";
+            //Settings.idUsuario = "2";
+
+            if (!string.IsNullOrEmpty(Settings.idUsuario))
             {
                 if (Settings.Rol == "Charlista" || (Settings.Rol == "Participante" && !string.IsNullOrEmpty(Settings.idBoleta)))
                 {
@@ -28,7 +34,9 @@ namespace ProyectoSeminarioCic
                 }
                 else if (Settings.Rol == "Participante" && string.IsNullOrEmpty(Settings.idBoleta))
                 {
-                    MainPage = new NavigationPage(new Views.ViewUsuario.ScanHome());
+                    var nv = new NavigationPage(new Views.ViewUsuario.ScanHome());
+                    nv.BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.SecondaryColor);
+                    MainPage = nv;
                 }
                 else
                 {
@@ -38,15 +46,16 @@ namespace ProyectoSeminarioCic
             else
             {
                 var nv = new NavigationPage(new Views.ViewGeneral.Login());
-                nv.BarBackgroundColor = Color.SlateGray;
+                nv.BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.SecondaryColor);
                 MainPage = nv;
             }
+
             ////new NavigationPage(new Views.ViewGeneral.Login());
             ////new Views.ViewAdmin.MainMenu();
             ////new Views.ViewGeneral.Home();
-
-
         }
+
+
         protected override void OnStart()
         {
             // Handle when your app starts

@@ -10,10 +10,11 @@ using Naxam.Controls.Platform.Droid;
 using Android.Graphics;
 using AsNum.XFControls.Droid;
 using ZXing.Mobile;
+using Plugin.CurrentActivity;
 
 namespace ProyectoSeminarioCic.Droid
 {
-    [Activity(Label = "ProyectoSeminarioCic", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "SeminarioIC", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -22,6 +23,7 @@ namespace ProyectoSeminarioCic.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+            CrossCurrentActivity.Current.Init(this, bundle);
             CustomizeTabs();
             AsNumAssemblyHelper.HoldAssembly();
             MobileBarcodeScanner.Initialize(this.Application);

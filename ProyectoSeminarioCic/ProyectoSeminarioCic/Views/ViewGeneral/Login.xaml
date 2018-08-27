@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoSeminarioCic.Views.ViewGeneral.Login"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False" 
+             NavigationPage.HasBackButton="False">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0, 20, 0, 0" />
@@ -10,25 +11,19 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <AbsoluteLayout>
-            <RelativeLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                <Grid x:Name="BlockA" RelativeLayout.HeightConstraint="{ConstraintExpression Property=Height, Type=RelativeToParent, Factor=0.9}"
+            <RelativeLayout Padding="10,0,0,0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout x:Name="BlockA" RelativeLayout.HeightConstraint="{ConstraintExpression Property=Height, Type=RelativeToParent, Factor=0.9}"
                   RelativeLayout.WidthConstraint="{ConstraintExpression Property=Width, Type=RelativeToParent, Factor=1}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
-                    <StackLayout Grid.Row="1" Padding="30,20">
-                        <Entry Placeholder="Correo Electrónico" x:Name="Txtnombre" PlaceholderColor="Gray" />
+                    <Image Source="logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
+                    <StackLayout Padding="30,20">
+                        <Entry Placeholder="Nombre de Usuario" x:Name="Txtnombre" PlaceholderColor="Gray" />
                         <Entry Placeholder="Contraseña" x:Name="TxtPass" PlaceholderColor="Gray" IsPassword="True" />
                         <Button Text="Iniciar Sesion" x:Name="btnIniciar" BackgroundColor="LightGray" BorderRadius="20" TextColor="Black" Clicked="BtnIniciar_Clicked"/>
-                        <StackLayout Orientation="Horizontal">
+                        <!--<StackLayout Orientation="Horizontal">
                             <Button Text="Olvidaste tu contraseña?" x:Name="lblrestablecer" BackgroundColor="Transparent" HeightRequest="50" HorizontalOptions="Start"/>
-
-                        </StackLayout>
+                        </StackLayout>-->
                     </StackLayout>
-                </Grid>
+                </StackLayout>
                 <StackLayout RelativeLayout.YConstraint="{ConstraintExpression Property=Height, Type=RelativeToView, ElementName=BlockA, Factor=1 ,Constant=5}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Property=Width, Type=RelativeToParent, Factor=1}">
                     <Button Text="No tienes una cuenta? Registrate!" x:Name="btnreg" BackgroundColor="Transparent" HorizontalOptions="End" Clicked="Btnreg_Clicked1" />

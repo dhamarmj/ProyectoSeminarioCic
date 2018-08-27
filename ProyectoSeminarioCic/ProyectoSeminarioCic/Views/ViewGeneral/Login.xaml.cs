@@ -13,6 +13,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
     {
         Services.ApiServices api = new Services.ApiServices();
         Services.ApiServices_Usuario apiUsuario = new Services.ApiServices_Usuario();
+       
         public Login()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         {
             var nv = new NavigationPage(new ViewGeneral.Registro2())
             {
-                BarBackgroundColor = Color.LightSlateGray
+                BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.SecondaryColor)
             };
             await Navigation.PushModalAsync(nv);
         }
@@ -34,7 +35,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             {
                 if (Settings.Email == string.Empty)
                 {
-                    var resp = await api.RegisterUser(Txtnombre.Text + "@hotmailedu.com.do", TxtPass.Text, TxtPass.Text);
+                    var resp = await api.RegisterUser(Txtnombre.Text + "@gmailedu.com.do", TxtPass.Text, TxtPass.Text);
                     if (resp)
                     {
                         gettoken();
@@ -70,7 +71,9 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                     }
                     else if ((Settings.Rol == "Participante" && string.IsNullOrEmpty(Settings.idBoleta)))
                     {
-                       await Navigation.PushModalAsync(new Views.ViewUsuario.ScanHome());
+                        var nv = new NavigationPage(new Views.ViewUsuario.ScanHome());
+                        nv.BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.SecondaryColor);
+                       await Navigation.PushModalAsync(nv);
                     }
                     else
                     {

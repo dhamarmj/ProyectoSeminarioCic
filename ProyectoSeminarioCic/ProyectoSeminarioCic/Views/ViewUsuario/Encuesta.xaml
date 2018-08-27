@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoSeminarioCic.Views.ViewUsuario.Encuesta">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 10, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+            <StackLayout Padding="10,10,5,0" VerticalOptions="Start">
+            <Label x:Name="LblCharla" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+            <BoxView HeightRequest="1" Color="Gray"/>
+            <BoxView HeightRequest="10" Color="Transparent"/>
+            <Label x:Name="pregunta1" Text="1. Calidad del Contenido." FontAttributes="Bold"/>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Image  HorizontalOptions="Start" x:Name="star1" Source="estrellita.png" Grid.Row="0" Grid.Column="0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image  x:Name="star2" Source="estrellita.png" Grid.Row="0" Grid.Column="1">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image  Grid.Row="0" Grid.Column="2" x:Name="star3" Source="estrellita.png" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image  Grid.Row="0" Grid.Column="3" x:Name="star4" Source="estrellita.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Grid.Row="0" Grid.Column="4" x:Name="star5" Source="estrellita.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            
+        </Grid>
+            <Label x:Name="pregunta2" Text="2. Pertinencia del tema con el seminario." FontAttributes="Bold"/>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image  HorizontalOptions="Start" x:Name="star21" Source="estrellita.png" Grid.Row="0" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  x:Name="star22" Source="estrellita.png" Grid.Row="0" Grid.Column="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="2" x:Name="star23" Source="estrellita.png" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_7"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="3" x:Name="star24" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_8"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="4" x:Name="star25" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_9"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
+            </Grid>
+            <Label x:Name="pregunta3" Text="3. Claridad del tema." FontAttributes="Bold"/>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image  HorizontalOptions="Start" x:Name="star31" Source="estrellita.png" Grid.Row="0" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_10"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  x:Name="star32" Source="estrellita.png" Grid.Row="0" Grid.Column="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_11"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="2" x:Name="star33" Source="estrellita.png" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_12"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="3" x:Name="star34" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_13"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="4" x:Name="star35" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_14"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+                <Label x:Name="pregunta4" Text="4. Desenvolvimiento y comunicación de ideas." FontAttributes="Bold"/>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image  HorizontalOptions="Start" x:Name="star41" Source="estrellita.png" Grid.Row="0" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_15"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  x:Name="star42" Source="estrellita.png" Grid.Row="0" Grid.Column="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_16"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="2" x:Name="star43" Source="estrellita.png" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_17"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="3" x:Name="star44" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_18"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="4" x:Name="star45" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_19"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Label x:Name="pregunta5" Text="5. Duración de cada charla." FontAttributes="Bold"/>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image  HorizontalOptions="Start" x:Name="star51" Source="estrellita.png" Grid.Row="0" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_20"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  x:Name="star52" Source="estrellita.png" Grid.Row="0" Grid.Column="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_21"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="2" x:Name="star53" Source="estrellita.png" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_22"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="3" x:Name="star54" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_23"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="4" x:Name="star55" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_24"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Label x:Name="pregunta6" Text="6. Interes de los participantes." FontAttributes="Bold"/>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image  HorizontalOptions="Start" x:Name="star61" Source="estrellita.png" Grid.Row="0" Grid.Column="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_25"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  x:Name="star62" Source="estrellita.png" Grid.Row="0" Grid.Column="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_26"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="2" x:Name="star63" Source="estrellita.png" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_27"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image  Grid.Row="0" Grid.Column="3" x:Name="star64" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_28"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="4" x:Name="star65" Source="estrellita.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_29"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+                <Button HorizontalOptions="End" x:Name="btnEnviar" Font="12" Text="Enviar" FontAttributes="Bold" BorderRadius="20"/>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

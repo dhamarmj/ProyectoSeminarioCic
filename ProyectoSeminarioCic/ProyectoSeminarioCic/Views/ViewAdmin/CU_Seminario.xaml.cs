@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Plugin.Media;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,19 +17,41 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         private Models.Seminario _seminario;
         //La clase donde estan los metodos para entrar a la nube
         Services.ApiServices_Seminario api = new Services.ApiServices_Seminario();
+        byte[] FotoArray;
         public CU_Seminario(Models.Seminario se)
         {
             _seminario = se;
             InitializeComponent();
             DtpInicio.Date = DateTime.Now;
+            DtpFin.Date = DateTime.Now;
             this.BindingContext = _seminario;
             if (_seminario == null)
                 EntDescripcion.Text = "Descripción del Seminario";
         }
 
-        private void AddLogo_Clicked(object sender, EventArgs e)
+        private async void AddLogo_Clicked(object sender, EventArgs e)
         {
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Error de Subida", "La foto seleccionada no es valida", "Aceptar");
+            }
+            else
+            {
+                var file = await CrossMedia.Current.PickPhotoAsync();
+                if (file != null)
+                {
+                //    mainImage.Source = ImageSource.FromStream(() => file.GetStream());
 
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        file.GetStream().CopyTo(memoryStream);
+                        file.Dispose();
+                        FotoArray = memoryStream.ToArray();
+                        await DisplayAlert("Aviso", "Imagen seleccionada correctamente", "Ok");
+                    }
+                }
+
+            }
         }
 
         private bool Validar()
@@ -49,10 +73,14 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             {
                 if (_seminario == null) //Es uno nuevo que tu vas a salvar?
                 {
+                    var timeIni = DateTime.Today.Add(DtpHoraIni.Time);
+                    var timeFin = DateTime.Today.Add(DtpHoraFin.Time);
                     _seminario = new Models.Seminario
                     {
-                        Anio = DtpInicio.Date,
+                        FechaInicio = new DateTime(DtpInicio.Date.Year, DtpInicio.Date.Month, DtpInicio.Date.Day, timeIni.Hour, timeIni.Minute, timeIni.Second),
+                        FechaFinal = new DateTime(DtpFin.Date.Year, DtpFin.Date.Month, DtpFin.Date.Day, timeFin.Hour, timeFin.Minute, timeFin.Second),
                         Descripcion = EntDescripcion.Text,
+                        ImagenArray = FotoArray,
                         Titulo = EntTitulo.Text
                     };
                     //Salvar
