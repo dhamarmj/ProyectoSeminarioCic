@@ -76,13 +76,20 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         }
         private bool Validate()
         {
-            if (TxtTitulo.Text != string.Empty & btnfecha.Date != null & btnhora.Time != null)
-                return true;
+            if (!string.IsNullOrEmpty(TxtTitulo.Text)  && btnfecha.Date != DateTime.Now && btnhora.Time != null)
+            {
+                int result;
+                if (!int.TryParse(btnduracion.Text, out result))
+                {
+                    return false;
+                }
+            }
             else
             {
                 DisplayAlert("Aviso", "Debe digitar un Título, Fecha y Hora para salvar el evento", "Ok");
                 return false;
             }
+            return true;
         }
         private async void ActualizarUsuarios(int ide)
         {
@@ -126,6 +133,9 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
             else
                 await DisplayAlert("Error", "Existe un error en la conexión", "Ok");
         }
+      
+
+
 
         private async void EditarUsuarios(int idE)
         {

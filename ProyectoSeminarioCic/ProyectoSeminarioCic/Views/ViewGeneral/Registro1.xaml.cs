@@ -16,6 +16,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
     {
         Models.Usuario usuario;
         Services.ApiServices api = new Services.ApiServices();
+        Services.ApiServices_CurrentSem apiSem = new Services.ApiServices_CurrentSem();
         Services.ApiServices_Usuario apiUsuario = new Services.ApiServices_Usuario();
         Services.ApiServices_CurrentSem apiCurrent = new Services.ApiServices_CurrentSem();
         public Registro1(Models.Usuario u)
@@ -26,6 +27,14 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             usuario = u;
             this.BindingContext = this;
         }
+
+        public async void loadSem()
+        {
+            var R = await apiSem.GetMainSeminario(1);
+            if (R != null)
+                Settings.idSeminario = R.Id_Seminario.ToString();
+        }
+
         private void Init()
         {
             pickergenero.Items.Add("Masculino");
@@ -44,6 +53,8 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         }
 
 
+
+
         async private void Btnsiguiente_Clicked(object sender, EventArgs e)
         {
             if (Validate())
@@ -57,42 +68,38 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                 BtnLoading.IsRunning = true;
 
                 checkCharlista();
+                loadSem();
 
                 var httpclient = await api.RegisterUser(usuario.Correo, usuario.Contrasenia, usuario.Contrasenia);
-                if (httpclient)
+                var res = await api.LoginUser(usuario.Correo, usuario.Contrasenia);
+                if (res)
                 {
-                    var res = await api.LoginUser(usuario.Correo, usuario.Contrasenia);
-                    if (res)
+                    var usersaved = await apiUsuario.RegistrarUsuario(usuario);
+                    if (usersaved)
                     {
-                        var usersaved = await apiUsuario.RegistrarUsuario(usuario);
-                        if (usersaved)
+                        LoadidUser();
+                        Settings.Rol = usuario.Rol;
+                        if (Settings.Rol == "Charlista" || Settings.Rol == "Participante")
                         {
-                            LoadidSem();
-                            Settings.Rol = usuario.Rol;
-                            if (Settings.Rol == "Charlista")
-                            {
-                                Navigation.InsertPageBefore(new Home(), this);
-                                await Navigation.PopAsync();
-                            }
-                            else if (Settings.Rol == "Participante")
-                            {
-                                var nv = new ViewUsuario.ScanHome();
-                                Navigation.InsertPageBefore(nv, this);
-                                await Navigation.PopAsync();
-
-                            }
-                            else
-                            {
-                                Navigation.InsertPageBefore(new ViewAdmin.MainMenu(), this);
-                                await Navigation.PopAsync();
-                            }
-
+                            Navigation.InsertPageBefore(new Home(), this);
+                            await Navigation.PopAsync();
                         }
+                        //else if (Settings.Rol == "Participante")
+                        //{
+                        //    var nv = new ViewUsuario.ScanHome();
+                        //    Navigation.InsertPageBefore(nv, this);
+                        //    await Navigation.PopAsync();
+                        //}
                         else
-                            await DisplayAlert("Alerta", "Error de conexión, intente de nuevo", "ok");
+                        {
+                            Navigation.InsertPageBefore(new ViewAdmin.MainMenu(), this);
+                            await Navigation.PopAsync();
+                        }
+
                     }
                     else
-                        await DisplayAlert("Alerta", "Error de conexión, intente de nuevo", "Ok");
+                        await DisplayAlert("Alerta", "Error de conexión, intente de nuevo", "ok");
+
                 }
                 else
                     await DisplayAlert("Alerta", "Error de conexión, intente de nuevo", "Ok");
@@ -123,7 +130,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             }
             return true;
         }
-        private async void LoadidSem()
+        private async void LoadidUser()
         {
             if (string.IsNullOrEmpty(Settings.idUsuario))
             {

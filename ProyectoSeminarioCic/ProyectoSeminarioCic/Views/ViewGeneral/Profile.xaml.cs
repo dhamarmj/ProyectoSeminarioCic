@@ -34,7 +34,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             if (resp != null)
             {
                 _user = resp;
-                if (_user.FotoPath != string.Empty)
+                if (!string.IsNullOrEmpty(_user.FotoPath))
                     _user.FotoPath = "http://proyectosapi.azurewebsites.net" + resp.FotoPath.Remove(0, 1);
                 else
                     _user.FotoPath = "baseline_account_circle_black_48.png";

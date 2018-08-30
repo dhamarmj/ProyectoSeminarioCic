@@ -16,9 +16,9 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <Image  Grid.Row="0" Grid.Column="0" x:Name="mainImage" HeightRequest="280" Aspect="AspectFit" Source="photo.png"/>
-                    <Button Grid.Row="1" Grid.Column="0" Text="Seleccionar Imagen" BackgroundColor="Transparent" FontAttributes="Italic" BorderRadius="20" Clicked="Galery_Clicked"/>
                 </Grid>
                 <StackLayout Padding="10,15">
+                    <Button Grid.Row="1" Grid.Column="0" BorderColor="DarkOrange" BorderWidth="2" Text="Seleccionar Imagen" BackgroundColor="Transparent" FontAttributes="Italic" BorderRadius="20" Clicked="Galery_Clicked"/>
                     <Entry Placeholder="Comentario"  TextColor="Black" PlaceholderColor="Gray" x:Name="TxtPie"/>
                     <BoxView HeightRequest="5" BackgroundColor="Transparent"/>
                     <Button Text="Enviar" BorderRadius="20" Clicked="Button_Clicked"/>

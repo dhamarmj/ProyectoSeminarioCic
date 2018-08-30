@@ -16,7 +16,7 @@
                   RelativeLayout.WidthConstraint="{ConstraintExpression Property=Width, Type=RelativeToParent, Factor=1}">
                     <Image Source="logo.png" WidthRequest="100" HeightRequest="100" Margin="0,50,0,30" />
                     <StackLayout Padding="30,20">
-                        <Entry Placeholder="Nombre de Usuario" x:Name="Txtnombre" PlaceholderColor="Gray" />
+                        <Entry Placeholder="Correo Electrónico" x:Name="Txtnombre" PlaceholderColor="Gray" />
                         <Entry Placeholder="Contraseña" x:Name="TxtPass" PlaceholderColor="Gray" IsPassword="True" />
                         <Button Text="Iniciar Sesion" x:Name="btnIniciar" BackgroundColor="LightGray" BorderRadius="20" TextColor="Black" Clicked="BtnIniciar_Clicked"/>
                         <!--<StackLayout Orientation="Horizontal">

@@ -25,6 +25,13 @@ namespace ProyectoSeminarioCic.Services
 
             return JsonConvert.DeserializeObject<List<Models.Boleta>>(json);
         }
+        async public Task<Models.Boleta> GetBoleta(int idUsuario, int idSeminario)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
+            var json = await httpClient.GetStringAsync($"{BaseUri}?idUsuario={idUsuario}&idSeminario={idSeminario}");
+
+            return JsonConvert.DeserializeObject<Models.Boleta>(json);
+        }
         async public Task<bool> RegistrarBoleta(Models.Boleta semi)
         {
             var json = JsonConvert.SerializeObject(semi);

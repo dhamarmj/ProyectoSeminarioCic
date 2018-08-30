@@ -24,7 +24,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         }
         protected override void OnAppearing()
         {
-         //   LoadSeminars();
+           LoadSeminars();
             LoadCurrentSeminar();
         }
 

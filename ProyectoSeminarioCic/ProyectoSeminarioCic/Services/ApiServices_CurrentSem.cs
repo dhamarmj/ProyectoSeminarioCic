@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,8 +26,11 @@ namespace ProyectoSeminarioCic.Services
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
             var path = string.Format("{0}/{1}", BaseUri, Id);
             var json = await httpClient.GetStringAsync(path);
+            Models.MainSeminario claim = JsonConvert.DeserializeObject<Models.MainSeminario>(json);
+            return claim;
 
-            return JsonConvert.DeserializeObject<Models.MainSeminario>(json);
+            //Models.MainSeminario A = JsonConvert.DeserializeObject<Models.MainSeminario>(json);
+            //return A;
         }
         async public Task<Models.MainSeminario> GetMainSeminario(string idSeminario)
         {
@@ -61,6 +67,6 @@ namespace ProyectoSeminarioCic.Services
 
             return response.IsSuccessStatusCode;
         }
-       
+
     }
 }
