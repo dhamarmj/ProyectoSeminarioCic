@@ -15,6 +15,7 @@
                     <Entry Placeholder="Nombre de Usuario" PlaceholderColor="Gray" x:Name="TxtUsername"/>
                     <Entry Placeholder="Correo Electrónico" PlaceholderColor="Gray" x:Name="TxtEmail" />
                     <Entry Placeholder="Contraseña" PlaceholderColor="Gray" IsPassword="True" x:Name="TxtPass" />
+                    <Entry Placeholder="Confirmar Contraseña" PlaceholderColor="Gray" IsPassword="True" x:Name="TxtPassC" />
                     <BoxView BackgroundColor="Transparent" HeightRequest="10"/>
                     <Button Text="Siguiente" x:Name="btnconfirmar" BackgroundColor="LightGray" BorderRadius="20" TextColor="Black" Clicked="Btnconfirmar_Clicked"/>
                 </StackLayout>

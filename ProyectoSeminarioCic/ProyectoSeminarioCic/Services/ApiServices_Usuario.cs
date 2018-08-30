@@ -40,10 +40,10 @@ namespace ProyectoSeminarioCic.Services
 
             return JsonConvert.DeserializeObject<List<Models.Usuario>>(json);
         }
-        async public Task<Models.Usuario> GetUsuario(string username, string contrasenia)
+        async public Task<Models.Usuario> GetUsuario(string correo, string contrasenia)
         {
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", Settings.AccesToken);
-            var json = await httpClient.GetStringAsync($"{BaseUri}?username={username}&contrasenia={contrasenia}");
+            var json = await httpClient.GetStringAsync($"{BaseUri}?correo={correo}&contrasenia={contrasenia}");
 
             return JsonConvert.DeserializeObject<Models.Usuario>(json);
         }

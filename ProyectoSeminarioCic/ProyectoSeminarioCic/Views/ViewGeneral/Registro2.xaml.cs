@@ -18,7 +18,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
     public partial class Registro2 : ContentPage
     {
         Services.ApiServices_Usuario api = new Services.ApiServices_Usuario();
-        // Usuario usuario;
+        //Usuario usuario;
         public Registro2()
         {
             InitializeComponent();
@@ -29,11 +29,11 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         async private void Btnconfirmar_Clicked(object sender, EventArgs e)
         {
             BtnLoading.IsRunning = true;
-            //if (Validate())
-            //{
-            //    var v = await CheckUsername();
-            //    if (v)
-            //    {
+            if (Validate())
+            {
+                var v = await CheckUsername();
+                if (v)
+                {
                     var usuario = new Models.Usuario
                     {
                         Correo = TxtEmail.Text.ToLower(),
@@ -42,8 +42,8 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                     };
                     BtnLoading.IsRunning = false;
                     await Navigation.PushAsync(new Registro1(usuario));
-            //    }
-            //}
+                }
+            }
             BtnLoading.IsRunning = false;
         }
 
@@ -76,6 +76,12 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
             else if (string.IsNullOrEmpty(TxtPass.Text))
             {
                 DisplayAlert("Error", "Debe ingresar una Contraseña", "Aceptar");
+                TxtPass.Focus();
+                return false;
+            }
+            else if (TxtPass.Text != TxtPassC.Text)
+            {
+                DisplayAlert("Error", "Las contraseñas no coinciden", "Aceptar");
                 TxtPass.Focus();
                 return false;
             }

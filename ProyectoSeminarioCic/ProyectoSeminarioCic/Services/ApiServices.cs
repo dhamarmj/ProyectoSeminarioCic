@@ -16,7 +16,7 @@ namespace ProyectoSeminarioCic.Services
         {
             var registry = new Models.RegisterModel()
             {
-                Email = email,
+                Email = email.ToLower(),
                 Password = pass,
                 ConfirmPassword = confpass
             };
@@ -24,13 +24,13 @@ namespace ProyectoSeminarioCic.Services
             var jsonobj = JsonConvert.SerializeObject(registry);
             var content = new StringContent(jsonobj, Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(BaseUri + "Account/Register", content);
-            Settings.Email = email;
-            Settings.Password = pass;
+
             return response.IsSuccessStatusCode;
         }
-       
+
         public async Task<bool> LoginUser(string email, string pass)
         {
+            email = email.ToLower();
             var keyval = new List<KeyValuePair<string, string>>()
             {
                 new KeyValuePair<string, string>("username", email),
@@ -42,9 +42,18 @@ namespace ProyectoSeminarioCic.Services
             HttpClient cliente = new HttpClient();
             var response = await cliente.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
-            var jobject = JsonConvert.DeserializeObject<dynamic>(content);
-            Settings.AccesToken = jobject.Value<string>("access_token");
-            
+
+
+            //var jobject = JsonConvert.DeserializeObject<dynamic>(content);
+            var jobject = JObject.Parse(content);
+            //Console.WriteLine("=======================================");
+            //Console.WriteLine(jobject);
+            //Console.WriteLine("========================== =============");
+            var value = (string) jobject["access_token"];
+            //Settings.AccesToken = (string)jobject["access_token"];
+            //.Value<string>("access_token");
+            Settings.Email = email;
+            Settings.Password = pass;
 
             return response.IsSuccessStatusCode;
         }

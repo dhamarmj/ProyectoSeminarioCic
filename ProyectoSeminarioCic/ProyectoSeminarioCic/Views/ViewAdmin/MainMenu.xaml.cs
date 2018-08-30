@@ -34,7 +34,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                 new Menu { Page = new SeminarioHome(), MenuTitle="Seminarios", Icon = "baseline_event_available_black_36.png" },
                 new Menu { Page = new EventoHome(), MenuTitle="Eventos", Icon = "baseline_event_note_black_36.png" },
                 new Menu { Page = new Notificacion(), MenuTitle="Notificaciones",  Icon = "baseline_notifications_black_36.png" },
-               new Menu { Page = new ViewGeneral.Profile(), MenuTitle="Perfil",  Icon = "baseline_person_black_36.png" },
+                new Menu { Page = new ViewGeneral.Profile(), MenuTitle="Perfil",  Icon = "baseline_person_black_36.png" },
                 new Menu { Page = new ConfiguracionHome(), MenuTitle="Ajustes",  Icon = "baseline_settings_black_36.png" },
             };
             ListMenu.ItemsSource = menu;
@@ -42,7 +42,6 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
         public class Menu
         {
             public string MenuTitle { get; set; }
-
             public ImageSource Icon { get; set; }
             public Page Page { get; set; }
         }
@@ -55,7 +54,7 @@ namespace ProyectoSeminarioCic.Views.ViewAdmin
                 IsPresented = false;
                 var start = new NavigationPage(menu.Page)
                 {
-                   BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor)
+                    BarBackgroundColor = Color.FromHex(Proyecto.CurrrentSeminar.PrimaryColor)
                 };
                 Detail = start;
 

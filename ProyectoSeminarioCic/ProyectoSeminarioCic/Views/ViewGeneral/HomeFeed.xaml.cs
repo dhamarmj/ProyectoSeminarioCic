@@ -20,7 +20,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         Services.ApiServices_Publicacion api = new Services.ApiServices_Publicacion();
         ObservableCollection<Post> _listPosts = new ObservableCollection<Post>();
         bool kaip = true;
-        string baseUri = "http://proyectosapi.azurewebsites.net"; 
+        string baseUri = "http://proyectosapi.azurewebsites.net";
         public HomeFeed(bool hasNavigationBar)
         {
             NavBar = hasNavigationBar;
@@ -49,6 +49,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
 
         private async void StartView()
         {
+            BtnLoading.IsRunning = true;
             int count = 0;
             var listP = await api.GetPublicacion();
             if (listP.Count > 0)
@@ -63,19 +64,21 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                             item.ImagenPath = baseUri + item.ImagenPath.Remove(0, 1);
                         }
 
-                        
+
 
                         var user = await apiUsuario.GetUsuario(item.Id_usuario);
                         if (user != null)
                         {
                             if (!string.IsNullOrEmpty(user.FotoPath))
                                 user.FotoPath = baseUri + user.FotoPath.Remove(0, 1);
+                            else
+                                user.FotoPath = "baseline_account_circle_black_48.png";
 
                             var list = await apiComm.GetComentario(Convert.ToDouble(item.Id));
                             if (list != null)
                                 count = list.Count;
 
-                            _listPosts.Add(new Post(item, user, count));
+                            _listPosts.Insert(0, new Post(item, user, count));
                         }
                     }
                     else
@@ -105,8 +108,8 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
                 listPictures.ItemsSource = _listPosts;
                 listPictures.EndRefresh();
             }
-                
 
+            BtnLoading.IsRunning = false;
         }
 
         private void listPictures_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -125,7 +128,7 @@ namespace ProyectoSeminarioCic.Views.ViewGeneral
         {
 
         }
-       
+
         private void listPictures_Refreshing(object sender, EventArgs e)
         {
             StartView();

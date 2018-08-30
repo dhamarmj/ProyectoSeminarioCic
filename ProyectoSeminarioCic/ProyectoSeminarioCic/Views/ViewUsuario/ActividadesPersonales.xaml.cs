@@ -19,7 +19,7 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
         public ActividadesPersonales()
         {
             InitializeComponent();
-           
+
         }
 
         protected override void OnAppearing()
@@ -32,19 +32,14 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
         public async void LoadEventos()
         {
             var listE = await apiEventoU.GetEvento_Usuario(Settings.idUsuario);
-            foreach (Models.Evento_Usuario i in listE)
+            foreach (var i in listE)
             {
-                foreach (var item in listE)
+                var exist = _eventos.FirstOrDefault(x => x.Id == i.Id_evento);
+                if (exist == null)
                 {
-                    var exist = _eventos.FirstOrDefault(x => x.Id == item.Id);
-                    if (exist == null)
-                    {
-                        var R = await apiEventos.GetEvento(item.Id_evento);
-                        if (R != null)
-                        {
-                            _eventos.Add(R);
-                        }
-                    }
+                    var R = await apiEventos.GetEvento(i.Id_evento);
+                    if (R != null)
+                        _eventos.Add(R);
                 }
             }
             ListEventos.ItemsSource = _eventos.OrderBy(x => x.Fecha);
@@ -58,7 +53,7 @@ namespace ProyectoSeminarioCic.Views.ViewUsuario
 
         private void ListEventos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-          var evento = e.SelectedItem as Models.Evento;
+            var evento = e.SelectedItem as Models.Evento;
             if (evento != null)
             {
                 Navigation.PushAsync(new PreguntasHome(evento));
